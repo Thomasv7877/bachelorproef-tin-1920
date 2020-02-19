@@ -1,0 +1,95 @@
+%==============================================================================
+% Sjabloon onderzoeksvoorstel bachelorproef
+%==============================================================================
+% Gebaseerd op LaTeX-sjabloon ‘Stylish Article’ (zie voorstel.cls)
+% Auteur: Jens Buysse, Bert Van Vreckem
+%
+% Compileren in TeXstudio:
+%
+% - Zorg dat Biber de bibliografie compileert (en niet Biblatex)
+%   Options > Configure > Build > Default Bibliography Tool: "txs:///biber"
+% - F5 om te compileren en het resultaat te bekijken.
+% - Als de bibliografie niet zichtbaar is, probeer dan F5 - F8 - F5
+%   Met F8 compileer je de bibliografie apart.
+%
+% Als je JabRef gebruikt voor het bijhouden van de bibliografie, zorg dan
+% dat je in ``biblatex''-modus opslaat: File > Switch to BibLaTeX mode.
+
+\documentclass{voorstel}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{voorstel.bib}
+\usepackage{lipsum}
+
+%------------------------------------------------------------------------------
+% Metadata over het voorstel
+%------------------------------------------------------------------------------
+
+%---------- Titel & auteur ----------------------------------------------------
+
+\PaperTitle{Ontwikkeling van de Proof of Concept voor een nieuw IT asset management programma voor AZ Glorieux gebouwd met Power Apps}
+\PaperType{Onderzoeksvoorstel Bachelorproef 2019-2020} % Type document
+
+\Authors{Thomas Van den Hauwe\textsuperscript{1}} % Authors
+\CoPromotor{Siemen Vanneste\textsuperscript{2} (AZ Glorieux)}
+\affiliation{\textbf{Contact:}
+  \textsuperscript{1} \href{mailto:thomas.vandenhauwe.v7877@student.hogent.be}{thomas.vandenhauwe.v7877@student.hogent.be};
+  \textsuperscript{2} \href{mailto:siemen.vanneste@azglorieux.be}{siemen.vanneste@azglorieux.be};
+}
+
+%---------- Abstract ----------------------------------------------------------
+
+\Abstract{
+Deze proef drong zich in de loop van mijn Stage bij AZ Glorieux op. Siemen Vanneste, hoofd van infrastructuur, systeemanalist en nu ook mijn stage-mentor sprak over zijn wens om het huidige assetmanagement programma, LanReview, te vervangen door een Power App. Het uitwerken van een Proof of Concept ervoor zal de hoofdtaak zijn. In dit document staat achtergrondinformatie over AZ Glorieux en LanReview, een beperkte requirementsanalyse, uiteraard ook de onderzoeks- doelstellingen en vragen. De gebruikte technologieën worden uitgelijnd in de Literatuurstudie. De manier waarop tewerk gegaan zal worden is in stappen uitgewerkt in de methodologie. Op het einde worden de verwachte resultaten en conclusies van het onderzoek kort besproken. Hierover kan gezegd worden dat het uitwerken van de hoofdfunctionaliteiten realistisch is en dat er dus op z'n minst een bescheiden mate van success te verwachten is in het ontwikkelen van de Proof of Concept.
+}
+
+%---------- Onderzoeksdomein en sleutelwoorden --------------------------------
+
+%
+% Het eerste sleutelwoord beschrijft het onderzoeksdomein. Je kan kiezen uit
+% deze lijst:
+%
+% - Mobiele applicatieontwikkeling
+% - Webapplicatieontwikkeling
+% - Applicatieontwikkeling (andere)
+% - Systeembeheer
+% - Netwerkbeheer
+% - Mainframe
+% - E-business
+% - Databanken en big data
+% - Machineleertechnieken en kunstmatige intelligentie
+% - Andere (specifieer)
+%
+% De andere sleutelwoorden zijn vrij te kiezen
+
+\Keywords{Onderzoeksdomein. Applicatieontwikkeling --- Systeembeheer --- Netwerkbeheer -- Mobiele applicatieontwikkeling} % Keywords
+\newcommand{\keywordname}{Sleutelwoorden} % Defines the keywords heading name
+
+%---------- Titel, inhoud -----------------------------------------------------
+
+\begin{document}
+
+\flushbottom % Makes all text pages the same height
+\maketitle % Print the title and abstract box
+\tableofcontents % Print the contents section
+\thispagestyle{empty} % Removes page numbering from the first page
+
+%------------------------------------------------------------------------------
+% Hoofdtekst
+%------------------------------------------------------------------------------
+
+% De hoofdtekst van het voorstel zit in een apart bestand, zodat het makkelijk
+% kan opgenomen worden in de bijlagen van de bachelorproef zelf.
+\input{voorstel-inhoud}
+
+%------------------------------------------------------------------------------
+% Referentielijst
+%------------------------------------------------------------------------------
+% TODO: de gerefereerde werken moeten in BibTeX-bestand ``voorstel.bib''
+% voorkomen. Gebruik JabRef om je bibliografie bij te houden en vergeet niet
+% om compatibiliteit met Biber/BibLaTeX aan te zetten (File > Switch to
+% BibLaTeX mode)
+
+\phantomsection
+\printbibliography[heading=bibintoc]
+
+\end{document}

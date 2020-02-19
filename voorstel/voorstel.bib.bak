@@ -1,0 +1,89 @@
+% Encoding: UTF-8
+@ARTICLE{Doll1954,
+  author = {Doll, Richard and Hill, A Bradford},
+  title = {The mortality of doctors in relation to their smoking habits: a preliminary
+	report},
+  journal = {British Medical Journal},
+  year = {1954},
+  volume = {328},
+  pages = {1529-1533},
+  number = {7455},
+  owner = {jbuy519},
+  timestamp = {2014.03.28}
+}
+
+@BOOK{Moore2002,
+  title = {Introduction to the Practice of Statistics},
+  publisher = {W. H. Freeman},
+  year = {2002},
+  author = {Moore, David and McCabe, George},
+  owner = {jbuy519},
+  timestamp = {2014.01.28}
+}
+
+@BOOK{Smits2011,
+  title = {Onderzoek met SPSS en Excel},
+  publisher = {Pearson Education},
+  year = {2011},
+  author = {Smits, Johan and Edens, Ronald},
+  owner = {jbuy519},
+  timestamp = {2014.01.23}
+}
+
+@Online{Weare2019,
+  author  = {Kent Weare},
+  title   = {Microsoft Rebrands Flow Service to Power Automate, Adds Robotic Process Automation Capabilities},
+  date    = {2019-12-23},
+  url     = {https://www.infoq.com/news/2019/12/Power-Automate-RPA/},
+  urldate = {2020-02-14},
+}
+
+@Online{Gartner2020,
+  author  = {Gartner},
+  title   = {It Asset Management (itam)},
+  year    = {2020},
+  url     = {https://www.gartner.com/en/information-technology/glossary/it-asset-management-itam},
+  urldate = {2020-02-14},
+}
+
+@Online{Badnakhe2020,
+  author  = {Rahul Badnakhe},
+  title   = {Why Are More Businesses Adopting IoT for Asset Management?},
+  date    = {2020-01-23},
+  url     = {https://dzone.com/articles/why-more-businesses-are-adopting-iot-for-asset-man},
+  urldate = {2020-02-14},
+}
+
+@Online{Knight2019,
+  author  = {Brian Knight},
+  title   = {PowerApps Canvas vs Model-driven Applications},
+  date    = {2019-05-14},
+  url     = {https://blog.pragmaticworks.com/powerapps-canvas-vs-model-driven-applications},
+  urldate = {2020-02-14},
+}
+
+@Online{Owen2019,
+  author  = {Owen, Anne Frances and Lindhorst, Greg and Vivek, Kumar},
+  title   = {Formula reference for Power Apps},
+  date    = {2019-12-19},
+  url     = {https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/formula-reference},
+  urldate = {2020-02-14},
+}
+
+@Online{Vivek2019,
+  author  = {Vivek, Kumar and Hecke, Peter and Guderian, Buckley and Daly, Jim and Lattimer, Jason},
+  title   = {Use plug-ins to extend business processes},
+  date    = {2019-03-27},
+  url     = {https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/plug-ins},
+  urldate = {2020-02-14},
+}
+
+@Online{Ryan2019,
+  author  = {Ryan Cunningham},
+  title   = {Power Apps Top 10: innovation areas that are reshaping app development},
+  date    = {2019-11-04},
+  url     = {https://powerapps.microsoft.com/en-us/blog/power-apps-top-10-innovation-areas-that-are-reshaping-app-development/},
+  urldate = {2020-02-14},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}
