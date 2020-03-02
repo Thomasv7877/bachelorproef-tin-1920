@@ -78,12 +78,52 @@
   urldate = {2020-02-14},
 }
 
-@Online{Ryan2019,
+@Online{Cunningham2019,
   author  = {Ryan Cunningham},
   title   = {Power Apps Top 10: innovation areas that are reshaping app development},
   date    = {2019-11-04},
   url     = {https://powerapps.microsoft.com/en-us/blog/power-apps-top-10-innovation-areas-that-are-reshaping-app-development/},
   urldate = {2020-02-14},
+}
+
+@Online{Owen2019a,
+  author  = {Owen, Anne Frances and Vivek, Kumar and Manwaring, Marge and Blythe, Michael and Delano, Lance},
+  title   = {Connect to SharePoint from a canvas app},
+  date    = {2019-03-04},
+  url     = {https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/connections/connection-sharepoint-online},
+  urldate = {2020-02-14},
+}
+
+@Online{Wikipedia2020,
+  author  = {Wikipedia},
+  title   = {MoSCoW-methode},
+  date    = {2020-03-01},
+  url     = {https://nl.wikipedia.org/wiki/MoSCoW-methode},
+  urldate = {2020-03-02},
+}
+
+@Online{Microsoft2020,
+  author  = {Microsoft},
+  title   = {Power Apps and Power Automate licensing FAQs},
+  date    = {2020-01-07},
+  url     = {https://docs.microsoft.com/en-us/power-platform/admin/powerapps-flow-licensing-faq},
+  urldate = {2020-02-03},
+}
+
+@Online{FinancesOnline2020,
+  author  = {FinancesOnline},
+  title   = {Top 12 Most Popular IT Asset Management Software},
+  date    = {2020-02-27},
+  url     = {https://financesonline.com/it-asset-management/},
+  urldate = {2020-03-02},
+}
+
+@Online{Microsoft2020a,
+  author  = {Microsoft},
+  title   = {Power Apps test framework},
+  date    = {2020-01-10},
+  url     = {https://docs.microsoft.com/en-us/power-platform-release-plan/2019wave2/microsoft-powerapps/test-framework},
+  urldate = {2020-03-02},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
