@@ -1,17 +1,171 @@
 \chapter{\IfLanguageName{dutch}{Stand van zaken}{State of the art}}
 \label{ch:stand-van-zaken}
 
+% TODO: bronnen
+
 % Tip: Begin elk hoofdstuk met een paragraaf inleiding die beschrijft hoe
 % dit hoofdstuk past binnen het geheel van de bachelorproef. Geef in het
 % bijzonder aan wat de link is met het vorige en volgende hoofdstuk.
 
 % Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
 
-Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
+%Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
+%
+%Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz. naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin, gebruik je \texttt{$\backslash${}textcite\{\}}.
+%Soms wil je de auteur niet expliciet vernoemen, dan gebruik je \texttt{$\backslash${}autocite\{\}}. In de volgende paragraaf een voorbeeld van elk.
+%
+%\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
+%
+%\lipsum[7-20]
 
-Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz. naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin, gebruik je \texttt{$\backslash${}textcite\{\}}.
-Soms wil je de auteur niet expliciet vernoemen, dan gebruik je \texttt{$\backslash${}autocite\{\}}. In de volgende paragraaf een voorbeeld van elk.
+\section{AZ Glorieux omgeving}
 
-\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
+\subsection{Omgeving}
 
-\lipsum[7-20]
+Er zitten meer dan 1000 toestellen in het domein waar controle en overzicht voor nodig is. Het gaat om een ziekenhuis. Er is geen marge voor fouten en respons moet direct zijn.
+Zowel Servers als client computers gebruiken Microsoft Windows besturingssysteem varianten. De softwarecatalogus is uitgebreid. Relevant is dat Office gebruikt wordt, ook Office 365.
+Er ligt een grote nadruk op documentering. Hiervoor wordt SharePoint gebruikt.
+
+\subsection{Toekomst}
+
+Migratie naar Windows 10 is een lopend proces. Veel bedrijven doen dit en proberen dit te versnellen wegens de komende end-of-life status van Windows 7 [???]. Per case kan dit tijdrovend zijn om softwarecompatibiliteit te garanderen.
+Verspreiding van nieuwe technologieën: interesse in het Power Platform, implementatie van Miscroft Teams, Intune wordt steeds meer gebruikt als aavnulling van SCCM (System Center Configuration Manager). Er worden steeds meer mobiele devices opgenomen in het domein.
+Wat digitale transformatie betreft wordt sommige verouderde, huiseigen software vervangen. Concreet gaat het om tools gemaakt met Visual Basic.
+Er wordt gestreefd naar een hogere mate van automatisatie. Het is wenselijk dat zoveel mogelijk software gedeployed kan worden vanuit SCCM.
+
+\subsection{IT Asset Management}
+
+Het onderzoek bevind zich in het domein van IT Asset Management. Enkele definities om dit begrip te verduidelijken.
+
+[IAITAM] geeft een algemene definitie: `IT Asset Management is a set of business practices that incorporates IT assets across the business units within the organization. It joins the financial, inventory, contractual and risk management responsibilities to manage the overall life cycle of these assets including tactical and strategic decision making.`
+
+[Gartner] stelt: `IT asset management (ITAM) provides an accurate account of technology asset lifecycle costs and risks to maximize the business value of technology strategy, architecture, funding, contractual and sourcing decisions.`
+
+[Ivanti] reikt onderverdelingen aan. Er kan een onderscheid gemaakt worden tussen Fysieke, Digitale, Software, Mobile en Cloud IT Asset Management.
+Een beschrijving voor de voor het onderzoek toepasbare categorie, de fysieke, geldt: 'The discovery and inventory of hardware including PCs, laptops, printers, copiers, and any other device used for IT and data management purposes'.
+
+Er werd verwacht dat de IoT (Internet of Things) trend IT Asset Management programma's zal laten evolueren om met deze devices om te kunnen gaan. Dit betekend meer assets en meer asset types. Hier zijn voordelen mee verbonden: `Increased Operational Efficiency, Productivity Is Enhanced, Resources Are Used Efficiently, Better Checks for Safety and Compliance, Maintenance and Repair Automation` [Dzone].
+
+IT asset management oplossingen zijn vaak een aanvulling op het werken van SCCM. Een belangrijke functie van SCCM is het verschaffen van informatie. In sommige geevallen wordt functionaliteit van SCCM opgeroepen of zijn database geraadpleegt. Het is de moeite om meer informatie over SCCM te geven.
+
+[Savaco] beschrijft het als volgt: `System Center Configuration Manager, afgekort als SCCM of ConfigMgr, is een onderdeel van de Microsoft System Center Suite en staat in voor het beheer \& inventarisatie van pc's en servers. Daarenboven is het mogelijk toepassingen uit te rollen, software updates te installeren en compliance te controleren en op te lossen`.
+
+De primaire functies zijn het creëren van computer images, massa deployment van images, distribueren van silent installaties van software applicaties, cross campus managen van software en natuurlijk inventarisatie en organisatie van eigen hardware en devices.
+
+SCCM functioneerd aan de hand van een aantal sleuteltechnologieen: PXE btting, de SCCM agent geinstalleerd op client pc's die data voed aan SCCM en Task Sequences waarmee een hele reeks taken uitgevoerd kan worden. [Software2].
+
+Eerder wert gesproken over de relatie tussen ITAM oplossingen en SCCM. Waar traditionele oplossingen een aanvulling of uitbreiding zijn op SCCM is LanReview eerder een vereenvoudiging. Het is toegespits op inventarisatie en organisatie van eigen hardware en devices.
+
+De reden dat SCCM zo verspreid is is omdat het gratis inbegrepen is in enterprice licensing van Microsoft. Het is bijvoorbeeld inbegrepen in Microsoft 365 licentie. [MSdocs-licencing]
+
+\subsection{Databronnen}
+
+Een overzicht van enkele databronnen die AZ GLorieux gebruikt. Deze zullen later in het onderzoeke aan bod komen.
+
+\begin{itemize}
+    \item SQL Server
+    \item Microsoft Excel en Access
+    \item SharePoint
+\end{itemize}
+
+\section{LanReview}
+
+\subsection{Visual Basic}
+
+LanReview werd gebouwd in Visual Basic (VB). Dit is een event-gedreven programmeertaal en omgeving van Microsoft waarmee programmeurs code kunnen aanpassen door drag-en-frop van objecten en door wijziging van hun gedrag en uiterlijk.  VB komt van de BASIC programmeertaal. Het is een RAD (Rapid Applicatino development) platform. Het werd voornamelijk gebruikt voor prototyping en als front-end voor databases. De laatste versie, Visual Basic 6.0, stamt van 1999.
+
+Het grote voordeel is snelheid van ontwikkeling. Er zijn ook een aantal nadelen:
+Het had veel geheugen nodig en was niet geschikt voor programma's die veel proceskracht nodig hadden, zoals games. Het is ook beperkt tot het Microsoft besturingssysteem. [techtarget-visualbasic]
+
+\subsubsection{Geschiedenis}
+
+\begin{itemize}
+    \item \textbf{1964}: BASIC geformuleerd door John Kemenu en Thomas Kurtz.
+    \item \textbf{1987}: architect/programmeur Alan Cooper bedenkt voorloper van VB genaamd Tripod.
+    \item \textbf{1988}: Bill Gates koopt de rechten voor Tripod.
+    \item \textbf{1991}: Visual Basic 1.0 geïntroduceerd.
+    \item \textbf{1998}: Visual Basic 6.0 geïntroduceerd.
+    \item \textbf{2002}: .NET framework.
+    \item \textbf{2008}: Einde extended support voor Visual Basic 6.0.
+\end{itemize}
+
+[Newsmax]
+
+\subsubsection{Vandaag}
+
+Uitvoering van VB applicaties blijft ondersteund op moderne Windows versies. Het maken van nieuwe echter niet [msdocs-vb6]. Niettegenstaand heeft men manieren gevonden om alsnog te installeren. [blog.danbrust.net]
+
+Er is nog een kleine maar vocale groep aanhangers van VB. Dit komt omdat ze de officieele opvolger, Visual Basic .NET, niet waardig vonden voornamelijk omdat de afhankelijkheid van .NET een extra abstractielaag was. Voorbeelden hiervan zijn:
+\begin{itemize}
+    \item Visual Basic behoud blijft hoog. Opvallend aanhoudend success voor een `dode` tool. [Codeproject].
+    \item Er werd een petitie gemaakt voor verdere ontwikkeling van VB. [web.archive.petition].
+    \item Er worden nog steeds applicatie mee ontwikkeld [planetsourcecode].
+\end{itemize}
+
+\subsection{LanReview werking}
+
+% TODO: afbeelding 1
+
+LanReview houdt zijn informatie over assets in het domein bij in een Access databank. Deze informatie werd origineel geexporteerd uit SCCM.
+De applicatie heeft twee views: de primaire view is een filterbaar overzicht van devices. voor elke entry kan een meer gedetailleerde view opgeroepen waar alle datavelden te zien zijn.
+Aan de hand van de filter functionaliteit worden sql achtige queries gebouwd die dan uitgevoerd worden op de Acces databank.
+
+LanReview is een belangrijke tool van de Helpdesk en wordt dagelijks gebruikt.
+
+Vaak voorkomende use cases:
+\begin{itemize}
+    \item De pc overnemen van iemand in nood. Het is een startpunt voor remote management.
+    \item Rapportage. Er kunnen voorgebouwde query's uitgevoerd worden op de data waarvan de resultaten onder andere naar Excel geëxporteerd kunnen worden.
+    \item Filteren van de dataset. Bijvoorbeeld een overzicht van alle laptops van een belaad model tonen die nog steeds met Windows 7 werken.
+    \item End of life beheer. Via markeringen is duidelijk of een device nog niet gebruikt wordt, in gebruik is of niet meer gebruikt wordt/in storage is.
+\end{itemize}
+
+% TODO: afbeelding 2 + uiteg datavelden
+
+\section{Low Code}
+
+\subsection{Basics}
+
+De POC zal gebouwd worden met een low-code platform. Cloud services maken hier een deel van uit. Moderne low-code platformen zijn gecategoriseerd als PaaS (Platform as a Service). In geval van IaaS (infrastructure as a service) leeft de volledige infrastructuur in de lcoud. PaaS kan gezien worden als een extra laag gebouwd bovenop IaaS waarmee applicateiontwikkelaars software kunnen preogrammeren in de cloud om later aan te kunnen bieden als SaaS (Software as a Service). Het is een tussenlaag gefocusd op programmeurs. [nucleus]
+
+De bedoeling van low-coed is om applicaties sneller te kunnen maken en ontwikkeling voor een grotere groep toegankelijk te maken. Typisch gezien wordt er een WYSIWYG (What You See Is What You Get) interface gerbuikt waarin visuele componenten geconfigureerd worden via drag-and-drop. Vaak is er ondersteuning om aangepaste toe te voegen indien het platform bepaalde functionaliteit out of the box niet ondersteund. [kissflow2]
+
+Een low-code platform bestaat typisch uit volgende delen:
+\begin{itemize}
+    \item Een visuele IDE (Integrated Development Environment).
+    \item Connectoren naar back-ends of services.
+    \item App Lifecycle Management. Hiermee bedeolt geautomatiseerde tools voor build, debug, en deploy. Ook beheer van de app tijdens test, staging en productie.
+\end{itemize}
+
+\subsubsection{low-code VS no-code}
+
+\subsubsection{low-code development VS traditional software development}
+
+\subsubsection{Citizen developers}
+
+
+\subsection{Geschiedenis}
+
+\subsection{Nood / Voordelen}
+
+Het verkooppunt van low-code is hogere snelheid van applicatieontwikkeling. Naast deze snelheid zijn er nog andere voordelen:
+\begin{itemize}
+    \item 
+\end{itemize}
+
+Markt leidende platformen hebben de volgende eigenschappen:
+\begin{itemize}
+    \item Eenvoudige visuele configuratie
+    \item Veel integratie opties.
+    \item Mobile compatibel.
+    \item Schaalbaar.
+    \item Support over de volledige app levenscyclus. [kissflow2]
+\end{itemize}
+
+\subsubsection{Digitale transformatie}
+
+\subsection{Kritiek / Nadelen}
+
+\subsection{Markt en Evolutie}
+
+\subsection{Voorgaand onderzoek}
