@@ -128,29 +128,86 @@ Vaak voorkomende use cases:
 
 De POC zal gebouwd worden met een low-code platform. Cloud services maken hier een deel van uit. Moderne low-code platformen zijn gecategoriseerd als PaaS (Platform as a Service). In geval van IaaS (infrastructure as a service) leeft de volledige infrastructuur in de lcoud. PaaS kan gezien worden als een extra laag gebouwd bovenop IaaS waarmee applicateiontwikkelaars software kunnen preogrammeren in de cloud om later aan te kunnen bieden als SaaS (Software as a Service). Het is een tussenlaag gefocusd op programmeurs. [nucleus]
 
-De bedoeling van low-coed is om applicaties sneller te kunnen maken en ontwikkeling voor een grotere groep toegankelijk te maken. Typisch gezien wordt er een WYSIWYG (What You See Is What You Get) interface gerbuikt waarin visuele componenten geconfigureerd worden via drag-and-drop. Vaak is er ondersteuning om aangepaste toe te voegen indien het platform bepaalde functionaliteit out of the box niet ondersteund. [kissflow2]
+Definieren van wat low-code zoal inhoud kan best begonnen worden met een formele definitie:
+`is an application platform that supports rapidapplication development, one-step deployment, execution and management using declarative,high-level programming abstractions, such as model-driven and metadata-based programminglanguages. They support the development of user interfaces, business logic and data services,and improve productivity at the expense of portability across vendors, as compared withconventional application platforms.` [gartner-quad]
+
+De bedoeling van low-code is om applicaties sneller te kunnen maken en ontwikkeling voor een grotere groep toegankelijk te maken. Typisch gezien wordt er een WYSIWYG (What You See Is What You Get) interface gerbuikt waarin visuele componenten geconfigureerd worden via drag-and-drop. Vaak is er ondersteuning om aangepaste toe te voegen indien het platform bepaalde functionaliteit out of the box niet ondersteund. [kissflow2]
+
+Low code is een software ontwikkelingsaanpak dat snellere oplevering van applicaties mogelijk maakt met minimaal manueel coderen. Dit werkt met visueel modeling in een grafische user interface om applicaties op te zetten en configureren. Hiermee slaat de ontwikkelaar de infrastructuur en her-implementatie van patronen die hun werk vertraagdt en kunnen ze focussen op de unieke 10\% van een applicatie. [outsystems]
+
+Kissflow legt in zijn omschrijving nadruk op een grotere toegankelijkheid en Outsystems focust meer op het kunnen vermijden van herhalend werk.
 
 Een low-code platform bestaat typisch uit volgende delen:
 \begin{itemize}
     \item Een visuele IDE (Integrated Development Environment).
     \item Connectoren naar back-ends of services.
-    \item App Lifecycle Management. Hiermee bedeolt geautomatiseerde tools voor build, debug, en deploy. Ook beheer van de app tijdens test, staging en productie.
-\end{itemize}
+    \item App Lifecycle Management. Hiermee bedoelt geautomatiseerde tools voor build, debug, en deploy. Ook beheer van de app tijdens test, staging en productie.
+\end{itemize} [Outsystems]
 
 \subsubsection{low-code VS no-code}
+
+Een no-code platform is een gespecialiseerde versie van een low-code platform waar men manuele aanpassingen zoveel mogelijk wil vermijden, al dan niet door het pre-builden van de nodige visuele componenten.
+
+[Intellyx] nuanceert de verschillen door te focussen op de bedoelde gebruiker:
+\begin{itemize}
+    \item low-code: Volgende generatie applicatie ontwikkeling dat het werk van professionele ontwikkelaars versneld en stroomlijnt.
+    \item no-code: Self-service applicatie assembly voor business users die citizen developers worden.
+\end{itemize}
 
 \subsubsection{low-code development VS traditional software development}
 
 \subsubsection{Citizen developers}
 
+De survey [Rise of the empowered citizen developer] geeft de volgende definite:\\
+\textit{`we define citizen developers as business users, not part of IT departments or contracted IT services, who build and use their own scripts, programs, algorithms, or interfaces designed to perform business functions or support business processes.`}
+
+Er zijn enkele interessante statistieken uit voortgekomen:
+\begin{itemize}
+    \item Snelheid van applicatie deliery en delen van data/analytics worden aanzien als zwakke gebieden van IT support.
+    \item 76\% van de respondenten zegt dat op z'n minst een deel van de gebruikte applicaties buiten het IT departement komen.
+    \item 45\% van citizen development activiteiten worden tijdens de werkuren gedaan, de grotoste motivatie hiervoor (42\%) is omdat het IT departement te traag is.
+    \item In slechts 17\% van de gevallen duurt ontwikkeling van een citizen developer applicatie langer dan drie maand.
+\end{itemize}
+
+\subsubsection{Mythes}
+
+Er bestaan enkele mythes rondom low-code:
+\begin{itemize}
+    \item Minder geschikt voor professionele gebruikers dan voor citizen developers \\
+    $\rightarrow$ In praktijk wordt low-code vaker gerbuikt door profesisonele ontwikkelaars.
+    \item De nood om te programmeren wordt geelimineerd \\
+    $\rightarrow$ Het is vaak mogelijk om eenvoudigere applicaties te bouwen zonder code. Een typische business applicatie zal echter extra programmatie nodig hebben voor integratie met andere applicaties en databases, ook om aangepaste algoritmen te kunnen gebruiken. Deze use cases worden als extensies, externe programmatie of als scripts toegevoegd.
+    \item low-code betekend kleine schaal \\
+    $\rightarrow$ Er zijn genoeg praktijkvoorbeelden die dit tegenspreken. Neem bijvoorbeeld Sapphire HMS.
+\end{itemize} [Forrester]
 
 \subsection{Geschiedenis}
+
+De oorspron van low-code kan best bekeken worden vanuit het perspectief van de verranderingen in complexiteit en bruikbaarheid van programmeertalen doorheen de jaren. Er zijn enkele grote sprongen waarneembaar:
+\begin{itemize}
+    \item \textbf{Fortran}: niet intuitief, nuttig voor wetenschappelijke en numerieke computing.
+    \item \textbf{Cobol}: Fopcus buiten wetenschappers of wiskundigen. Syntax staat dichter bij engels. Het hielp bij het vinden van oplossingen naar business taken.
+    \item \textbf{C}: Geschreven met engelse syntax. Bruikbaar in een grote variate aan applicaties.
+    \item \textbf{Internet}: Kwam door het internet en een groeiende populariteit van webapplicaties. Men is kleinere en eenvoudigre scripts beginnen gebruiken in plaats van complexe programmeertalen. Er was een focus op functie. Applicaties moeten aan een snellere pas ontwikkeld kunnen worden en talen moeten eenvoudig genoeg zijn om dit te ondersteunen.\\
+    Een voorganger van low-code dat ook uit het internet is voortgekomen is het content management systeem. Wordpressis een bekend voorbeeld. Er zijn gelijkenissen in ideologie: het laat toe om de inhoud van een website aan te passen met een minimale heoveelheid programmeren. Er worden modules gebruikt voor vaak voorkomende requirements. [Kissflow2]
+\end{itemize} [Kissflow1]
+
+De ideologie achter low-code bestaat al een lange tijd. Er zijn cyclussen waar te nemen waarin de polulariteit piekte. Een iteratie van 10 jaar geleden is 4gl (Fourth Generation Language). Een iteratie van 20 jaar geleden is RAD (Rapid Application Development).
+
+Visuele en declaratieve development tools bestaan al decennia maar elke iteratie zijn er minder technische skills nodig om complexere business apps te kunnen maken die ook kunnen omgaan met moderne scenario's. Moderne low-code platformen overstijgen de limieten van op een aantal manieren: \\
+\textbf{Ze zijn meer `open`.} Vaak worden platform API's en adapters ondersteund. Soms is mogelijk om Java of .NET code te genereren als maatregel tegen vendor lock-in. Sommige platformen gebruiken zelf open source development frameworks zoals AngularJS, Apache Cordova en Bootstrap.\\
+\textbf{De platformen zelf zijn `completer`.} De vorige generaties waren eerder tools. Moderne low-code platformen ondersteunen de volledige applicatie levenscyclus.\\
+\textbf{Betere integratiemogelijkheden.} De meeste low-code platformen laten laten toegang tot tot externe data toe. Vaak zijn er API's voor integratie mer externe applicatie modules. [Forrester]
 
 \subsection{Nood / Voordelen}
 
 Het verkooppunt van low-code is hogere snelheid van applicatieontwikkeling. Naast deze snelheid zijn er nog andere voordelen:
 \begin{itemize}
-    \item 
+    \item Betere collaboratie tussen business en IT: Business shareholders zien hun visie sneller vorm nemen en kunnen rappe aanpassingen doorvoeren. Business regels zijn geïntegreerd in het bouwen van de applicatie.
+    \item Focus op functionaliteit: Er wordt geen tijd verspild met schrijven van herhalende code.
+    \item Transparante deployment: Er zijn geen aanpassingen meer nodig om verschillende architecturen te kunnen ondersteunen.
+    \item Lange termijn gebruik: Apps zijn eenvoudig aan te passen.
+    \item Enkele code base: Minder ruimte voor fouten en de code base wordt ook niet vervuild met tijd.
 \end{itemize}
 
 Markt leidende platformen hebben de volgende eigenschappen:
@@ -162,10 +219,201 @@ Markt leidende platformen hebben de volgende eigenschappen:
     \item Support over de volledige app levenscyclus. [kissflow2]
 \end{itemize}
 
+Het perspectief van de klant, welke waardepropositie er is. Dit is duidelijker als er eerst naar de omgeving gekeken wordt. Bedrijven moeten steeds meer kunnen ogaan met disruptieve innovatie en wijzigend klantgedrag. De vraag naar applicaties is vaak groter dan wat geleverd kan worden. Er zijn strategieen om hier mee om te proberen gaan zoals outsourcing, hackathons of voorgebouwde softawreoplossingen. Low code is een nieuwe manier om er mee om t kunnen gaan. De waardepropositie voor de business en het tech management is:
+\begin{itemize}
+    \item Apps visueel configureren in plaats van manueel te coderen. Ontwikkeling kan zo mogelijk met een factor 5 tot 10 versneld worden.
+    \item Echte requirements en zo echte waarden vinden. Met low-code kunnen snel minimum viable products gebouwd worden om klantenideen te toetsen.
+    \item Live-trial van business ideen tegen lage of onbestaande kost. Ideen kunnen snel omgezet worden in een werkend prototype dat gedeployed en getest kan worden op de markt.
+    \item Werkende prototypes kunnen in vijf minuten omgezet worden in productie apps. Het komt niet voor dat een app opnieuw gebouwd moet worden om een hoger volume of hogere diversiteit van gebruikers aan te kunnen.
+    \item Meer development talent mogelijk. Developers zonder formele achtergrond kunnen door het visuele aspect nu ook business applicaties bowen.
+\end{itemize} [forrester2016]
+
 \subsubsection{Digitale transformatie}
+
+Digitale transformatie is het proces van het gerbuik van digitale technologie om nieuwe - of bestaande - business processen, cultuur en klantenexperience te maken als antwoord of verranderende businessen markt requirements. Het is kortweg opnieuw bedenken van business in het digitale tijdperk. [salesforce]
+Digitale transformatie wordt steeds belangrijker als arena waarin business een voordeel kan krijgen op de competitie. Low-code wordt hierbij aanzien als een krachtig wapen in dit proces.
 
 \subsection{Kritiek / Nadelen}
 
+Er zijn een aantal valkuilen waar rekening mee gehouden moeten worden bij de keuze van een platform. De inzetting kan falen en het gewenste resultaat kan uitblijven als de klant geen concreet plan heeft over hoe low-code in te werken in zijn portfolio. Het is ook aangeraden om op te passen indien er een kleinere vendor gekozen wordt. Het is een veranderende markt en deze hebben een lagere stabiliteit. [Forrester2016]
+
+Een mening is dat de business kant zijn mentaliteit ten opzicht van IT moet aanpassen. Al decennia probeert met de nood van programmeren terug te drijven en in functie heirvan wroden tools gemaakt. Bedrijven zijn hiertoe aangetrokken om kosten te kunnen besparen. Maar de achterliggende kennis blijft nodig, vooral als er iets fout gaat. Niet alles kan visueel gedaan worden. Development talent blijft dus nog nodig. De aanpassing in mindset die gevraagd wordt is dat business het feit aanvaard dat software ontwikkeling duur en moeilijk is en dat er geen schortcuts voor zijn. [techtarget-benreselman]
+
+Er kan gesteld worden dan niet elk low-code platform daadwerkelijk 'low-code' is en dat men hiervoor moet oppassen:
+\begin{itemize}
+    \item \textbf{NIET} low-code: Het platform genereerd statisch code en verstopt deze effectief voor de gebruiker. De code is niet flexibel en schaalt niet. Dit staat diitale transformatie in de weg en verhoogt technical debt in plaats van dit te verlagen.
+    \item \textbf{WEL} low-code: Het platform is flexibel en schaalbaar. De volledige levenscyclus van de app moet ondersteund worden. Achterliggend wordt een model gedreven architectuur gehanteerd. De flexibiliteit komt doordat de model componenten geabstracteerd worden naar XML. De applicatie kan ook makkelijker gewijzigd worden en is eenvoudig schaalbaar.
+\end{itemize} [ITPORtalpro]
+
+\subsubsection{Shadow IT}
+
+Gebruik van no-code tools in de handen van citizen developers kan mogelijk leiden tot shadow IT. Dit komt voor wanneer de IT organisatie te traag en proces-gebonden is om snel genoeg te kunnen reageren op de noden van business en business users buiten IT gaan om zelf een app bouwen. Zonder overzicht en coordinatie kunnen security kwetsbaarheden en compliance overtredingen verspreiden. Deze apps kunnen ook redundant en van lage kwaliteit zijn. [intellyx]
+
 \subsection{Markt en Evolutie}
 
+% TODO: afb wave + afb qudrant
+
+Het business model van low code platformen is anders dan dat van traditionele platformen zoals Java of .NET. Er wordt uitgegaan van geleverde business waarde in plaats van beloofde. Zo zijn veel platformen gratis of tegen lage kost toegankelijk. Inkomst wordt gegenereerd uit benoemde gebruikers, gedeployde apps en nodige capaciteit.
+
+Wat betreft marktsegmentatie heeft er zicht op relatief korte tijd veel evolutie voorgedaan. Er kunnen drie grote stappen onderscheiden worden:
+\begin{enumerate}
+    \item 5 marktsegmenten waarvan de grootste general purpose is. Het doel is grote variatie aan web en mobiele applicaties kunnen bouwen. Declaratieve toolking gebruikt met aandacht voor creatie, integraatie, deployment life-cycle management en distributie van applicaties. Hiernast waren ook nog segementen voor process, database, request-handling en mobiele apps.
+    \item % TODO
+    \item % TODO
+\end{enumerate}
+
+Er worden een aantal marktontwikkelingen verwacht:
+\begin{itemize}
+    \item \textbf{Consolidatie}. Grote verkopers zullen low-code platformen overnemen.
+    \item \textbf{Marktsegment verranderingen}. Lowcode for mobile verwdwijnt en low-code for process groeit naar general purpose segment.
+    \item De volgende innovatie zal \textbf{ondersteuning voor IoT} zijn.
+\end{itemize}
+
+De [Forrester Wave] identificeerd 5 marktleiders. Opvallend is dat Microsft in een korte periode naar een leidingspositie is geprongen. De bevindingen van [Gartner] sluiten hierbij aan.
+
+\begin{table}[]
+    \begin{tabular}{|l|l|l|l|l|l|}
+        \hline
+        \textbf{Forrester} & Salesforce & Microsoft & Mendix     & Outsystems & Kony   \\ \hline
+        \textbf{Gartner}   & Salesforce & Microsoft & Outsystems & Mendix     & Appian \\ \hline
+    \end{tabular}
+\end{table}
+
+Prospecten voor de komende vijf jaar:
+\begin{itemize}
+    \item Tegen 2024 zal drie vierde van grot enterprises ten minste vier low code development platformen gerbruiken voor zowel IT app development en citizen development initiatieven.
+    \item tegen 2024 zal low-code applicatie development verantwoordelijk zijn voor 65\% van totale applicatie ontwikkeling activiteit.
+\end{itemize}
+
+De verschuiving van traditionele naar low-code software ontwikkeling is terug te vinden in huidige jobaanbiedingen. [stagebank1] [stagebank2]
+
+Er wordt verwacht dat de low-code markt tegen 2022 21 biljoen dollar ward zal zijn. Er wordt een jaarlijkse groei van 50\% voorspeld.
+
+[afb-markt]
+
 \subsection{Voorgaand onderzoek}
+
+\subsubsection{Proof of Concepts}
+
+Er werd onderzoek gedaan naar de mogelijke meerwaarde van low-code in een KMO omgeving. Uit vier marktleidende platformen werd Outsystems gekozen. Er werden POC's voor vaak voorkomende scenario's mee opgesteld. De bouw we snel, eenvoudig en er waren geen obstructies. De nodige investering vna tijd, geld en kennis was beperkt [2474].
+
+Microsoft Power Apps werd gebruikt om enkele administratieve bedrijfsprocessen van verhuisbedrijf De Borger te optimaliseren. Het resultaat werd effectief in gebruik genomen de tijdswinst sinds implementatie werd berekend en significant bevonden. De prijs was aanvaardbaar. Er was slechts 5 euro per maand nodig om een aangepaste connector te kunnen gebruiken. [2947]
+
+In een ander geval werd Power Apps gebruikt om ee nmobiele reporting applicatie te maken voor gebruik in de bouwsector. Er werd ok gebruik gemaakt van Power Automate om afbeeldingen te verwerken en SharePoint om deze op te slaan. [lauri-aho]
+
+Binnen de gezondheidszorg werd er ee case study gedaan naar hoe onderzoeksdataverzameld kon worden door gerbuik van een low-code paltform. Er werd voor Mendix gekozen. De veiligheid van het platform werd als goed bevonden, relevant privacywetten waren gerespecteerd en authenticatie werd ondersteund en was eenvoudig te implementerern. Er werd verhoogde productiviteit waargenomen. [8pg-casestudy]
+
+\subsubsection{Enquetes}
+
+Er werd ondzerocht of het mogelijk zou zijn om een EHR (electronic Health Records) systeem te bouwen met low-code om te gerbuiken op nationaal niveau. Dit was naar aanleiding van het Akson planningsproject voor een nieuw EHR systeem in Noorwegen. Er werden kwalitatieve interviews afgeniomen bij mensen met expertise in low-code en mensen met kennis van het Akson project. [Norway]
+
+Low-code en traditionele softawreontwikkeling werden met elkaar vergeleken aan de hand van interviews met medewerks bij een Fins software consultancy bedrijf. Er kon besloten worden dat zowel de medewerkers als de klanten oplossingen gebouwd met low-code verkozen. [fins]
+
+\section{Microsoft Power Platform: Power Apps}
+
+\subsection{Wat?}
+
+% TODO; afb power paltform
+
+Power Apps is een suite met apps, services en connectors. Het is een gegevensplatform die een snelle ontwikkelomgeving biedt om aangepaste apps te bouwen voor zakelijke behoeften. Men kan verbinden met zakelijke gegevens die zijn opgeslagen ofwel in het onderliggend gegevensplatform (Common Data Services), ofwel in de verschillende online en on-premises gegevensbronnen (SharePoint, Excel, Office 365, Dynamics 365, SQL Server enzovoort). De apps hebben een responsief ontwerk en kunnen zowel in een browser of op moebiele apparaten (telefoon of tablet) utigevoerd worden. [msdocs]
+
+\subsection{Drie soorten apps}
+
+\subsubsection{Canvas apps}
+
+Populairste en meest toegankelijke variant. Er is een focus op het grafische. Zo worden de apps via een WYSIWYG (What You See Is What You Get) manier gebouwd. Daarmee is er volledige controle over de User Experience. Er is zowel tablet als mobile layout mogelijk. Men kan verder connecteren met meerdere data bronnen. Het resultaat zijn taak- en rolgebaseerde apps. [msdocs]
+
+\subsubsection{Model Driven apps}
+
+In tegenstelling tot Canvas apps begint men hier bij het data model. Deze data moet ook in de CDS leven. Het doel is meestal om complexe business processen te visualiserern. Het resultaat zijn dan ook end-to-end business applicaties. [msdocs]
+
+\subsubsection{Portals}
+
+Waar Canvas en Model apps naar binnen, naar internet business gebruikers gericht is, is Portals naar buiten gericht. Met portals kunnen extern gefocuste websites gebouwd worden waarmee gebruikers buiten de organisatie kunnen inloggen met ee nvariateit aan identiteiten, data in de Common Data Services kunnen bekijken of inhoud anoniem browsen. Er zijn zowel interne als externe gerbuikers mogelijk. [msdocs]
+
+\subsection{Belangrijke Onderdelen}
+
+\subsubsection{Common Data Service}
+
+Met de common data service kan data gerbuikt door business applicaties opgeslagen en gemanaged worden. Data wordt opgeslagen binnen een set entiteiten. Een entiteit is een set van records om data op te slaan, zoals tables data opslaan in een database. Er zijn standaardentiteiten aanwezig voor typische scenario's, er kunnen ook aangepaste entiteiten gemaakt worden. Data wordt opgeslagen in de cloud. Er is ook logica en validatie mogelijk in de vorm van berekende velden, business regels, workflows en business process flows. Het 'common' aspect: De databronnen zijn gelinkt, als data in de ene bron aangepast wordt zal de relevante data in de andere bron automatisch aangepast worden. [pragmaticworks | msdocs ?]
+
+\subsubsection{Connectors}
+
+Data die een app nodig heeft is opgeslagen in een data bron, deze data naar de app brengen wordt gedaan door er een connectie voor te maken. Deze connectie heft een specifieke connector nodig om te kunnen praten met de data bron. Power Apps heeft connectors voor enerzijds populaire services en anderzijds on-premises data opslag. \\
+Een connector kan in de app zelf dan ofwel tabbellen of acties voorzien.
+
+Een overzicht van de belangrijkste connectors:
+\begin{itemize}
+    \item Common Data Service
+    \item Cloud storage: Voor elke grote provider. Bijvoorbeeld Google Drive of OneDrive.
+    \item Excel: om excel data te kunnen tonen in de app. Requirements zijn dat de data geformatteerd moet worden als tabel en het bestand in de Cloud opgeslagen moet zijn.
+    \item Office 365 (Outlook): Onder andere mogelijk om mails te tonen, versturen, beantwoorden of te deleten.
+    \item Office 365 (Users): Toegang tot de gebruikersprofielen in de organisatie.
+    \item Oracle DB
+    \item Power BI
+    \item SharePoint
+    \item SQL Server
+    \item Twitter
+\end{itemize}
+
+\textbf{On-premises data gateway}: Om on-premises data bronnen te kunnen gebruiken binnen een Power is moet een er een data gateway voor anawezig zijn. Dit is een soort van brug tussen de on-premises data en de Microsoft cloud services die veilige data overdracht garandeert.
+
+\subsubsection{Formules}
+
+% TODO: afb formulebar
+
+Logica en werken met gegevens is mogelijk met Excel-achtige expressies.\\
+In Excel worden formules gebruikt om cellen te vullen of grafieken en tabellen te maken. In Power Apps worden vergelijkbare formules gebruikt om besturingselementen in plaats van cellen te configureren. Concreet ook om om te gaan met user input. De granulariteit is: een app bestaat uit UI controls $\rightarrow$ elke control heeft properties $\rightarrow$ per property kunnen formule(s) ingesteld worden.
+
+\subsubsection{Overig}
+
+Nadat werk aan een app opgeslaan is moet deze gepubliceerd worden om bruikbaar te zijn voro ander leden van ed organisatie.
+
+Versiebeheers is beperkt aanwezig. Er kan eenvoudig teruggegaan worden naar eerder gepubliceerde versies van een app.
+
+UI Tests zijn mogelijk met de Test Studio maar op moment van schrijven is dit nog experimenteel. Power Apps Test Studio is een low-code oplossing om tests te schrijven, organiseren en automatiseren voor canvas apps. In de Test Studio kunnen tests geschreven worden via Power Apps expressies of door gerbuik van een recorder om app interactie op te slaan en expressies automatisch te genereren. De tests kunnen hierna teruggespeeld worden binnen de Test Studio om app functionaliteit te valideren. [msdocs] \\ 
+Gebruikte concepten en terminologie komen overeen met gangbare testing frameworks zoals bijvoorbeeld JUnit voor Java. \\
+Meer uitleg aan de hand van deze terminologie. 
+\begin{itemize}
+    \item \textbf{Test Cases}: Test cases bestaan uit een serie instructies of acties genaamd test stappen. Test cases worden utigevoerd om te controleren of apps of specifieke features in de app werken zoals verwacht. Deze test stapen zijn gescreven in de Power Apps expressie taal.
+    \item \textbf{Test Suites}: Gebruikt om test cases samen te froeperen.
+    \item \textbf{Test Assertions}: gebruikt om te valideren of het verwacht resultaat overeen komt met het verkregen resultaat. Evalueert naar true of false.
+\end{itemize}
+
+Tot op heden werd is er nog geen IT Asset Management app gebouwd in PowerApps die als template terug te vinden is. Wel bestaat er een Asset checkout app. Dit staat er dicht genoeg bij. [c-sharpcorner]
+
+\subsection{IDE overzicht}
+
+% TODO: afb IDE met nummers
+
+
+
+\subsection{Recente Wijzigingen}
+
+De Test studio valt hierbij (Zie boven). % TODO: datum zetten + een verwijzing
+
+De AI Builder is in publieke preview sinds 10 juni 2019. Dit maakt het mogelijk om AI te gebruiken in Power Apps met minimale technische kennis.\\
+Een voorbeeld van het typische verloop: Een AI model type kiezen $\rightarrow$ Data verbinden (uit CDS) $\rightarrow$ AI model aanpassen naar noden (data filteren, scheduling) $\rightarrow$ AI model trainen (gebeurt automatisch) $\rightarrow$ De inzichten van het AI model gebruiken doorheen het Power Platform.\\
+Wat AI modellen betreft zijn er enkele keuzes: enzerijds kan er aan aangepast model gebruikt gemaakt worden (voorspelling, form processing, object detectie, text classificatie), anderzijds kan geopteerd worden voor een voorgebouwd. In dat geval is er geen data nodig, het is gebouwd (en getraind) door Microsft. Mogelijke keuzes zijn: Business card lezer, sleutel zin extractor, taal detectie, text herkenning, gevoelsanalyse.
+
+% TODO: iets over teams wijzigingen/integratie?
+
+\subsection{Pricing, Licencing}
+
+\begin{itemize}
+    \item Power Apps voor Office 365.
+    \item Plan 1
+    \item Plan 2
+    \item Power Apps for Dynamics.
+\end{itemize} [blog.atwork.at]
+Elke entry in de lijst heeft meer functionaliteit dan de voorgaande.\\
+In powerapps for office is het enkel mogelijk Canvas apps te maken. Het aantal connectors is beperkt. De on-premise connectors bijvoorbeeld zijn niet aanwezig.
+
+\subsection{Uitbreidingsmogelijkheden}
+
+Power Apps studio is bedoelt als no code omgeving gefocust op business gebruikers. Binnen deze ui is er geen optie om aangepaste code te gebruiken. De enige manier om dit mogelijk te maken is via Custom API's, Azure functions of Azure API apps. [https://powerusers.microsoft.com/t5/Power-Apps-Ideas/add-your-own-js-in-powerapps-or-call-external-js-file-easily/idi-p/869].
+Practisch gezien is dit mogelijk door een project te maken in Visual studio, een OpenAPI definitie te voorzien. Als deze app in de Azure cloud staan kan deze ook opgeroepen worden vanuit PowerApps [blog-sharedove]
+
+\section{Microsoft Power Platform: Power Automate}
+
+% TODO
