@@ -1,8 +1,6 @@
 \chapter{\IfLanguageName{dutch}{Stand van zaken}{State of the art}}
 \label{ch:stand-van-zaken}
 
-% TODO: bronnen
-
 % Tip: Begin elk hoofdstuk met een paragraaf inleiding die beschrijft hoe
 % dit hoofdstuk past binnen het geheel van de bachelorproef. Geef in het
 % bijzonder aan wat de link is met het vorige en volgende hoofdstuk.
@@ -71,6 +69,12 @@ Een overzicht van enkele databronnen die AZ Glorieux gebruikt. Deze zullen later
 \section{LanReview}
 
 \subsection{Visual Basic}
+
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{vb6.png}
+    \caption{Voorbeeldweergave van de Visual Basic IDE \autocite{Speed2020}}
+    \label{fig:vb6ide}
+\end{figure}
 
 LanReview werd gebouwd in Visual Basic (VB). Dit is een event-gedreven programmeertaal en omgeving van Microsoft waarmee programmeurs code kunnen aanpassen door drag-en-drop van objecten en door wijziging van hun gedrag en uiterlijk. VB komt van de BASIC programmeertaal. Het is een RAD (Rapid Application development) platform. Het werd voornamelijk gebruikt voor prototyping en als front-end voor databases. De laatste versie, Visual Basic 6.0, stamt van 1999.
 
@@ -185,7 +189,7 @@ Een no-code platform is een gespecialiseerde versie van een low-code platform wa
 
 \subsubsection{Citizen developers}
 
-De survey uitgevoerd door \textcite{McKendrick2017} geeft de volgende definite:\\
+De survey uitgevoerd door \textcite{McKendrick2017} geeft de volgende definitie:\\
 \textit{`we define citizen developers as business users, not part of IT departments or contracted IT services, who build and use their own scripts, programs, algorithms, or interfaces designed to perform business functions or support business processes.`}
 
 Er zijn enkele interessante statistieken uit voortgekomen:
@@ -229,6 +233,12 @@ Visuele en declaratieve development tools bestaan al decennia maar elke iteratie
 \autocite{Richardson2016}
 
 \subsection{Nood / Voordelen}
+
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{lowcode-time.JPG}
+    \caption{Vergelijking van doorlooptijd \autocite{Richardson2016}}
+    \label{fig:tijdverschil}
+\end{figure}
 
 Het verkooppunt van low-code is hogere snelheid van applicatieontwikkeling. Naast deze snelheid zijn er nog andere voordelen:
 \begin{itemize}
@@ -280,7 +290,19 @@ Gebruik van no-code tools in de handen van citizen developers kan mogelijk leide
 
 \subsection{Markt en Evolutie}
 
-% TODO: afb wave + afb qudrant
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{forrester-wave.JPG}
+        \caption{Forrester Wave \autocite{Rymer2019}}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{gartner-quadrant.JPG}
+        \caption{Gartner Magic Quadrant \autocite{Vincent2019}}
+    \end{subfigure}
+    % \caption{overkoepelende caption}
+    \label{fig:quadwave}
+\end{figure}
 
 Het business model van low code platformen is anders dan dat van traditionele platformen zoals Java of .NET. Er wordt uitgegaan van geleverde business waarde in plaats van beloofde. Zo zijn veel platformen gratis of tegen lage kost toegankelijk. Inkomst wordt gegenereerd uit benoemde gebruikers, gedeployde apps en nodige capaciteit. \autocite{Richardson2016}
 
@@ -318,7 +340,11 @@ De verschuiving van traditionele naar low-code software ontwikkeling is terug te
 
 Er wordt verwacht dat de low-code markt tegen 2022 21 biljoen dollar waard zal zijn. Er wordt ook voorspeld dat de jaarlijkse groei van 50\% zich verder zal zetten. \autocite{Rymer2018}
 
-% TODO: [afb-markt]
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{forrester-markt-evolutie.JPG}
+    \caption{Forrester voorspelde markt evolutie \autocite{Rymer2018}}
+    \label{fig:marktevolutie}
+\end{figure}
 
 \subsection{Voorgaand onderzoek}
 
@@ -344,34 +370,38 @@ Low-code en traditionele softwareontwikkeling werden met elkaar vergeleken aan d
 
 \subsection{Wat?}
 
-% TODO; afb power paltform
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{platform.png}
+    \caption{Overzicht Microsoft Power Platform \autocite{MicrosoftDocs2019a}}
+    \label{fig:mspowerplatform}
+\end{figure}
 
-Power Apps is een suite met apps, services en connectors. Het is een gegevensplatform die een snelle ontwikkelomgeving biedt om aangepaste apps te bouwen voor zakelijke behoeften. Men kan verbinden met zakelijke gegevens die zijn opgeslagen ofwel in het onderliggend gegevensplatform (Common Data Services), ofwel in de verschillende online en on-premises gegevensbronnen (SharePoint, Excel, Office 365, Dynamics 365, SQL Server enzovoort). De apps hebben een responsief ontwerk en kunnen zowel in een browser of op moebiele apparaten (telefoon of tablet) utigevoerd worden. [msdocs]
+Power Apps is een suite met apps, services en connectors. Het is een gegevensplatform die een snelle ontwikkelomgeving biedt om aangepaste apps te bouwen voor zakelijke behoeften. Men kan verbinden met zakelijke gegevens die zijn opgeslagen ofwel in het onderliggend gegevensplatform (Common Data Services), ofwel in de verschillende online en on-premises gegevensbronnen (SharePoint, Excel, Office 365, Dynamics 365, SQL Server enzovoort). De apps hebben een responsief ontwerp en kunnen zowel in een browser of op mobiele apparaten (telefoon of tablet) uitgevoerd worden. \autocite{MicrosoftDocs2019}
 
 \subsection{Drie soorten apps}
 
 \subsubsection{Canvas apps}
 
-Populairste en meest toegankelijke variant. Er is een focus op het grafische. Zo worden de apps via een WYSIWYG (What You See Is What You Get) manier gebouwd. Daarmee is er volledige controle over de User Experience. Er is zowel tablet als mobile layout mogelijk. Men kan verder connecteren met meerdere data bronnen. Het resultaat zijn taak- en rolgebaseerde apps. [msdocs]
+Populairste en meest toegankelijke variant. Er is een focus op het grafische. Zo worden de apps via een WYSIWYG (What You See Is What You Get) manier gebouwd. Daarmee is er volledige controle over de User Experience. Er is zowel tablet als mobile layout mogelijk. Men kan verder connecteren met meerdere data bronnen. Het resultaat zijn taak- en rol gebaseerde apps. \autocite{PragmaticWorks2019}
 
 \subsubsection{Model Driven apps}
 
-In tegenstelling tot Canvas apps begint men hier bij het data model. Deze data moet ook in de CDS leven. Het doel is meestal om complexe business processen te visualiserern. Het resultaat zijn dan ook end-to-end business applicaties. [msdocs]
+In tegenstelling tot Canvas apps begint men hier bij het data model. Deze data moet ook in de CDS leven. Het doel is meestal om complexe business processen te visualiseren. Het resultaat zijn dan ook end-to-end business applicaties. \autocite{PragmaticWorks2019}
 
 \subsubsection{Portals}
 
-Waar Canvas en Model apps naar binnen, naar internet business gebruikers gericht is, is Portals naar buiten gericht. Met portals kunnen extern gefocuste websites gebouwd worden waarmee gebruikers buiten de organisatie kunnen inloggen met ee nvariateit aan identiteiten, data in de Common Data Services kunnen bekijken of inhoud anoniem browsen. Er zijn zowel interne als externe gerbuikers mogelijk. [msdocs]
+Waar Canvas en Model apps naar binnen, naar internet business gebruikers gericht is, is Portals naar buiten gericht. Met portals kunnen extern gefocuste websites gebouwd worden waarmee gebruikers buiten de organisatie kunnen inloggen met een variëteit aan identiteiten, data in de Common Data Services kunnen bekijken of inhoud anoniem browsen. Er zijn zowel interne als externe gebruikers mogelijk. \autocite{MicrosoftDocs2020a}
 
 \subsection{Belangrijke Onderdelen}
 
 \subsubsection{Common Data Service}
 
-Met de common data service kan data gerbuikt door business applicaties opgeslagen en gemanaged worden. Data wordt opgeslagen binnen een set entiteiten. Een entiteit is een set van records om data op te slaan, zoals tables data opslaan in een database. Er zijn standaardentiteiten aanwezig voor typische scenario's, er kunnen ook aangepaste entiteiten gemaakt worden. Data wordt opgeslagen in de cloud. Er is ook logica en validatie mogelijk in de vorm van berekende velden, business regels, workflows en business process flows. Het 'common' aspect: De databronnen zijn gelinkt, als data in de ene bron aangepast wordt zal de relevante data in de andere bron automatisch aangepast worden. [pragmaticworks | msdocs ?]
+Met de common data service kan data gebruikt door business applicaties opgeslagen en gemanaged worden. Data wordt opgeslagen binnen een set entiteiten. Een entiteit is een set van records om data op te slaan, zoals tables data opslaan in een database. Er zijn standaard entiteiten aanwezig voor typische scenario's, er kunnen ook aangepaste entiteiten gemaakt worden. Data wordt opgeslagen in de cloud. Er is ook logica en validatie mogelijk in de vorm van berekende velden, business regels, workflows en business process flows. Het 'common' aspect: De databronnen zijn gelinkt, als data in de ene bron aangepast wordt zal de relevante data in de andere bron automatisch aangepast worden. \autocite{MicrosoftDocs2019a}
 
 \subsubsection{Connectors}
 
 Data die een app nodig heeft is opgeslagen in een data bron, deze data naar de app brengen wordt gedaan door er een connectie voor te maken. Deze connectie heft een specifieke connector nodig om te kunnen praten met de data bron. Power Apps heeft connectors voor enerzijds populaire services en anderzijds on-premises data opslag. \\
-Een connector kan in de app zelf dan ofwel tabbellen of acties voorzien.
+Een connector kan in de app zelf dan ofwel tabellen of acties voorzien.
 
 Een overzicht van de belangrijkste connectors:
 \begin{itemize}
@@ -385,24 +415,28 @@ Een overzicht van de belangrijkste connectors:
     \item SharePoint
     \item SQL Server
     \item Twitter
-\end{itemize}
+\end{itemize} \autocite{MicrosoftDocs2020b}
 
-\textbf{On-premises data gateway}: Om on-premises data bronnen te kunnen gebruiken binnen een Power is moet een er een data gateway voor anawezig zijn. Dit is een soort van brug tussen de on-premises data en de Microsoft cloud services die veilige data overdracht garandeert.
+\textbf{On-premises data gateway}: Om on-premises data bronnen te kunnen gebruiken binnen een Power is moet een er een data gateway voor aanwezig zijn. Dit is een soort van brug tussen de on-premises data en de Microsoft cloud services die veilige data overdracht garandeert. \autocite{MicrosoftDocs2019b}
 
 \subsubsection{Formules}
 
-% TODO: afb formulebar
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{formula-bar.JPG}
+    \caption{Overzicht van de formulebalk \autocite{MicrosoftDocs2019c}}
+    \label{fig:msformulebalk}
+\end{figure}
 
 Logica en werken met gegevens is mogelijk met Excel-achtige expressies.\\
-In Excel worden formules gebruikt om cellen te vullen of grafieken en tabellen te maken. In Power Apps worden vergelijkbare formules gebruikt om besturingselementen in plaats van cellen te configureren. Concreet ook om om te gaan met user input. De granulariteit is: een app bestaat uit UI controls $\rightarrow$ elke control heeft properties $\rightarrow$ per property kunnen formule(s) ingesteld worden.
+In Excel worden formules gebruikt om cellen te vullen of grafieken en tabellen te maken. In Power Apps worden vergelijkbare formules gebruikt om besturingselementen in plaats van cellen te configureren. Concreet ook om om te gaan met user input. De granulariteit is: een app bestaat uit UI controls $\rightarrow$ elke control heeft properties $\rightarrow$ per property kunnen formule(s) ingesteld worden. \autocite{MicrosoftDocs2019c}
 
 \subsubsection{Overig}
 
-Nadat werk aan een app opgeslaan is moet deze gepubliceerd worden om bruikbaar te zijn voro ander leden van ed organisatie.
+Nadat werk aan een app opgeslagen is moet deze gepubliceerd worden om bruikbaar te zijn voro ander leden van ed organisatie.
 
-Versiebeheers is beperkt aanwezig. Er kan eenvoudig teruggegaan worden naar eerder gepubliceerde versies van een app.
+Versiebeheer is beperkt aanwezig. Er kan eenvoudig teruggegaan worden naar eerder gepubliceerde versies van een app.
 
-UI Tests zijn mogelijk met de Test Studio maar op moment van schrijven is dit nog experimenteel. Power Apps Test Studio is een low-code oplossing om tests te schrijven, organiseren en automatiseren voor canvas apps. In de Test Studio kunnen tests geschreven worden via Power Apps expressies of door gerbuik van een recorder om app interactie op te slaan en expressies automatisch te genereren. De tests kunnen hierna teruggespeeld worden binnen de Test Studio om app functionaliteit te valideren. [msdocs] \\ 
+UI Tests zijn mogelijk met de Test Studio maar op moment van schrijven is dit nog experimenteel. Power Apps Test Studio is een low-code oplossing om tests te schrijven, organiseren en automatiseren voor canvas apps. In de Test Studio kunnen tests geschreven worden via Power Apps expressies of door gebruik van een recorder om app interactie op te slaan en expressies automatisch te genereren. De tests kunnen hierna teruggespeeld worden binnen de Test Studio om app functionaliteit te valideren. \\ 
 Gebruikte concepten en terminologie komen overeen met gangbare testing frameworks zoals bijvoorbeeld JUnit voor Java. \\
 Meer uitleg aan de hand van deze terminologie. 
 \begin{itemize}
@@ -410,14 +444,27 @@ Meer uitleg aan de hand van deze terminologie.
     \item \textbf{Test Suites}: Gebruikt om test cases samen te froeperen.
     \item \textbf{Test Assertions}: gebruikt om te valideren of het verwacht resultaat overeen komt met het verkregen resultaat. Evalueert naar true of false.
 \end{itemize}
+\autocite{MicrosoftDocs2019d}
 
-Tot op heden werd is er nog geen IT Asset Management app gebouwd in PowerApps die als template terug te vinden is. Wel bestaat er een Asset checkout app. Dit staat er dicht genoeg bij. [c-sharpcorner]
+Tot op heden werd is er nog geen IT Asset Management app gebouwd in Power Apps die als template terug te vinden is. Wel bestaat er een Asset checkout app. Dit staat er dicht genoeg bij. \autocite{Meganathan2019}
 
 \subsection{IDE overzicht}
 
-% TODO: afb IDE met nummers
+De onderdelen van Power Apps Studio uitgelicht volgens Figuur \ref{fig:pastudio}:
+\begin{enumerate}
+    \item Links: Hiërarchische view van de app screens en controls.
+    \item Centraal: Huidige app scherm.
+    \item Rechts: Geavanceerde layout en data bronnen.
+    \item Property lijst voor geselecteerde control.
+    \item Formulebalk.
+    \item Ribbon.
+\end{enumerate}
 
-
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{powerapps-studio.png}
+    \caption{Overzicht van Power Apps Studio \autocite{MicrosoftDocs2017}}
+    \label{fig:pastudio}
+\end{figure}
 
 \subsection{Recente Wijzigingen}
 
@@ -425,7 +472,7 @@ De Test studio valt hierbij (Zie boven). % TODO: datum zetten + een verwijzing
 
 De AI Builder is in publieke preview sinds 10 juni 2019. Dit maakt het mogelijk om AI te gebruiken in Power Apps met minimale technische kennis.\\
 Een voorbeeld van het typische verloop: Een AI model type kiezen $\rightarrow$ Data verbinden (uit CDS) $\rightarrow$ AI model aanpassen naar noden (data filteren, scheduling) $\rightarrow$ AI model trainen (gebeurt automatisch) $\rightarrow$ De inzichten van het AI model gebruiken doorheen het Power Platform.\\
-Wat AI modellen betreft zijn er enkele keuzes: enzerijds kan er aan aangepast model gebruikt gemaakt worden (voorspelling, form processing, object detectie, text classificatie), anderzijds kan geopteerd worden voor een voorgebouwd. In dat geval is er geen data nodig, het is gebouwd (en getraind) door Microsft. Mogelijke keuzes zijn: Business card lezer, sleutel zin extractor, taal detectie, text herkenning, gevoelsanalyse.
+Wat AI modellen betreft zijn er enkele keuzes: enerzijds kan er aan aangepast model gebruikt gemaakt worden (voorspelling, form processing, object detectie, text classificatie), anderzijds kan geopteerd worden voor een voorgebouwd. In dat geval is er geen data nodig, het is gebouwd (en getraind) door Microsoft. Mogelijke keuzes zijn: Business card lezer, sleutel zin extractor, taal detectie, text herkenning, gevoelsanalyse. \autocite{MicrosoftDocs2019e}
 
 % TODO: iets over teams wijzigingen/integratie?
 
@@ -436,26 +483,27 @@ Wat AI modellen betreft zijn er enkele keuzes: enzerijds kan er aan aangepast mo
     \item Plan 1
     \item Plan 2
     \item Power Apps for Dynamics.
-\end{itemize} [blog.atwork.at]
+\end{itemize} \autocite{Pohl2019}
+
 Elke entry in de lijst heeft meer functionaliteit dan de voorgaande.\\
-In powerapps for office is het enkel mogelijk Canvas apps te maken. Het aantal connectors is beperkt. De on-premise connectors bijvoorbeeld zijn niet aanwezig.
+In Power Apps for office is het enkel mogelijk Canvas apps te maken. Het aantal connectors is beperkt. De on-premise connectors bijvoorbeeld zijn niet aanwezig.
 
 \subsection{Uitbreidingsmogelijkheden}
 
-Power Apps studio is bedoelt als no code omgeving gefocust op business gebruikers. Binnen deze ui is er geen optie om aangepaste code te gebruiken. De enige manier om dit mogelijk te maken is via Custom API's, Azure functions of Azure API apps. [https://powerusers.microsoft.com/t5/Power-Apps-Ideas/add-your-own-js-in-powerapps-or-call-external-js-file-easily/idi-p/869].
-Practisch gezien is dit mogelijk door een project te maken in Visual studio, een OpenAPI definitie te voorzien. Als deze app in de Azure cloud staan kan deze ook opgeroepen worden vanuit PowerApps [blog-sharedove]
+Power Apps studio is bedoelt als no code omgeving gefocust op business gebruikers. Binnen deze ui is er geen optie om aangepaste code te gebruiken. De enige manier om dit mogelijk te maken is via Custom API's, Azure functions of Azure API apps \footnote{Volgens het antwoord van een Microsoft medewerker op het Power App forum: https://powerusers.microsoft.com/t5/Power-Apps-Ideas/add-your-own-js-in-powerapps-or-call-external-js-file-easily/idi-p/869}.\\
+Praktisch gezien is dit mogelijk door een project te maken in Visual studio, een OpenAPI definitie te voorzien. Als deze app in de Azure cloud staan kan deze ook opgeroepen worden vanuit Power Apps \autocite{Jugo2019}
 
 \section{Microsoft Power Platform: Power Automate}
 
-Power automate is een service voor het maken van geautomatiseerde workflows tussen apps en services. Een flow kan gemaakt worden door stappen aaneen te schalelen. Per stap kan een actie of conditie ingesteld worden. In deze condities kunnen data operaties geconfigureerd worden, er zijn ook expressies mogelijk. Naast het zelf bouwen van een flow zijn er sjablonen aanwezig voor gangbare automatisatie cases. Flows kunnen gebruikt worden vanuit Power Apps.
+Power automate is een service voor het maken van geautomatiseerde workflows tussen apps en services. Een flow kan gemaakt worden door stappen aaneen te schakelen. Per stap kan een actie of conditie ingesteld worden. In deze condities kunnen data operaties geconfigureerd worden, er zijn ook expressies mogelijk. Naast het zelf bouwen van een flow zijn er sjablonen aanwezig voor gangbare automatisatie cases. Flows kunnen gebruikt worden vanuit Power Apps. \autocite{MicrosoftDocs2019f}
 
-Er zijn drie soorten flows:
+Er zijn vijf soorten flows:
 \begin{itemize}
     \item Geautomatiseerde flow: de flow wordt gestart vanuit een bepaalde trigger.
     \item Button flows: de flow wordt manueel gestart. Vaak wordt dit gebruikt vanop een mobiele device.
     \item Scheduled flows: De flow herhaald / op een schema uitvoeren.
     \item Approval flows
-    \item UI flows: Een vorm van UI automatisatie, een optie indien er geen API of connector aanwezig is (bijvoorbeeld oudere toepassingen). Voor gebruik met Windows desktop en web applicaties. Momenteel nog in experimentele fase. Het kan gezien worden als een eenvoudige manier om een script te bouwen. De werking is dat de gebruiker een actie/set stappen opneemt, hier wordt dan een aanpasbare flow voor gegenereerd.
+    \item UI flows: Een vorm van UI automatisatie, een optie indien er geen API of connector aanwezig is (bijvoorbeeld oudere toepassingen). Voor gebruik met Windows desktop en web applicaties. Momenteel nog in experimentele fase. Het kan gezien worden als een eenvoudige manier om een script te bouwen. De werking is dat de gebruiker een actie/set stappen opneemt, hier wordt dan een aanpasbare flow voor gegenereerd. \autocite{MPA2019}
 \end{itemize}
 
 \subsubsection{Beperkingen}
