@@ -305,11 +305,4 @@
   title       = {Potential of low-code in the healthcaresector},
 }
 
-@MastersThesis{Virta2018,
-  author      = {Tatu Virta},
-  date        = {2018},
-  institution = {Lappeenranta University of Technology},
-  title       = {Relation of low-code development to standard software development: Case Biit Oy},
-}
-
 @Comment{jabref-meta: databaseType:biblatex;}
