@@ -22,14 +22,14 @@
 
 \subsection{Omgeving}
 
-Er zitten meer dan 1000 toestellen in het domein waar controle en overzicht voor nodig is. Het gaat om een ziekenhuis. Er is geen marge voor fouten en respons moet direct zijn.
+Er zitten meer dan 1000 toestellen in het domein waar controle en overzicht voor nodig is. Het gaat om een ziekenhuis. Er is geen marge voor fouten en respons moet direct kunnen zijn.
 Zowel Servers als client computers gebruiken Microsoft Windows besturingssysteem varianten. De softwarecatalogus is uitgebreid. Relevant is dat Office gebruikt wordt, ook Office 365.
 Er ligt een grote nadruk op documentering. Hiervoor wordt SharePoint gebruikt.
 
 \subsection{Toekomst}
 
-Migratie naar Windows 10 is een lopend proces. Veel bedrijven doen dit en proberen dit te versnellen wegens de komende end-of-life status van Windows 7 [???]. Per case kan dit tijdrovend zijn om softwarecompatibiliteit te garanderen.
-Verspreiding van nieuwe technologieën: interesse in het Power Platform, implementatie van Miscroft Teams, Intune wordt steeds meer gebruikt als aavnulling van SCCM (System Center Configuration Manager). Er worden steeds meer mobiele devices opgenomen in het domein.
+Migratie naar Windows 10 is een lopend proces. Veel bedrijven doen dit en proberen dit te versnellen wegens de komende end-of-life status van Windows 7 \autocite{MicrosoftSupport2020}. Per case kan dit tijdrovend zijn om softwarecompatibiliteit te garanderen.
+Verspreiding van nieuwe technologieën: interesse in het Power Platform, implementatie van Microsoft Teams, Intune wordt steeds meer gebruikt als aanvulling van SCCM (System Center Configuration Manager). Er worden steeds meer mobiele devices opgenomen in het domein.
 Wat digitale transformatie betreft wordt sommige verouderde, huiseigen software vervangen. Concreet gaat het om tools gemaakt met Visual Basic.
 Er wordt gestreefd naar een hogere mate van automatisatie. Het is wenselijk dat zoveel mogelijk software gedeployed kan worden vanuit SCCM.
 
@@ -37,30 +37,30 @@ Er wordt gestreefd naar een hogere mate van automatisatie. Het is wenselijk dat 
 
 Het onderzoek bevind zich in het domein van IT Asset Management. Enkele definities om dit begrip te verduidelijken.
 
-[IAITAM] geeft een algemene definitie: `IT Asset Management is a set of business practices that incorporates IT assets across the business units within the organization. It joins the financial, inventory, contractual and risk management responsibilities to manage the overall life cycle of these assets including tactical and strategic decision making.`
+\textcite{IAITAM} geeft een algemene definitie: `IT Asset Management is a set of business practices that incorporates IT assets across the business units within the organization. It joins the financial, inventory, contractual and risk management responsibilities to manage the overall life cycle of these assets including tactical and strategic decision making.`
 
-[Gartner] stelt: `IT asset management (ITAM) provides an accurate account of technology asset lifecycle costs and risks to maximize the business value of technology strategy, architecture, funding, contractual and sourcing decisions.`
+\textcite{Gartner} stelt: `IT asset management (ITAM) provides an accurate account of technology asset lifecycle costs and risks to maximize the business value of technology strategy, architecture, funding, contractual and sourcing decisions.`
 
-[Ivanti] reikt onderverdelingen aan. Er kan een onderscheid gemaakt worden tussen Fysieke, Digitale, Software, Mobile en Cloud IT Asset Management.
+\textcite{Ivanti2018} reikt onderverdelingen aan. Er kan een onderscheid gemaakt worden tussen Fysieke, Digitale, Software, Mobile en Cloud IT Asset Management.
 Een beschrijving voor de voor het onderzoek toepasbare categorie, de fysieke, geldt: 'The discovery and inventory of hardware including PCs, laptops, printers, copiers, and any other device used for IT and data management purposes'.
 
-Er werd verwacht dat de IoT (Internet of Things) trend IT Asset Management programma's zal laten evolueren om met deze devices om te kunnen gaan. Dit betekend meer assets en meer asset types. Hier zijn voordelen mee verbonden: `Increased Operational Efficiency, Productivity Is Enhanced, Resources Are Used Efficiently, Better Checks for Safety and Compliance, Maintenance and Repair Automation` [Dzone].
+Er werd verwacht dat de IoT (Internet of Things) trend IT Asset Management programma's zal laten evolueren om met deze devices om te kunnen gaan. Dit betekend meer assets en meer asset types. Hier zijn voordelen mee verbonden: `Increased Operational Efficiency, Productivity Is Enhanced, Resources Are Used Efficiently, Better Checks for Safety and Compliance, Maintenance and Repair Automation` \autocite{Badnakhe2020}.
 
-IT asset management oplossingen zijn vaak een aanvulling op het werken van SCCM. Een belangrijke functie van SCCM is het verschaffen van informatie. In sommige geevallen wordt functionaliteit van SCCM opgeroepen of zijn database geraadpleegt. Het is de moeite om meer informatie over SCCM te geven.
+IT asset management oplossingen zijn vaak een aanvulling op het werken van SCCM. Een belangrijke functie van SCCM is het verschaffen van informatie. In sommige geevallen wordt functionaliteit van SCCM opgeroepen of zijn database geraadpleegd. Het is de moeite om meer informatie over SCCM te geven.
 
-[Savaco] beschrijft het als volgt: `System Center Configuration Manager, afgekort als SCCM of ConfigMgr, is een onderdeel van de Microsoft System Center Suite en staat in voor het beheer \& inventarisatie van pc's en servers. Daarenboven is het mogelijk toepassingen uit te rollen, software updates te installeren en compliance te controleren en op te lossen`.
+\textcite{Droogenbroot2016} beschrijft het als volgt: `System Center Configuration Manager, afgekort als SCCM of ConfigMgr, is een onderdeel van de Microsoft System Center Suite en staat in voor het beheer \& inventarisatie van pc's en servers. Daarenboven is het mogelijk toepassingen uit te rollen, software updates te installeren en compliance te controleren en op te lossen`.
 
 De primaire functies zijn het creëren van computer images, massa deployment van images, distribueren van silent installaties van software applicaties, cross campus managen van software en natuurlijk inventarisatie en organisatie van eigen hardware en devices.
 
-SCCM functioneerd aan de hand van een aantal sleuteltechnologieen: PXE btting, de SCCM agent geinstalleerd op client pc's die data voed aan SCCM en Task Sequences waarmee een hele reeks taken uitgevoerd kan worden. [Software2].
+SCCM functioneert aan de hand van een aantal sleuteltechnologieën: PXE booting, de SCCM agent geïnstalleerd op client pc's die data voed aan SCCM en Task Sequences waarmee een hele reeks taken uitgevoerd kan worden. \autocite{Spitze2019}.
 
-Eerder wert gesproken over de relatie tussen ITAM oplossingen en SCCM. Waar traditionele oplossingen een aanvulling of uitbreiding zijn op SCCM is LanReview eerder een vereenvoudiging. Het is toegespits op inventarisatie en organisatie van eigen hardware en devices.
+Eerder werd gesproken over de relatie tussen ITAM oplossingen en SCCM. Waar traditionele oplossingen een aanvulling of uitbreiding zijn op SCCM is LanReview eerder een vereenvoudiging. Het is toegespitst op inventarisatie en organisatie van eigen hardware en devices.
 
-De reden dat SCCM zo verspreid is is omdat het gratis inbegrepen is in enterprice licensing van Microsoft. Het is bijvoorbeeld inbegrepen in Microsoft 365 licentie. [MSdocs-licencing]
+De reden dat SCCM zo verspreid is is omdat het gratis inbegrepen is in enterprice licensing van Microsoft. Het is bijvoorbeeld inbegrepen in Microsoft 365 licentie. \autocite{MicrosoftDocs2020}
 
 \subsection{Databronnen}
 
-Een overzicht van enkele databronnen die AZ GLorieux gebruikt. Deze zullen later in het onderzoeke aan bod komen.
+Een overzicht van enkele databronnen die AZ Glorieux gebruikt. Deze zullen later in het onderzoek aan bod komen.
 
 \begin{itemize}
     \item SQL Server
@@ -72,10 +72,12 @@ Een overzicht van enkele databronnen die AZ GLorieux gebruikt. Deze zullen later
 
 \subsection{Visual Basic}
 
-LanReview werd gebouwd in Visual Basic (VB). Dit is een event-gedreven programmeertaal en omgeving van Microsoft waarmee programmeurs code kunnen aanpassen door drag-en-frop van objecten en door wijziging van hun gedrag en uiterlijk.  VB komt van de BASIC programmeertaal. Het is een RAD (Rapid Applicatino development) platform. Het werd voornamelijk gebruikt voor prototyping en als front-end voor databases. De laatste versie, Visual Basic 6.0, stamt van 1999.
+LanReview werd gebouwd in Visual Basic (VB). Dit is een event-gedreven programmeertaal en omgeving van Microsoft waarmee programmeurs code kunnen aanpassen door drag-en-drop van objecten en door wijziging van hun gedrag en uiterlijk. VB komt van de BASIC programmeertaal. Het is een RAD (Rapid Application development) platform. Het werd voornamelijk gebruikt voor prototyping en als front-end voor databases. De laatste versie, Visual Basic 6.0, stamt van 1999.
 
 Het grote voordeel is snelheid van ontwikkeling. Er zijn ook een aantal nadelen:
-Het had veel geheugen nodig en was niet geschikt voor programma's die veel proceskracht nodig hadden, zoals games. Het is ook beperkt tot het Microsoft besturingssysteem. [techtarget-visualbasic]
+Het had veel geheugen nodig en was niet geschikt voor programma's die veel proceskracht nodig hadden, zoals games. Het is ook beperkt tot het Microsoft besturingssysteem.
+
+\autocite{Rouse2019}
 
 \subsubsection{Geschiedenis}
 
@@ -87,28 +89,26 @@ Het had veel geheugen nodig en was niet geschikt voor programma's die veel proce
     \item \textbf{1998}: Visual Basic 6.0 geïntroduceerd.
     \item \textbf{2002}: .NET framework.
     \item \textbf{2008}: Einde extended support voor Visual Basic 6.0.
-\end{itemize}
-
-[Newsmax]
+\end{itemize} \autocite{Grigonis2014}
 
 \subsubsection{Vandaag}
 
-Uitvoering van VB applicaties blijft ondersteund op moderne Windows versies. Het maken van nieuwe echter niet [msdocs-vb6]. Niettegenstaand heeft men manieren gevonden om alsnog te installeren. [blog.danbrust.net]
+Uitvoering van VB applicaties blijft ondersteund op moderne Windows versies. Het maken van nieuwe echter niet \autocite{MicrosoftDocs2018}. Niettegenstaande heeft men manieren gevonden om alsnog te installeren. \autocite{Brust2015}
 
-Er is nog een kleine maar vocale groep aanhangers van VB. Dit komt omdat ze de officieele opvolger, Visual Basic .NET, niet waardig vonden voornamelijk omdat de afhankelijkheid van .NET een extra abstractielaag was. Voorbeelden hiervan zijn:
+Er is nog een kleine maar vocale groep aanhangers van VB. Dit komt omdat ze de officiële opvolger, Visual Basic .NET, niet waardig vonden voornamelijk omdat de afhankelijkheid van .NET een extra abstractielaag was. Voorbeelden hiervan zijn: % TODO: David Platt bron?
 \begin{itemize}
-    \item Visual Basic behoud blijft hoog. Opvallend aanhoudend success voor een `dode` tool. [Codeproject].
-    \item Er werd een petitie gemaakt voor verdere ontwikkeling van VB. [web.archive.petition].
-    \item Er worden nog steeds applicatie mee ontwikkeld [planetsourcecode].
+    \item Visual Basic behoud blijft hoog. Opvallend aanhoudend succes voor een `dode` tool. \autocite{ISpliter2014}.
+    \item Er werd een petitie gemaakt voor verdere ontwikkeling van VB. \autocite{2005}
+    \item Er worden nog steeds applicaties mee ontwikkeld \autocite{Ippolito2018}.
 \end{itemize}
 
 \subsection{LanReview werking}
 
 % TODO: afbeelding 1
 
-LanReview houdt zijn informatie over assets in het domein bij in een Access databank. Deze informatie werd origineel geexporteerd uit SCCM.
+LanReview houdt zijn informatie over assets in het domein bij in een Access databank. Deze informatie werd origineel geëxporteerd uit SCCM.
 De applicatie heeft twee views: de primaire view is een filterbaar overzicht van devices. voor elke entry kan een meer gedetailleerde view opgeroepen waar alle datavelden te zien zijn.
-Aan de hand van de filter functionaliteit worden sql achtige queries gebouwd die dan uitgevoerd worden op de Acces databank.
+Aan de hand van de filter functionaliteit worden SQL achtige queries gebouwd die dan uitgevoerd worden op de Acces databank.
 
 LanReview is een belangrijke tool van de Helpdesk en wordt dagelijks gebruikt.
 
@@ -126,14 +126,14 @@ Vaak voorkomende use cases:
 
 \subsection{Basics}
 
-De POC zal gebouwd worden met een low-code platform. Cloud services maken hier een deel van uit. Moderne low-code platformen zijn gecategoriseerd als PaaS (Platform as a Service). In geval van IaaS (infrastructure as a service) leeft de volledige infrastructuur in de lcoud. PaaS kan gezien worden als een extra laag gebouwd bovenop IaaS waarmee applicateiontwikkelaars software kunnen preogrammeren in de cloud om later aan te kunnen bieden als SaaS (Software as a Service). Het is een tussenlaag gefocusd op programmeurs. [nucleus]
+De POC zal gebouwd worden met een low-code platform. Cloud services maken hier een deel van uit. Moderne low-code platformen zijn gecategoriseerd als PaaS (Platform as a Service). In geval van IaaS (infrastructure as a service) leeft de volledige infrastructuur in de cloud. PaaS kan gezien worden als een extra laag gebouwd bovenop IaaS waarmee applicatieontwikkelaars software kunnen programmeren in de cloud om later aan te kunnen bieden als SaaS (Software as a Service). Het is een tussenlaag gefocust op programmeurs. \autocite{Nucleus2017}
 
-Definieren van wat low-code zoal inhoud kan best begonnen worden met een formele definitie:
-`is an application platform that supports rapidapplication development, one-step deployment, execution and management using declarative,high-level programming abstractions, such as model-driven and metadata-based programminglanguages. They support the development of user interfaces, business logic and data services,and improve productivity at the expense of portability across vendors, as compared withconventional application platforms.` [gartner-quad]
+Definiëren van wat low-code zoal inhoud kan best begonnen worden met een formele definitie:\\
+\textit{`It is an application platform that supports rapidapplication development, one-step deployment, execution and management using declarative,high-level programming abstractions, such as model-driven and metadata-based programminglanguages. They support the development of user interfaces, business logic and data services,and improve productivity at the expense of portability across vendors, as compared withconventional application platforms.`} \autocite{Vincent2019}
 
-De bedoeling van low-code is om applicaties sneller te kunnen maken en ontwikkeling voor een grotere groep toegankelijk te maken. Typisch gezien wordt er een WYSIWYG (What You See Is What You Get) interface gerbuikt waarin visuele componenten geconfigureerd worden via drag-and-drop. Vaak is er ondersteuning om aangepaste toe te voegen indien het platform bepaalde functionaliteit out of the box niet ondersteund. [kissflow2]
+De bedoeling van low-code is om applicaties sneller te kunnen maken en ontwikkeling voor een grotere groep toegankelijk te maken. Typisch gezien wordt er een WYSIWYG (What You See Is What You Get) interface gebruikt waarin visuele componenten geconfigureerd worden via drag-and-drop. Vaak is er ondersteuning om aangepaste toe te voegen indien het platform bepaalde functionaliteit out of the box niet ondersteund. \autocite{Kissflow2018}
 
-Low code is een software ontwikkelingsaanpak dat snellere oplevering van applicaties mogelijk maakt met minimaal manueel coderen. Dit werkt met visueel modeling in een grafische user interface om applicaties op te zetten en configureren. Hiermee slaat de ontwikkelaar de infrastructuur en her-implementatie van patronen die hun werk vertraagdt en kunnen ze focussen op de unieke 10\% van een applicatie. [outsystems]
+Low code is een software ontwikkelingsaanpak dat snellere oplevering van applicaties mogelijk maakt met minimaal manueel coderen. Dit werkt met visueel modeling in een grafische user interface om applicaties op te zetten en configureren. Hiermee slaat de ontwikkelaar de infrastructuur en her-implementatie van patronen die hun werk vertraagd en kunnen ze focussen op de unieke 10\% van een applicatie. \autocite{Revell2020}
 
 Kissflow legt in zijn omschrijving nadruk op een grotere toegankelijkheid en Outsystems focust meer op het kunnen vermijden van herhalend werk.
 
@@ -142,13 +142,13 @@ Een low-code platform bestaat typisch uit volgende delen:
     \item Een visuele IDE (Integrated Development Environment).
     \item Connectoren naar back-ends of services.
     \item App Lifecycle Management. Hiermee bedoelt geautomatiseerde tools voor build, debug, en deploy. Ook beheer van de app tijdens test, staging en productie.
-\end{itemize} [Outsystems]
+\end{itemize} \autocite{Revell2020}
 
 \subsubsection{low-code VS no-code}
 
 Een no-code platform is een gespecialiseerde versie van een low-code platform waar men manuele aanpassingen zoveel mogelijk wil vermijden, al dan niet door het pre-builden van de nodige visuele componenten.
 
-[Intellyx] nuanceert de verschillen door te focussen op de bedoelde gebruiker:
+\textcite{Bloomberg2017} nuanceert de verschillen door te focussen op de bedoelde gebruiker:
 \begin{itemize}
     \item low-code: Volgende generatie applicatie ontwikkeling dat het werk van professionele ontwikkelaars versneld en stroomlijnt.
     \item no-code: Self-service applicatie assembly voor business users die citizen developers worden.
@@ -156,16 +156,43 @@ Een no-code platform is een gespecialiseerde versie van een low-code platform wa
 
 \subsubsection{low-code development VS traditional software development}
 
+% TODO: extra uitleg
+
+\begin{landscape}
+\begin{table}[]
+    \begin{tabular}{@{}lll@{}}
+        \toprule
+        & \textbf{Traditional} & \textbf{Low Code} \\ \midrule
+        1 & requirements bepalen & requirements bepalen \\
+        2 & architectuur plannen & derde partij API's selecteren \\
+        3 & selectie van back-end framework, bibliotheken, data-stores en API's & app workflow, data models en user interface tekenen in de visuele IDE \\
+        4 & selectie van front-end framework & API's verbinden \\
+        5 & keuze van deployment stack, opzetten van CI (Continuous Integration) en operatieplan creeren & indien nodig handgeschreven code toevoegen aan front-end of aanpassing van automatisch gegenereerde SQL queries \\
+        6 & wireframes en prototypes maken & gebruikersacceptatietests \\
+        7 & ui coderen in gekozen Javascript framework & deployment naar productie, hierna updates eenvoudig doorduwen \\
+        8 & falende tests schrijven &  \\
+        9 & modellen definieeren en koppelen aan data stores &  \\
+        10 & business logic definieeren en coderen &  \\
+        11 & views maken om JSON data te voorzien/ontvangen van en naar de front-end &  \\
+        12 & implementeren van workflows &  \\
+        13 & integreren van derde partij API's via gepubliceerde interface of support bibliotheek &  \\
+        14 & herhalen tot tests slagen &  \\
+        15 & testen voor security, performance, kwaliteit en gebruikersacceptatie &  \\
+        16 & deploy, patch, monitor en updat tot levenseinde van de app &  \\ \bottomrule
+    \end{tabular}
+\end{table} \autocite{Revell2020}
+\end{landscape} 
+
 \subsubsection{Citizen developers}
 
-De survey [Rise of the empowered citizen developer] geeft de volgende definite:\\
+De survey uitgevoerd door \textcite{McKendrick2017} geeft de volgende definite:\\
 \textit{`we define citizen developers as business users, not part of IT departments or contracted IT services, who build and use their own scripts, programs, algorithms, or interfaces designed to perform business functions or support business processes.`}
 
 Er zijn enkele interessante statistieken uit voortgekomen:
 \begin{itemize}
-    \item Snelheid van applicatie deliery en delen van data/analytics worden aanzien als zwakke gebieden van IT support.
+    \item Snelheid van applicatie delivery en delen van data/analytics worden aanzien als zwakke gebieden van IT support.
     \item 76\% van de respondenten zegt dat op z'n minst een deel van de gebruikte applicaties buiten het IT departement komen.
-    \item 45\% van citizen development activiteiten worden tijdens de werkuren gedaan, de grotoste motivatie hiervoor (42\%) is omdat het IT departement te traag is.
+    \item 45\% van citizen development activiteiten worden tijdens de werkuren gedaan, de grootste motivatie hiervoor (42\%) is omdat het IT departement te traag is.
     \item In slechts 17\% van de gevallen duurt ontwikkeling van een citizen developer applicatie langer dan drie maand.
 \end{itemize}
 
@@ -174,30 +201,32 @@ Er zijn enkele interessante statistieken uit voortgekomen:
 Er bestaan enkele mythes rondom low-code:
 \begin{itemize}
     \item Minder geschikt voor professionele gebruikers dan voor citizen developers \\
-    $\rightarrow$ In praktijk wordt low-code vaker gerbuikt door profesisonele ontwikkelaars.
-    \item De nood om te programmeren wordt geelimineerd \\
+    $\rightarrow$ In praktijk wordt low-code vaker gebruikt door professionele ontwikkelaars.
+    \item De nood om te programmeren wordt geëlimineerd \\
     $\rightarrow$ Het is vaak mogelijk om eenvoudigere applicaties te bouwen zonder code. Een typische business applicatie zal echter extra programmatie nodig hebben voor integratie met andere applicaties en databases, ook om aangepaste algoritmen te kunnen gebruiken. Deze use cases worden als extensies, externe programmatie of als scripts toegevoegd.
     \item low-code betekend kleine schaal \\
-    $\rightarrow$ Er zijn genoeg praktijkvoorbeelden die dit tegenspreken. Neem bijvoorbeeld Sapphire HMS.
-\end{itemize} [Forrester]
+    $\rightarrow$ Er zijn genoeg praktijkvoorbeelden die dit tegenspreken. Neem bijvoorbeeld Sapphire HMS. \autocite{Bashar2017}
+\end{itemize} \autocite{Richardson2016}
 
 \subsection{Geschiedenis}
 
-De oorspron van low-code kan best bekeken worden vanuit het perspectief van de verranderingen in complexiteit en bruikbaarheid van programmeertalen doorheen de jaren. Er zijn enkele grote sprongen waarneembaar:
+De oorsprong van low-code kan best bekeken worden vanuit het perspectief van de verranderingen in complexiteit en bruikbaarheid van programmeertalen doorheen de jaren. Er zijn enkele grote sprongen waarneembaar:
 \begin{itemize}
-    \item \textbf{Fortran}: niet intuitief, nuttig voor wetenschappelijke en numerieke computing.
-    \item \textbf{Cobol}: Fopcus buiten wetenschappers of wiskundigen. Syntax staat dichter bij engels. Het hielp bij het vinden van oplossingen naar business taken.
-    \item \textbf{C}: Geschreven met engelse syntax. Bruikbaar in een grote variate aan applicaties.
-    \item \textbf{Internet}: Kwam door het internet en een groeiende populariteit van webapplicaties. Men is kleinere en eenvoudigre scripts beginnen gebruiken in plaats van complexe programmeertalen. Er was een focus op functie. Applicaties moeten aan een snellere pas ontwikkeld kunnen worden en talen moeten eenvoudig genoeg zijn om dit te ondersteunen.\\
-    Een voorganger van low-code dat ook uit het internet is voortgekomen is het content management systeem. Wordpressis een bekend voorbeeld. Er zijn gelijkenissen in ideologie: het laat toe om de inhoud van een website aan te passen met een minimale heoveelheid programmeren. Er worden modules gebruikt voor vaak voorkomende requirements. [Kissflow2]
-\end{itemize} [Kissflow1]
+    \item \textbf{Fortran}: niet intuïtief, nuttig voor wetenschappelijke en numerieke computing.
+    \item \textbf{Cobol}: Focus buiten wetenschappers of wiskundigen. Syntax staat dichter bij Engels. Het hielp bij het vinden van oplossingen naar business taken.
+    \item \textbf{C}: Geschreven met Engelse syntax. Bruikbaar in een grote variatie aan applicaties.
+    \item \textbf{Internet}: Kwam door het internet en een groeiende populariteit van webapplicaties. Men is kleinere en eenvoudigere scripts beginnen gebruiken in plaats van complexe programmeertalen. Er was een focus op functie. Applicaties moeten aan een snellere pas ontwikkeld kunnen worden en talen moeten eenvoudig genoeg zijn om dit te ondersteunen.\\
+    Een voorganger van low-code dat ook uit het internet is voortgekomen is het content management systeem. Wordpress is een bekend voorbeeld. Er zijn gelijkenissen in ideologie: het laat toe om de inhoud van een website aan te passen met een minimale hoeveelheid programmeren. Er worden modules gebruikt voor vaak voorkomende requirements. \autocite{Kissflow2018}
+\end{itemize} \autocite{Kissflow2018a}
 
-De ideologie achter low-code bestaat al een lange tijd. Er zijn cyclussen waar te nemen waarin de polulariteit piekte. Een iteratie van 10 jaar geleden is 4gl (Fourth Generation Language). Een iteratie van 20 jaar geleden is RAD (Rapid Application Development).
+De ideologie achter low-code bestaat al een lange tijd. Er zijn cyclussen waar te nemen waarin de populariteit piekte. Een iteratie van 10 jaar geleden is 4gl (Fourth Generation Language). Een iteratie van 20 jaar geleden is RAD (Rapid Application Development). % TODO: welke bron?
 
 Visuele en declaratieve development tools bestaan al decennia maar elke iteratie zijn er minder technische skills nodig om complexere business apps te kunnen maken die ook kunnen omgaan met moderne scenario's. Moderne low-code platformen overstijgen de limieten van op een aantal manieren: \\
 \textbf{Ze zijn meer `open`.} Vaak worden platform API's en adapters ondersteund. Soms is mogelijk om Java of .NET code te genereren als maatregel tegen vendor lock-in. Sommige platformen gebruiken zelf open source development frameworks zoals AngularJS, Apache Cordova en Bootstrap.\\
 \textbf{De platformen zelf zijn `completer`.} De vorige generaties waren eerder tools. Moderne low-code platformen ondersteunen de volledige applicatie levenscyclus.\\
-\textbf{Betere integratiemogelijkheden.} De meeste low-code platformen laten laten toegang tot tot externe data toe. Vaak zijn er API's voor integratie mer externe applicatie modules. [Forrester]
+\textbf{Betere integratiemogelijkheden.} De meeste low-code platformen laten laten toegang tot tot externe data toe. Vaak zijn er API's voor integratie mer externe applicatie modules. 
+
+\autocite{Richardson2016}
 
 \subsection{Nood / Voordelen}
 
@@ -208,7 +237,7 @@ Het verkooppunt van low-code is hogere snelheid van applicatieontwikkeling. Naas
     \item Transparante deployment: Er zijn geen aanpassingen meer nodig om verschillende architecturen te kunnen ondersteunen.
     \item Lange termijn gebruik: Apps zijn eenvoudig aan te passen.
     \item Enkele code base: Minder ruimte voor fouten en de code base wordt ook niet vervuild met tijd.
-\end{itemize}
+\end{itemize} \autocite{Schetsen2016}
 
 Markt leidende platformen hebben de volgende eigenschappen:
 \begin{itemize}
@@ -216,60 +245,60 @@ Markt leidende platformen hebben de volgende eigenschappen:
     \item Veel integratie opties.
     \item Mobile compatibel.
     \item Schaalbaar.
-    \item Support over de volledige app levenscyclus. [kissflow2]
-\end{itemize}
+    \item Support over de volledige app levenscyclus.
+\end{itemize} \autocite{Kissflow2018}
 
-Het perspectief van de klant, welke waardepropositie er is. Dit is duidelijker als er eerst naar de omgeving gekeken wordt. Bedrijven moeten steeds meer kunnen ogaan met disruptieve innovatie en wijzigend klantgedrag. De vraag naar applicaties is vaak groter dan wat geleverd kan worden. Er zijn strategieen om hier mee om te proberen gaan zoals outsourcing, hackathons of voorgebouwde softawreoplossingen. Low code is een nieuwe manier om er mee om t kunnen gaan. De waardepropositie voor de business en het tech management is:
+Het perspectief van de klant, welke waardepropositie er is. Dit is duidelijker als er eerst naar de omgeving gekeken wordt. Bedrijven moeten steeds meer kunnen omgaan met disruptieve innovatie en wijzigend klantgedrag. De vraag naar applicaties is vaak groter dan wat geleverd kan worden. Er zijn strategieën om hier mee om te proberen gaan zoals outsourcing, hackathons of voorgebouwde softwareoplossingen. Low code is een nieuwe manier om er mee om te kunnen gaan. De waardepropositie voor de business en het tech management is:
 \begin{itemize}
     \item Apps visueel configureren in plaats van manueel te coderen. Ontwikkeling kan zo mogelijk met een factor 5 tot 10 versneld worden.
-    \item Echte requirements en zo echte waarden vinden. Met low-code kunnen snel minimum viable products gebouwd worden om klantenideen te toetsen.
-    \item Live-trial van business ideen tegen lage of onbestaande kost. Ideen kunnen snel omgezet worden in een werkend prototype dat gedeployed en getest kan worden op de markt.
+    \item Echte requirements en zo echte waarden vinden. Met low-code kunnen snel minimum viable products gebouwd worden om klantenideeën te toetsen.
+    \item Live-trial van business ideeën tegen lage of onbestaande kost. Ideen kunnen snel omgezet worden in een werkend prototype dat gedeployed en getest kan worden op de markt.
     \item Werkende prototypes kunnen in vijf minuten omgezet worden in productie apps. Het komt niet voor dat een app opnieuw gebouwd moet worden om een hoger volume of hogere diversiteit van gebruikers aan te kunnen.
-    \item Meer development talent mogelijk. Developers zonder formele achtergrond kunnen door het visuele aspect nu ook business applicaties bowen.
-\end{itemize} [forrester2016]
+    \item Meer development talent mogelijk. Developers zonder formele achtergrond kunnen door het visuele aspect nu ook business applicaties bouwen.
+\end{itemize} \autocite{Richardson2016}
 
 \subsubsection{Digitale transformatie}
 
-Digitale transformatie is het proces van het gerbuik van digitale technologie om nieuwe - of bestaande - business processen, cultuur en klantenexperience te maken als antwoord of verranderende businessen markt requirements. Het is kortweg opnieuw bedenken van business in het digitale tijdperk. [salesforce]
+Digitale transformatie is het proces van het gebruik van digitale technologie om nieuwe - of bestaande - business processen, cultuur en klantenexperience te maken als antwoord op veranderende business en markt requirements. Het is kortweg opnieuw bedenken van business in het digitale tijdperk. \autocite{Salesforce}
 Digitale transformatie wordt steeds belangrijker als arena waarin business een voordeel kan krijgen op de competitie. Low-code wordt hierbij aanzien als een krachtig wapen in dit proces.
 
 \subsection{Kritiek / Nadelen}
 
-Er zijn een aantal valkuilen waar rekening mee gehouden moeten worden bij de keuze van een platform. De inzetting kan falen en het gewenste resultaat kan uitblijven als de klant geen concreet plan heeft over hoe low-code in te werken in zijn portfolio. Het is ook aangeraden om op te passen indien er een kleinere vendor gekozen wordt. Het is een veranderende markt en deze hebben een lagere stabiliteit. [Forrester2016]
+Er zijn een aantal valkuilen waar rekening mee gehouden moeten worden bij de keuze van een platform. De inzetting kan falen en het gewenste resultaat kan uitblijven als de klant geen concreet plan heeft over hoe low-code in te werken in zijn portfolio. Het is ook aangeraden om op te passen indien er een kleinere vendor gekozen wordt. Het is een veranderende markt en deze hebben een lagere stabiliteit. \autocite{Richardson2016}
 
-Een mening is dat de business kant zijn mentaliteit ten opzicht van IT moet aanpassen. Al decennia probeert met de nood van programmeren terug te drijven en in functie heirvan wroden tools gemaakt. Bedrijven zijn hiertoe aangetrokken om kosten te kunnen besparen. Maar de achterliggende kennis blijft nodig, vooral als er iets fout gaat. Niet alles kan visueel gedaan worden. Development talent blijft dus nog nodig. De aanpassing in mindset die gevraagd wordt is dat business het feit aanvaard dat software ontwikkeling duur en moeilijk is en dat er geen schortcuts voor zijn. [techtarget-benreselman]
+Een mening is dat de business kant zijn mentaliteit ten opzicht van IT moet aanpassen. Al decennia probeert met de nood van programmeren terug te drijven en in functie hiervan worden tools gemaakt. Bedrijven zijn hiertoe aangetrokken om kosten te kunnen besparen. Maar de achterliggende kennis blijft nodig, vooral als er iets fout gaat. Niet alles kan visueel gedaan worden. Development talent blijft dus nog nodig. De aanpassing in mindset die gevraagd wordt is dat business het feit aanvaard dat software ontwikkeling duur en moeilijk is en dat er geen schortcuts voor zijn. \autocite{Reselman2018}
 
 Er kan gesteld worden dan niet elk low-code platform daadwerkelijk 'low-code' is en dat men hiervoor moet oppassen:
 \begin{itemize}
-    \item \textbf{NIET} low-code: Het platform genereerd statisch code en verstopt deze effectief voor de gebruiker. De code is niet flexibel en schaalt niet. Dit staat diitale transformatie in de weg en verhoogt technical debt in plaats van dit te verlagen.
-    \item \textbf{WEL} low-code: Het platform is flexibel en schaalbaar. De volledige levenscyclus van de app moet ondersteund worden. Achterliggend wordt een model gedreven architectuur gehanteerd. De flexibiliteit komt doordat de model componenten geabstracteerd worden naar XML. De applicatie kan ook makkelijker gewijzigd worden en is eenvoudig schaalbaar.
-\end{itemize} [ITPORtalpro]
+    \item \textbf{NIET} low-code: Het platform genereert statisch code en verstopt deze effectief voor de gebruiker. De code is niet flexibel en schaalt niet. Dit staat digitale transformatie in de weg en verhoogt technical debt in plaats van dit te verlagen.
+    \item \textbf{WEL} low-code: Het platform is flexibel en schaalbaar. De volledige levenscyclus van de app moet ondersteund worden. Achterliggend wordt een model gedreven architectuur gehanteerd. De flexibiliteit komt doordat de model componenten geabstraheerd worden naar XML. De applicatie kan ook makkelijker gewijzigd worden en is eenvoudig schaalbaar.
+\end{itemize} \autocite{Shiah2018}
 
 \subsubsection{Shadow IT}
 
-Gebruik van no-code tools in de handen van citizen developers kan mogelijk leiden tot shadow IT. Dit komt voor wanneer de IT organisatie te traag en proces-gebonden is om snel genoeg te kunnen reageren op de noden van business en business users buiten IT gaan om zelf een app bouwen. Zonder overzicht en coordinatie kunnen security kwetsbaarheden en compliance overtredingen verspreiden. Deze apps kunnen ook redundant en van lage kwaliteit zijn. [intellyx]
+Gebruik van no-code tools in de handen van citizen developers kan mogelijk leiden tot shadow IT. Dit komt voor wanneer de IT organisatie te traag en proces-gebonden is om snel genoeg te kunnen reageren op de noden van business en business users buiten IT gaan om zelf een app bouwen. Zonder overzicht en coördinatie kunnen security kwetsbaarheden en compliance overtredingen verspreiden. Deze apps kunnen ook redundant en van lage kwaliteit zijn. \autocite{Bloomberg2017}
 
 \subsection{Markt en Evolutie}
 
 % TODO: afb wave + afb qudrant
 
-Het business model van low code platformen is anders dan dat van traditionele platformen zoals Java of .NET. Er wordt uitgegaan van geleverde business waarde in plaats van beloofde. Zo zijn veel platformen gratis of tegen lage kost toegankelijk. Inkomst wordt gegenereerd uit benoemde gebruikers, gedeployde apps en nodige capaciteit.
+Het business model van low code platformen is anders dan dat van traditionele platformen zoals Java of .NET. Er wordt uitgegaan van geleverde business waarde in plaats van beloofde. Zo zijn veel platformen gratis of tegen lage kost toegankelijk. Inkomst wordt gegenereerd uit benoemde gebruikers, gedeployde apps en nodige capaciteit. \autocite{Richardson2016}
 
 Wat betreft marktsegmentatie heeft er zicht op relatief korte tijd veel evolutie voorgedaan. Er kunnen drie grote stappen onderscheiden worden:
 \begin{enumerate}
-    \item 5 marktsegmenten waarvan de grootste general purpose is. Het doel is grote variatie aan web en mobiele applicaties kunnen bouwen. Declaratieve toolking gebruikt met aandacht voor creatie, integraatie, deployment life-cycle management en distributie van applicaties. Hiernast waren ook nog segementen voor process, database, request-handling en mobiele apps.
-    \item % TODO
-    \item % TODO
+    \item 5 marktsegmenten waarvan de grootste general purpose is. Het doel is grote variatie aan web en mobiele applicaties kunnen bouwen. Declaratieve tooling gebruikt met aandacht voor creatie, integratie, deployment life-cycle management en distributie van applicaties. Hiernaast waren ook nog segmenten voor process, database, request-handling en mobiele apps.
+    \item Samensmelting naar general purpose % TODO: bron
+    \item Splitsing om te focussen op gebruiker. Business user of professionele ontwikkelaars. % TODO: bron
 \end{enumerate}
 
 Er worden een aantal marktontwikkelingen verwacht:
 \begin{itemize}
     \item \textbf{Consolidatie}. Grote verkopers zullen low-code platformen overnemen.
-    \item \textbf{Marktsegment verranderingen}. Lowcode for mobile verwdwijnt en low-code for process groeit naar general purpose segment.
+    \item \textbf{Marktsegment veranderingen}. Low code for mobile verdwijnt en low-code for process groeit naar general purpose segment.
     \item De volgende innovatie zal \textbf{ondersteuning voor IoT} zijn.
-\end{itemize}
+\end{itemize} \autocite{Richardson2016}
 
-De [Forrester Wave] identificeerd 5 marktleiders. Opvallend is dat Microsft in een korte periode naar een leidingspositie is geprongen. De bevindingen van [Gartner] sluiten hierbij aan.
+\textcite{Rymer2019} identificeert 5 marktleiders. Opvallend is dat Microsoft in een korte periode naar een leidingspositie is gesprongen. De bevindingen van \textcite{Richardson2016} sluiten hierbij aan.
 
 \begin{table}[]
     \begin{tabular}{|l|l|l|l|l|l|}
@@ -283,31 +312,33 @@ Prospecten voor de komende vijf jaar:
 \begin{itemize}
     \item Tegen 2024 zal drie vierde van grot enterprises ten minste vier low code development platformen gerbruiken voor zowel IT app development en citizen development initiatieven.
     \item tegen 2024 zal low-code applicatie development verantwoordelijk zijn voor 65\% van totale applicatie ontwikkeling activiteit.
-\end{itemize}
+\end{itemize} \autocite{Vincent2019}
 
-De verschuiving van traditionele naar low-code software ontwikkeling is terug te vinden in huidige jobaanbiedingen. [stagebank1] [stagebank2]
+De verschuiving van traditionele naar low-code software ontwikkeling is terug te vinden in huidige jobaanbiedingen\footnote{https://stagebank-hbo-ict.irp.nl/internships/12543/}\footnote{https://stagebank-hbo-ict.irp.nl/internships/12378/}.
 
-Er wordt verwacht dat de low-code markt tegen 2022 21 biljoen dollar ward zal zijn. Er wordt een jaarlijkse groei van 50\% voorspeld.
+Er wordt verwacht dat de low-code markt tegen 2022 21 biljoen dollar waard zal zijn. Er wordt ook voorspeld dat de jaarlijkse groei van 50\% zich verder zal zetten. \autocite{Rymer2018}
 
-[afb-markt]
+% TODO: [afb-markt]
 
 \subsection{Voorgaand onderzoek}
 
+Er is al redelijk wat praktisch onderzoek gevoerd die het potentieel van low-code illustreert maar het grootste succesverhaal is dat van Sapphire HMS. Dit is een low-code applicatie binnen gezondheidszorg. Koeweit had nood aan een nieuw ziekenhuis managementsysteem. Na initieel falen om iets manueel te bouwen werd gekeken naar low-code platformen en was het mogelijk om de eerste implementatie na 6 maanden in gebruik te nemen. \autocite{Bashar2017}
+
 \subsubsection{Proof of Concepts}
 
-Er werd onderzoek gedaan naar de mogelijke meerwaarde van low-code in een KMO omgeving. Uit vier marktleidende platformen werd Outsystems gekozen. Er werden POC's voor vaak voorkomende scenario's mee opgesteld. De bouw we snel, eenvoudig en er waren geen obstructies. De nodige investering vna tijd, geld en kennis was beperkt [2474].
+Er werd onderzoek gedaan naar de mogelijke meerwaarde van low-code in een KMO omgeving. Uit vier marktleidende platformen werd Outsystems gekozen. Er werden POC's voor vaak voorkomende scenario's mee opgesteld. De bouw we snel, eenvoudig en er waren geen obstructies. De nodige investering van tijd, geld en kennis was beperkt \autocite{Devloo2018}.
 
-Microsoft Power Apps werd gebruikt om enkele administratieve bedrijfsprocessen van verhuisbedrijf De Borger te optimaliseren. Het resultaat werd effectief in gebruik genomen de tijdswinst sinds implementatie werd berekend en significant bevonden. De prijs was aanvaardbaar. Er was slechts 5 euro per maand nodig om een aangepaste connector te kunnen gebruiken. [2947]
+Microsoft Power Apps werd gebruikt om enkele administratieve bedrijfsprocessen van verhuisbedrijf De Borger te optimaliseren. Het resultaat werd effectief in gebruik genomen de tijdswinst sinds implementatie werd berekend en significant bevonden. De prijs was aanvaardbaar. Er was slechts 5 euro per maand nodig om een aangepaste connector te kunnen gebruiken. \autocite{Spriet2019}
 
-In een ander geval werd Power Apps gebruikt om ee nmobiele reporting applicatie te maken voor gebruik in de bouwsector. Er werd ok gebruik gemaakt van Power Automate om afbeeldingen te verwerken en SharePoint om deze op te slaan. [lauri-aho]
+In een ander geval werd Power Apps gebruikt om een mobiele reporting applicatie te maken voor gebruik in de bouwsector. Er werd ok gebruik gemaakt van Power Automate om afbeeldingen te verwerken en SharePoint om deze op te slaan. \autocite{Aho2018}
 
-Binnen de gezondheidszorg werd er ee case study gedaan naar hoe onderzoeksdataverzameld kon worden door gerbuik van een low-code paltform. Er werd voor Mendix gekozen. De veiligheid van het platform werd als goed bevonden, relevant privacywetten waren gerespecteerd en authenticatie werd ondersteund en was eenvoudig te implementerern. Er werd verhoogde productiviteit waargenomen. [8pg-casestudy]
+Binnen de gezondheidszorg werd er een case study gedaan naar hoe onderzoeksdata verzameld kon worden door gebruik van een low-code platform. Er werd voor Mendix gekozen. De veiligheid van het platform werd als goed bevonden, relevant privacywetten waren gerespecteerd en authenticatie werd ondersteund en was eenvoudig te implementeren. Er werd verhoogde productiviteit waargenomen. \autocite{Totterdale2018}
 
 \subsubsection{Enquetes}
 
-Er werd ondzerocht of het mogelijk zou zijn om een EHR (electronic Health Records) systeem te bouwen met low-code om te gerbuiken op nationaal niveau. Dit was naar aanleiding van het Akson planningsproject voor een nieuw EHR systeem in Noorwegen. Er werden kwalitatieve interviews afgeniomen bij mensen met expertise in low-code en mensen met kennis van het Akson project. [Norway]
+Er werd onderzocht of het mogelijk zou zijn om een EHR (electronic Health Records) systeem te bouwen met low-code om te gebruiken op nationaal niveau. Dit was naar aanleiding van het Akson planningsproject voor een nieuw EHR systeem in Noorwegen. Er werden kwalitatieve interviews afgenomen bij mensen met expertise in low-code en mensen met kennis van het Akson project. \autocite{Ness2019}
 
-Low-code en traditionele softawreontwikkeling werden met elkaar vergeleken aan de hand van interviews met medewerks bij een Fins software consultancy bedrijf. Er kon besloten worden dat zowel de medewerkers als de klanten oplossingen gebouwd met low-code verkozen. [fins]
+Low-code en traditionele softwareontwikkeling werden met elkaar vergeleken aan de hand van interviews met medewerkers bij een Fins software consultancy bedrijf. Er kon besloten worden dat zowel de medewerkers als de klanten oplossingen gebouwd met low-code verkozen. \autocite{Virta2018}
 
 \section{Microsoft Power Platform: Power Apps}
 
@@ -416,4 +447,17 @@ Practisch gezien is dit mogelijk door een project te maken in Visual studio, een
 
 \section{Microsoft Power Platform: Power Automate}
 
-% TODO
+Power automate is een service voor het maken van geautomatiseerde workflows tussen apps en services. Een flow kan gemaakt worden door stappen aaneen te schalelen. Per stap kan een actie of conditie ingesteld worden. In deze condities kunnen data operaties geconfigureerd worden, er zijn ook expressies mogelijk. Naast het zelf bouwen van een flow zijn er sjablonen aanwezig voor gangbare automatisatie cases. Flows kunnen gebruikt worden vanuit Power Apps.
+
+Er zijn drie soorten flows:
+\begin{itemize}
+    \item Geautomatiseerde flow: de flow wordt gestart vanuit een bepaalde trigger.
+    \item Button flows: de flow wordt manueel gestart. Vaak wordt dit gebruikt vanop een mobiele device.
+    \item Scheduled flows: De flow herhaald / op een schema uitvoeren.
+    \item Approval flows
+    \item UI flows: Een vorm van UI automatisatie, een optie indien er geen API of connector aanwezig is (bijvoorbeeld oudere toepassingen). Voor gebruik met Windows desktop en web applicaties. Momenteel nog in experimentele fase. Het kan gezien worden als een eenvoudige manier om een script te bouwen. De werking is dat de gebruiker een actie/set stappen opneemt, hier wordt dan een aanpasbare flow voor gegenereerd.
+\end{itemize}
+
+\subsubsection{Beperkingen}
+
+Er is geen aangepaste code of scripting ondersteund.
