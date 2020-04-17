@@ -23,6 +23,9 @@
 # *.ps
 # *.eps
 # *.pdf
+bachproef/old/bachproef-tin.pdf
+voorstel/naam_voornaam_voorstel.pdf
+voorstel/bak/naam_voornaam_voorstel.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -129,3 +132,4 @@ sympy-plots-for-*.tex/
 
 # Vim-LaTeX
 *.latexmain
+
