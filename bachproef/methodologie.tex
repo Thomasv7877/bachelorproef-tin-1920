@@ -15,7 +15,12 @@
 
 \section{Requirementsanalyse}
 
+
+De bedoeling van deze analyse is uitvinden hoe goed Power Apps voldoet aan de requirements en mogelijk ontdekken of er een alternatief bestaat dat overwogen kan worden. Als PowerApps in de toekomst effectief gebruikt zal worden, voornamelijk door het IT en Helpdesk team, is het dan niet logisch om dit alternatief te laten conformeren aan de bedoelde eindgebruiker, zijnde professionele IT'ers? Dit idee zal mee spelen bij de besluitvorming.
+
 \subsection{Functioneel VS Niet-functioneel}
+De requirements werden opgesteld tijdens herhaalde gesprekken met zowel Siemen als een lid van het Helpdesk team dat de app effectief zou gaan gebruiken.
+De resultaten zijn hieronder opgesplitst in functionele-\footnote{Functionele requirement: gewenst gedrag ven het systeem} en niet-functionele\footnote{Niet-functionele requirement: kwaliteitseis waaraan het systeem moet voldoen} requirements.
 
 \begin{itemize}
     \item \textbf{Functionele requirements}
@@ -49,6 +54,8 @@
 \end{itemize}
 
 \subsection{MoSCoW-methode}
+
+De volgende stap is prioriteiten stellen onder de requirements. Hiervoor wordt de MoSCoW-methode\footnote{Must have: eis moet terugkomen in het eindresultaat, Should have: eis is zeer gewenst maar het product is bruikbaar zonder, Could have: eis komt aan bod als er genoeg tijd is, Won't have: komt niet aan bod, is voor de toekomst of een vervolgproject \autocite{Wikipedia2020}} gebruikt.
 
 \begin{itemize}
     \item \textbf{\colorbox{green}{Must have}}
@@ -90,9 +97,8 @@
 
 \subsection{Long List}
 
-% Please add the following required packages to your document preamble:
-% \usepackage{longtable}
-% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
+Er zijn veel platformen om uit te kiezen\footnote{ 57 volgens een oplijsting van \href{https://www.trustradius.com/low-code-development}{TrustRadius}}. Degene hieronder opgelijst werden besproken in de Forrester Wave \autocite{Rymer2019} en het Gartner Magic Quadrant \autocite{Vincent2019}. De low-code markt kent een sterke groei en is zeer bewogen (zie sectie~\ref{sec:markt-en-evolutie}). Het eerste gekozen criteria om de lijst te filteren is bedoelt om hiermee om te gaan, het kan immers aangenomen worden dat een platform bestempelt door Gartnet of Forrester als leider voldoende future proof is. Het andere gekozen criteria betreft het licentie model. Power Apps is opgenomen in het Office 365 licentie van AZ Glorieux, initieel gebruik ervan betekend geen dus geen meerprijs, een concurrent moet met andere woorden iets gelijkaardig kunnen aanbieden.
+
 \begin{longtable}{llccc}
     \textbf{} & \textbf{} & \multicolumn{2}{c}{\textbf{Leider}} & \multicolumn{1}{l}{\textbf{}} \\
     \endfirsthead
@@ -101,7 +107,7 @@
     %
     \textbf{Naam} & \textbf{Omschrijving} & \multicolumn{1}{l}{\textbf{Forrester}} & \multicolumn{1}{l}{\textbf{Gartner}} & \multicolumn{1}{l}{\textbf{Freemium}} \\
     AgilePoint &  &  &  &  \\
-    Appian &  &  & x & x \\
+    Appian &  &  & x &  \\
     Betty Blocks &  &  &  &  \\
     bpm'online &  &  &  &  \\
     Clear Software &  &  &  &  \\
@@ -111,14 +117,14 @@
     Kintone &  &  &  &  \\
     MatSoft &  &  &  & x \\
     Mendix &  & x & x & x \\
-    Microsoft &  & x & x & x \\
+    Microsoft &  & x & x & (x) \\
     Outsystems &  & x & x & x \\
     Oracle &  &  &  &  \\
     Pega &  &  &  &  \\
     Progress Software &  &  &  &  \\
     ProntoForms &  &  &  &  \\
     Quick Base &  &  &  &  \\
-    Salesforce &  & x & x & x \\
+    Salesforce &  & x & x &  \\
     ServiceNow &  &  &  & x \\
     Skuid &  &  &  &  \\
     Thinkwise &  &  &  &  \\
@@ -127,15 +133,84 @@
     Zoho &  &  &  & x
 \end{longtable}
 
+Het resultaat is dat er van de leiders (zie tabel~\ref{table:leiders} voor een gefocuste weergave) slechts enkelen overblijven die in aanmerking komen.
+
 \subsection{Short List}
 
-% TODO
+% TODO: uitleg herleiden van requirements?
+
+Hier worden de overgebleven platformen in diepte met elkaar vergeleken Maar in plaats van elke requirement af te toetsen werden deze eerst herleid naar hun achterliggende begrippen (bijvoorbeeld: mobile ondersteuning, automatisatie functionaliteit, security, leercurve en dergelijke).
+
+Gemaakte stellingen zijn afkomstig uit PCmagazine.com reviews van elk platform en zijn aangevuld met informatie uit de officiële documentatie per platvorm.
 
 \subsubsection{Microsoft}
 
+Deel van het Power platform. Het bestaat sinds 2016 en is daarmee het jongste platform in de vergelijking maar heeft een snelle ontwikkeling ondergaan en is op slechts enkele jaren tijd een marktleider geworden.
+
+Werd diepgaand behandeld in de (in sectie~\ref{sec:power-platform}). Een kort overzicht:
+
+% TODO
+
+\textbf{Forrester:} 
+
+\textbf{Gartner:} 
+
+Licentiëring:  
+
 \subsubsection{Outsystems}
+
+Outsystems werd opgericht in Lissabon in 2001, zit momenteel in 11 landen en telt 1228 medewerkers.
+
+Er is een focus op professionele ontwikkelaars, het is gemakkelijker om met code te werken. Het is mogelijk om op elk moment te switchen van de grafische omgeving naar de code editor. Iets anders dat dit professioneel aspect ondersteund is dat de IDE (genaamd Service Studio) offline geinstalleert dient te worden .De layout ervan komt sterk overeen met die van PowerApps en Mendix. Andere grote onderdelen zijn de Forge (respository voor gebruikersgemaakte apps en plug-ins) en de Integration Studio waar extensions geschreven worden.\\
+Een nadeel van de technische focus is dat er geen volledig cloud no-code omgeving aanwezig is. Een ander nadeel is de hogere leercurve maar er is een uitgebreid aanbod van documentatie, tutorials online cursussenen webinars aanwezig in de OutSystems University om hiermee om te gaan.\\
+Het platform is gebouwd in .NET. Bouwen van mobiele of webapplicaties is ondersteund maar er moet gekozen worden tussen de twee.\\
+Een app is gestructureerd in modules: mobile (of web), service, library en extension modules. Dit om hergebruik aan te moedigen.\\
+Automatisatie functionaliteit is beperkt tot Timers. Het is enkel mogelijk om bepaalde acties op een tijdschema uit te voeren. Wat AI betreft zijn er connectors naar Azure Luis en Azure ML. Inhuis voorziet Outsystems.AI taal analyse componenten (sleutelzin detectie, gevoelsanalyse).\\
+UI design is minder geavanceerd dan bij de concurrentie en er is meer werk nodig om het gewenst resultaat te krijgen.\\
+SharePoint gebruik is enkel mogelijk via de REST API. Dit is een grote beperking ten opzichte van Power Apps, waar het een standaard Connector is.\\
+Het platform is veilig en voldoet aan volgende certifieeringen: % TODO
+Om gerust te stellen voor vendor lock-in\footnote{Gedwongen een product of service moeten blijven gebruiken, onafhankelijk van kwaliteit, omdat het (financieel) niet praktisch is om er vanaf te stappen \autocite{Cloudflare}} is het mogelijk om de applicatie te genereren in .NET.\\
+
+\textbf{Forrester:} 
+
+\textbf{Gartner:} 
+
+Licentiëring:  
 
 \subsubsection{Mendix}
 
+Mendix werd opgericht in Nederland in 2005, werd in 2018 overgenomen door Siemens voor 730 miljoen dollar. Er zijn enkele grote partnerships aangegaan, onder andere met SAP die Mendix resellt als het SQL Cloud Platform.
+
+Net als bij Outsystems is de doelgroep eerder professionele ontwikkelaars. Er is zowel een volledige no-code cloud omgeving aanwezig (Mendix Studio) als een uitgebreidere variant (Mendix Studio Pro) die offline geïnstalleerd moet worden, gericht op developers. Het coderen gaat met Java.\\
+Er is een groot aanbod aan voorgebouwde templates en componenten die Microsoft en Outsystems evenaren.
+De UI filosofie is om te starten met design en wireframes, dan het model te maken met logica en workflows die in dat model passen. De apps zijn responsief. Het scherm wordt automatisch aangepast tussen smartphone, tablet of desktop views.\\
+Database integratie is beter dan bij Outsystems. Database wijzigingen worden automatisch herkend in de app, bij Outsystems is dit niet het geval. Specifiek naar SharePoint toe is verbinding net als bij Outsystems beperkt tot een REST API.\\
+App creatie is algemeen gezien gestroomlijnder dan bij Outsystems. Er kan na afloop gedeployed worden naar verschillende cloud omgevingen. % TODO: info over containerisatie
+App aanpassigen zijn eenvoudig (versionering is voorzien) maar voor elke nieuwe versie van het platform moet er gemigreerd worden.\\
+Testing en analystics zijn geavanceerder dan bij concurrenten. Waar testing voor PowerApps nog in beta zit is het bij Mendix meer volwassen, tests worden bijvoorbeeld automatsch uitgevoerd.\\
+Over specifieke onderdelen: Buzz is een portaal dat dient als sociaal intranet waar collaboratie begint. SCRUM is ingebouwd in het platform. Integraties, plugins, gerbuikersapps zijn in de Mendix App Store te vinden, dit aspect is even matuur als varianten van Microsoft en Outsystems.\\
+Wat AI functionaliteit betreft is er integratie mogelijk met IBM Watson.\\
+Security is als verwacht voor een marktleider: % TODO
+
+
+\textbf{Forrester:} 
+
+\textbf{Gartner:} 
+
+Licentiëring:  
+
 \subsubsection{Salesforce}
 
+Er is geen gratis licentie aanwezig en het platform is eerder gefocust op CRM\footnote{\url{https://nl.wikipedia.org/wiki/Customer_relationship_management}}
+
+PCmag \autocite{bibid} was minder gunstig over het platform en hekelde zich vooral aan de feature bloat en UI clutter. De tutorials zouden overigens niet up to date zijn.
+
+Om deze redenen is het geen valide optie maar omdat de marktaanwezigheid zo groot is was het de moeite om kort te bespreken.
+
+\subsubsection{Appian}
+
+Net als Salesforce een grote speler. functioneel even sterk als Outsystems en Mendix maar helaas is er geen gratis licentie mogelijk.
+
+\subsubsection{Temenos Quantum (Kony)}
+
+Dit platform is door Gartner bestempelt als een leider en heeft een gratis licentie. Wat serieuze overweging tegenhoud is de recente overname (en naamswijziging).
