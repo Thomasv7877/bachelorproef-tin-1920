@@ -289,6 +289,7 @@ Er kan gesteld worden dan niet elk low-code platform daadwerkelijk 'low-code' is
 Gebruik van no-code tools in de handen van citizen developers kan mogelijk leiden tot shadow IT. Dit komt voor wanneer de IT organisatie te traag en proces-gebonden is om snel genoeg te kunnen reageren op de noden van business en business users buiten IT gaan om zelf een app bouwen. Zonder overzicht en coördinatie kunnen security kwetsbaarheden en compliance overtredingen verspreiden. Deze apps kunnen ook redundant en van lage kwaliteit zijn. \autocite{Bloomberg2017}
 
 \subsection{Markt en Evolutie}
+\label{sec:markt-en-evolutie}
 
 \begin{figure}[h!]
     \centering
@@ -328,6 +329,8 @@ Er worden een aantal marktontwikkelingen verwacht:
         \textbf{Forrester} & Salesforce & Microsoft & Mendix     & Outsystems & Kony   \\ \hline
         \textbf{Gartner}   & Salesforce & Microsoft & Outsystems & Mendix     & Appian \\ \hline
     \end{tabular}
+    \caption{Overzicht van de marktleiders}
+    \label{table:leiders}
 \end{table}
 
 Prospecten voor de komende vijf jaar:
@@ -367,6 +370,7 @@ Er werd onderzocht of het mogelijk zou zijn om een EHR (electronic Health Record
 Low-code en traditionele softwareontwikkeling werden met elkaar vergeleken aan de hand van interviews met medewerkers bij een Fins software consultancy bedrijf. Er kon besloten worden dat zowel de medewerkers als de klanten oplossingen gebouwd met low-code verkozen. \autocite{Virta2018}
 
 \section{Microsoft Power Platform: Power Apps}
+\label{sec:power-platform}
 
 \subsection{Wat?}
 
@@ -431,8 +435,9 @@ Logica en werken met gegevens is mogelijk met Excel-achtige expressies.\\
 In Excel worden formules gebruikt om cellen te vullen of grafieken en tabellen te maken. In Power Apps worden vergelijkbare formules gebruikt om besturingselementen in plaats van cellen te configureren. Concreet ook om om te gaan met user input. De granulariteit is: een app bestaat uit UI controls $\rightarrow$ elke control heeft properties $\rightarrow$ per property kunnen formule(s) ingesteld worden. \autocite{MicrosoftDocs2019c}
 
 \subsubsection{Overig}
+\label{subsec:overig}
 
-Nadat werk aan een app opgeslagen is moet deze gepubliceerd worden om bruikbaar te zijn voro ander leden van ed organisatie.
+Nadat werk aan een app opgeslagen is moet deze gepubliceerd worden om bruikbaar te zijn voor ander leden van de organisatie.
 
 Versiebeheer is beperkt aanwezig. Er kan eenvoudig teruggegaan worden naar eerder gepubliceerde versies van een app.
 
@@ -440,8 +445,8 @@ UI Tests zijn mogelijk met de Test Studio maar op moment van schrijven is dit no
 Gebruikte concepten en terminologie komen overeen met gangbare testing frameworks zoals bijvoorbeeld JUnit voor Java. \\
 Meer uitleg aan de hand van deze terminologie. 
 \begin{itemize}
-    \item \textbf{Test Cases}: Test cases bestaan uit een serie instructies of acties genaamd test stappen. Test cases worden utigevoerd om te controleren of apps of specifieke features in de app werken zoals verwacht. Deze test stapen zijn gescreven in de Power Apps expressie taal.
-    \item \textbf{Test Suites}: Gebruikt om test cases samen te froeperen.
+    \item \textbf{Test Cases}: Test cases bestaan uit een serie instructies of acties genaamd test stappen. Test cases worden utigevoerd om te controleren of apps of specifieke features in de app werken zoals verwacht. Deze test stappen zijn geschreven in de Power Apps expressie taal.
+    \item \textbf{Test Suites}: Gebruikt om test cases samen te groeperen.
     \item \textbf{Test Assertions}: gebruikt om te valideren of het verwacht resultaat overeen komt met het verkregen resultaat. Evalueert naar true of false.
 \end{itemize}
 \autocite{MicrosoftDocs2019d}
@@ -468,7 +473,7 @@ De onderdelen van Power Apps Studio uitgelicht volgens Figuur \ref{fig:pastudio}
 
 \subsection{Recente Wijzigingen}
 
-De Test studio valt hierbij (Zie boven). % TODO: datum zetten + een verwijzing
+De Test studio valt hierbij (zie subsectie~\ref{subsec:overig}). % TODO: datum zetten
 
 De AI Builder is in publieke preview sinds 10 juni 2019. Dit maakt het mogelijk om AI te gebruiken in Power Apps met minimale technische kennis.\\
 Een voorbeeld van het typische verloop: Een AI model type kiezen $\rightarrow$ Data verbinden (uit CDS) $\rightarrow$ AI model aanpassen naar noden (data filteren, scheduling) $\rightarrow$ AI model trainen (gebeurt automatisch) $\rightarrow$ De inzichten van het AI model gebruiken doorheen het Power Platform.\\
