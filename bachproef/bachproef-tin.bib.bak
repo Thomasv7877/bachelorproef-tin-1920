@@ -432,4 +432,27 @@
   urldate = {2020-03},
 }
 
+@Online{MicrosoftDocs2017,
+  author  = {{Microsoft Docs}},
+  date    = {2017-06-12},
+  title   = {Create a canvas app to manage projects},
+  url     = {https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/sharepoint-scenario-build-app},
+  urldate = {2020-04-08},
+}
+
+@Online{Wikipedia2020,
+  author  = {Wikipedia},
+  title   = {MoSCoW-methode},
+  date    = {2020-03-01},
+  url     = {https://nl.wikipedia.org/wiki/MoSCoW-methode},
+  urldate = {2020-03-02},
+}
+
+@Online{Cloudflare,
+  author  = {{Cloudflare}},
+  title   = {What Is Vendor Lock-In? | Vendor Lock-In and Cloud Computing},
+  url     = {https://www.cloudflare.com/learning/cloud/what-is-vendor-lock-in/},
+  urldate = {2020-04-18},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
