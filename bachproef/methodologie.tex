@@ -36,7 +36,7 @@ De resultaten zijn hieronder opgesplitst in functionele-\footnote{Functionele re
         \item Revisie van elk dataveld per toesteltype.
         \item Data opslaan in SharePoint (cloud).
         \item Samenwerken met SCCM en/of synchroniseren met en data uit de SQL databank kunnen gebruiken.
-        \item Barcode's kunnen scannen (toegang hebben tot camera, barcode functionaliteit ingebouwd).
+        \item Barcodes kunnen scannen (toegang hebben tot camera, barcode functionaliteit ingebouwd).
         \item AI functionaliteit.
         \item Het Ping commando kunnen oproepen.
         \item Command line toegang hebben tot PC's.
@@ -84,7 +84,7 @@ De volgende stap is prioriteiten stellen onder de requirements. Hiervoor wordt d
     \begin{itemize}
         \item Samenwerken met SCCM en/of synchroniseren met en data uit de SQL databank kunnen gebruiken.
         \item Diverse GUI verbeteringen/robuust GUI ontwerp ondersteunen.
-        \item Barcode's kunnen scannen.
+        \item Barcodes kunnen scannen.
         \item AI functionaliteit.
         \item Het Ping commando kunnen oproepen.
     \end{itemize}
@@ -97,7 +97,7 @@ De volgende stap is prioriteiten stellen onder de requirements. Hiervoor wordt d
 
 \subsection{Long List}
 
-Er zijn veel platformen om uit te kiezen\footnote{ 57 volgens een oplijsting van \href{https://www.trustradius.com/low-code-development}{TrustRadius}}. Degene hieronder opgelijst werden besproken in de Forrester Wave \autocite{Rymer2019} en het Gartner Magic Quadrant \autocite{Vincent2019}. De low-code markt kent een sterke groei en is zeer bewogen (zie sectie~\ref{sec:markt-en-evolutie}). Het eerste gekozen criteria om de lijst te filteren is bedoelt om hiermee om te gaan, het kan immers aangenomen worden dat een platform bestempelt door Gartnet of Forrester als leider voldoende future proof is. Het andere gekozen criteria betreft het licentie model. Power Apps is opgenomen in het Office 365 licentie van AZ Glorieux, initieel gebruik ervan betekend geen dus geen meerprijs, een concurrent moet met andere woorden iets gelijkaardig kunnen aanbieden.
+Er zijn veel platformen om uit te kiezen\footnote{ 57 volgens een oplijsting van \href{https://www.trustradius.com/low-code-development}{TrustRadius}}. Degene hieronder opgelijst werden besproken in de Forrester Wave \autocite{Rymer2019} en het Gartner Magic Quadrant \autocite{Vincent2019}. De low-code markt kent een sterke groei en is zeer bewogen (zie sectie~\ref{sec:markt-en-evolutie}). Het eerste gekozen criteria om de lijst te filteren is bedoelt om hiermee om te gaan, het kan immers aangenomen worden dat een platform bestempelt door Gartner of Forrester als leider voldoende future proof is. Het andere gekozen criteria betreft het licentie model. Power Apps is opgenomen in het Office 365 licentie van AZ Glorieux, initieel gebruik ervan betekend geen dus geen meerprijs, een concurrent moet met andere woorden iets gelijkaardig kunnen aanbieden.
 
 \begin{longtable}{llccc}
     \textbf{} & \textbf{} & \multicolumn{2}{c}{\textbf{Leider}} & \multicolumn{1}{l}{\textbf{}} \\
@@ -137,7 +137,7 @@ Het resultaat is dat er van de leiders (zie tabel~\ref{table:leiders} voor een g
 
 \subsection{Short List}
 
-% TODO: uitleg herleiden van requirements?
+% TODO: uitleg herleiden van requirements beter nuanceren?
 
 Hier worden de overgebleven platformen in diepte met elkaar vergeleken Maar in plaats van elke requirement af te toetsen werden deze eerst herleid naar hun achterliggende begrippen (bijvoorbeeld: mobile ondersteuning, automatisatie functionaliteit, security, leercurve en dergelijke).
 
@@ -147,22 +147,51 @@ Gemaakte stellingen zijn afkomstig uit PCmagazine.com reviews van elk platform e
 
 Deel van het Power platform. Het bestaat sinds 2016 en is daarmee het jongste platform in de vergelijking maar heeft een snelle ontwikkeling ondergaan en is op slechts enkele jaren tijd een marktleider geworden.
 
-Werd diepgaand behandeld in de (in sectie~\ref{sec:power-platform}). Een kort overzicht:
+Werd diepgaand behandeld in de Stand van Zaken. (specifiek in sectie~\ref{sec:power-platform}). Een kort overzicht:
 
-% TODO
+Gefocust op business users.
+Apps worden gebouwd met de Power Apps Studio in de cloud. Deze omgeving is volledig grafisch, er is geen code editing. Uitbreidingang kunnen enkel ingevoegd worden via Azure Functions of Azure web apps en worden geschreven in .NET. Logica is gedeclareerd met een Excel-achtige formule taal. Er is een grote catalogus aan connectors naar externe service of data opslag. Verbinding maken met SharePoint data is eenvoudig met de Connector ervoor. Automatisatie is mogelijk via Power Automate waarin geautomatiseerde stromen van aaneengeschakelde acties geconfigureerd kunnen worden. AI werd recent geïntroduceerd, dit component heet AI Builder, naast zelf trainen van gangbare modellen biedt Microsoft enkele voorgetrainde aan. Nog in bèta is het testing framework genaamd UI Test Studio. Power Apps zijn gefocust op interne business gebruikers, voor externe bestaat er Portals. De leercurve is hoger dan van de concurrentie maar beschikbare documentatie en tutorials zijn talrijk en volwassen. Performance en vooral database performantie is lager dan van de concurrentie, er staat ook een limiet op het aantal rijen dat per keer opgehaald kan worden (500). Microsoft toont toewijding aan het platform door constante ontwikkeling maar sommige licentiewijzigingen zijn minder goed ontvangen.
+Security: % TODO
 
-\textbf{Forrester:} 
 
-\textbf{Gartner:} 
+\begin{itemize}
+    \item \textbf{Forrester}
+    \begin{itemize}
+        \item \textit{Positief:} Maturiteit bereikt, krachtige features en grote catalogus aan integratie adapters.
+        \item \textit{Negatief:} Verwarrend product aanbod en licentiëring.
+    \end{itemize}
+    \item \textbf{Gartner}
+    \begin{itemize}
+        \item \textit{Positief:} Eenvoudige drag-en-drop design tool en Exel-achtige  expressie taal. Snelle productie deployment mogelijk. Sterke toewijding aan LCAP markt getoond.
+        \item \textit{Negatief:} Model apps niet altijd beste oplossing. Verwarrende licentiëring.
+    \end{itemize}
+\end{itemize}
 
-Licentiëring:  
+\begin{table}[h!] Licentiëring:  
+\begin{longtable}{|l|c|c|c|c|}
+    \hline
+    & \multicolumn{1}{l|}{\textbf{PA for Office 365}} & \multicolumn{1}{l|}{\textbf{PA Plan 1}} & \multicolumn{1}{l|}{\textbf{PA plan 2}} & \multicolumn{1}{l|}{\textbf{PA for Dynamics 365}} \\ \hline
+    \endfirsthead
+    %
+    \endhead
+    %
+    \textbf{Canvas apps} & x & x & x & x \\ \hline
+    \textbf{Model driven apps} &  &  & x & x \\ \hline
+    \textbf{\begin{tabular}[c]{@{}l@{}}Common Data Services\\ gebruik mogelijk\end{tabular}} &  & x & x & x \\ \hline
+    \textbf{Standaard connectors} & x & x & x & x \\ \hline
+    \textbf{Premium Connectors} &  & x & x & x \\ \hline
+    \textbf{Custom connectors} &  & x & x & x \\ \hline
+    \textbf{On-premises connectors} &  & x & x & x \\ \hline
+\end{longtable}
+\caption{Overzicht van beschikbare plannen \autocite{Pohl2019}}
+\end{table}
 
 \subsubsection{Outsystems}
 
 Outsystems werd opgericht in Lissabon in 2001, zit momenteel in 11 landen en telt 1228 medewerkers.
 
-Er is een focus op professionele ontwikkelaars, het is gemakkelijker om met code te werken. Het is mogelijk om op elk moment te switchen van de grafische omgeving naar de code editor. Iets anders dat dit professioneel aspect ondersteund is dat de IDE (genaamd Service Studio) offline geinstalleert dient te worden .De layout ervan komt sterk overeen met die van PowerApps en Mendix. Andere grote onderdelen zijn de Forge (respository voor gebruikersgemaakte apps en plug-ins) en de Integration Studio waar extensions geschreven worden.\\
-Een nadeel van de technische focus is dat er geen volledig cloud no-code omgeving aanwezig is. Een ander nadeel is de hogere leercurve maar er is een uitgebreid aanbod van documentatie, tutorials online cursussenen webinars aanwezig in de OutSystems University om hiermee om te gaan.\\
+Er is een focus op professionele ontwikkelaars, het is gemakkelijker om met code te werken. Het is mogelijk om op elk moment te switchen van de grafische omgeving naar de code editor. Iets anders dat dit professioneel aspect ondersteund is dat de IDE (genaamd Service Studio) offline geïnstalleerd dient te worden .De layout ervan komt sterk overeen met die van PowerApps en Mendix. Andere grote onderdelen zijn de Forge (respository voor gebruikersgemaakte apps en plug-ins) en de Integration Studio waar extensions geschreven worden.\\
+Een nadeel van de technische focus is dat er geen volledig cloud no-code omgeving aanwezig is. Een ander nadeel is de hogere leercurve maar er is een uitgebreid aanbod van documentatie, tutorials online cursussen en webinars aanwezig in de OutSystems University om hiermee om te gaan.\\
 Het platform is gebouwd in .NET. Bouwen van mobiele of webapplicaties is ondersteund maar er moet gekozen worden tussen de twee.\\
 Een app is gestructureerd in modules: mobile (of web), service, library en extension modules. Dit om hergebruik aan te moedigen.\\
 Automatisatie functionaliteit is beperkt tot Timers. Het is enkel mogelijk om bepaalde acties op een tijdschema uit te voeren. Wat AI betreft zijn er connectors naar Azure Luis en Azure ML. Inhuis voorziet Outsystems.AI taal analyse componenten (sleutelzin detectie, gevoelsanalyse).\\
@@ -170,12 +199,40 @@ UI design is minder geavanceerd dan bij de concurrentie en er is meer werk nodig
 SharePoint gebruik is enkel mogelijk via de REST API. Dit is een grote beperking ten opzichte van Power Apps, waar het een standaard Connector is.\\
 Het platform is veilig en voldoet aan volgende certifieeringen: % TODO
 Om gerust te stellen voor vendor lock-in\footnote{Gedwongen een product of service moeten blijven gebruiken, onafhankelijk van kwaliteit, omdat het (financieel) niet praktisch is om er vanaf te stappen \autocite{Cloudflare}} is het mogelijk om de applicatie te genereren in .NET.\\
+\autocite{Marvin2017} \textit{en aangevuld informatie uit de officiële documentatie\footnote{\url{https://success.outsystems.com/Documentation}}} 
 
-\textbf{Forrester:} 
+\begin{itemize}
+    \item \textbf{Forrester}
+    \begin{itemize}
+        \item \textit{Positief:} Krachtigste aanbod van features en consistent met introduceren van nieuwe features. Globale aanwezigheid.
+        \item \textit{Negatief:} Weinig zwakten. Soms manuele code nodig voor integratie. Complex prijsmodel dat potentiële klanten kan afschrikken.
+    \end{itemize}
+    \item \textbf{Gartner}
+    \begin{itemize}
+        \item \textit{Positief:} Sterke visie en innovatie. Gedeelde Forge componenten hoog beoordeelt. Bovengemiddeld op gebied van productiviteit en modernisatie van bestaande applicaties.
+        \item \textit{Negatief:} Niet competitief voor bouwen van proces georiënteerde apps. Minder toegankelijk voor citizen developers. Prijzen kunnen snel stijgen afhankelijk van gebruik, dit gebruik wordt op verwarrende manier berekend.
+    \end{itemize}
+\end{itemize}
 
-\textbf{Gartner:} 
-
-Licentiëring:  
+\begin{table}[h!] Licentiëring: 
+\begin{longtable}{|l|c|c|c|c|}
+    \hline
+    & \multicolumn{1}{l|}{\textbf{Free}} & \multicolumn{1}{l|}{\textbf{Basic}} & \multicolumn{1}{l|}{\textbf{Standard}} & \multicolumn{1}{l|}{\textbf{Enterprise}} \\ \hline
+    \endfirsthead
+    %
+    \endhead
+    %
+    \textbf{Unlimited apps} & (x)\footnote{Gedeelde infrastructuur en database gelimiteerd tot 2GB} & x & x & x \\ \hline
+    \textbf{Gebruikers} & 100 & 1000 & Geen limiet & Geen limiet \\ \hline
+    \textbf{\begin{tabular}[c]{@{}l@{}}On-premises of \\ \\ private cloud\end{tabular}} &  &  & x & x \\ \hline
+    \textbf{Support} &  & 8x5 & 8x5 & 24/7 \\ \hline
+    \textbf{Aantal omgevingen} & 1 & 3 & 3 & 5 \\ \hline
+    \textbf{CI \& deployment} &  & x & x & x \\ \hline
+    \textbf{} &  &  &  &  \\ \hline
+    \textbf{Maandelijkse prijs} & Gratis & \textgreater \$4000 & \textgreater{}\$10000 & Custom \\ \hline
+\end{longtable}
+\caption{Prijsmodel Outsystems \autocite{Outsystems}}
+\end{table}
 
 \subsubsection{Mendix}
 
@@ -186,26 +243,56 @@ Er is een groot aanbod aan voorgebouwde templates en componenten die Microsoft e
 De UI filosofie is om te starten met design en wireframes, dan het model te maken met logica en workflows die in dat model passen. De apps zijn responsief. Het scherm wordt automatisch aangepast tussen smartphone, tablet of desktop views.\\
 Database integratie is beter dan bij Outsystems. Database wijzigingen worden automatisch herkend in de app, bij Outsystems is dit niet het geval. Specifiek naar SharePoint toe is verbinding net als bij Outsystems beperkt tot een REST API.\\
 App creatie is algemeen gezien gestroomlijnder dan bij Outsystems. Er kan na afloop gedeployed worden naar verschillende cloud omgevingen. % TODO: info over containerisatie
-App aanpassigen zijn eenvoudig (versionering is voorzien) maar voor elke nieuwe versie van het platform moet er gemigreerd worden.\\
-Testing en analystics zijn geavanceerder dan bij concurrenten. Waar testing voor PowerApps nog in beta zit is het bij Mendix meer volwassen, tests worden bijvoorbeeld automatsch uitgevoerd.\\
+App aanpassingen zijn eenvoudig (versionering is voorzien) maar voor elke nieuwe versie van het platform moet er gemigreerd worden.\\
+Testing en analystics zijn geavanceerder dan bij concurrenten. Waar testing voor PowerApps nog in bèta zit is het bij Mendix meer volwassen, tests worden bijvoorbeeld automatsch uitgevoerd.\\
 Over specifieke onderdelen: Buzz is een portaal dat dient als sociaal intranet waar collaboratie begint. SCRUM is ingebouwd in het platform. Integraties, plugins, gerbuikersapps zijn in de Mendix App Store te vinden, dit aspect is even matuur als varianten van Microsoft en Outsystems.\\
 Wat AI functionaliteit betreft is er integratie mogelijk met IBM Watson.\\
-Security is als verwacht voor een marktleider: % TODO
+Security is als verwacht voor een marktleider: \\ % TODO
+\autocite{Marvin2017a} \textit{en aangevuld informatie uit de officiële documentatie\footnote{\url{https://docs.mendix.com/}}}
 
 
-\textbf{Forrester:} 
+\begin{itemize}
+    \item \textbf{Forrester}
+    \begin{itemize}
+        \item \textit{Positief:} Trendsetter in features, krachtig aanbod. Goede ondersteuning voor app levenscyclus, uitbreidingen naar CI toe. Sterke partners: SAP, Siemens en IBM.
+        \item \textit{Negatief:} Weinig zwakten. Extra code nodig voor integraties. Services voor content management binnen apps is iets zwakker. Prijzen voor platform adoptie moeilijk te voorspellen.
+    \end{itemize}
+    \item \textbf{Gartner}
+    \begin{itemize}
+        \item \textit{Positief:} Competitief sterk door invloed van middelen na overname door Siemens. Aantrekkelijk voor enterprise door autoscaling, high availability en lage latency. Aparte ontwikkelomgeving afhankelijk van bedoede gebruiker. AI ondersteunde ontwikkeling. Mogelijk complexe applicaties te maken. Tevredenheid van professionele ontwikkelaars.
+        \item \textit{Negatief:} Na overname door Siemens zou toewijding aan Mendix kunnen veranderen weg van mainstream LCAP. Minder bruikbaar door citizen developers. Prijzen en contract flexibiliteit slecht beoordeelt.
+    \end{itemize}
+\end{itemize}
 
-\textbf{Gartner:} 
+ 
 
-Licentiëring:  
+\begin{table}[h!]Licentiëring: 
+    \begin{longtable}{|l|c|c|c|c|}
+        \hline
+        \textbf{} & \multicolumn{1}{l|}{\textbf{Free edition}} & \multicolumn{1}{l|}{\textbf{Single app}} & \multicolumn{1}{l|}{\textbf{Professional}} & \multicolumn{1}{l|}{\textbf{Enterprise}} \\ \hline
+        \endfirsthead
+        %
+        \endhead
+        %
+        \textbf{\begin{tabular}[c]{@{}l@{}}Number of\\ environments\end{tabular}} & 1 & 2 & 2 & 3 \\ \hline
+        \textbf{Horizontal scaling} &  &  &  & x \\ \hline
+        \textbf{\begin{tabular}[c]{@{}l@{}}Support for CI \& \\ deployment\end{tabular}} &  &  &  & x \\ \hline
+        \textbf{On-premises} &  &  &  & x \\ \hline
+        \textbf{App user limit} & unlimited & unlimited & unlimited & unlimited \\ \hline
+        \textbf{Number of apps} & unlimited\footnote{1 GB geheugen en 0.5 GB geheugen per app} & unlimited & unlimited & unlimited \\ \hline
+        & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} \\ \hline
+        \textbf{Price} & Free & \textgreater \$1917 & custom & custom \\ \hline
+    \end{longtable}
+    \caption{Prijsmodel Mendix \autocite{Mendix}}
+\end{table}
 
 \subsubsection{Salesforce}
 
 Er is geen gratis licentie aanwezig en het platform is eerder gefocust op CRM\footnote{\url{https://nl.wikipedia.org/wiki/Customer_relationship_management}}
 
-PCmag \autocite{bibid} was minder gunstig over het platform en hekelde zich vooral aan de feature bloat en UI clutter. De tutorials zouden overigens niet up to date zijn.
+\textcite{Marvin2017b} was minder gunstig over het platform en hekelde zich vooral aan de feature bloat en UI clutter. De tutorials zouden overigens niet up to date zijn.
 
-Om deze redenen is het geen valide optie maar omdat de marktaanwezigheid zo groot is was het de moeite om kort te bespreken.
+Om deze redenen is het geen valide optie maar omdat de markt aanwezigheid zo groot is was het de moeite om kort te bespreken.
 
 \subsubsection{Appian}
 
@@ -213,4 +300,8 @@ Net als Salesforce een grote speler. functioneel even sterk als Outsystems en Me
 
 \subsubsection{Temenos Quantum (Kony)}
 
-Dit platform is door Gartner bestempelt als een leider en heeft een gratis licentie. Wat serieuze overweging tegenhoud is de recente overname (en naamswijziging).
+Dit platform is door \textcite{Vincent2019} bestempelt als een leider en heeft een gratis licentie. Wat serieuze overweging tegenhoud is de recente overname (en naamswijziging).
+
+\subsection{Besluit}
+
+Zoals verwacht is PowerApps is de beste kandidaat om de POC mee uit te werken ook al kan het schrijven van uitbreidingen omslachtig worden. Er zijn twee concurrenten gevonden: Outsystems en Mendix. Wat functionaliteit betreft zijn ze inwisselbaar. Beiden zijn gefocust op professionele ontwikkelaars en hebben aantrekkelijke gratis licenties. De grootste belemmering betreft het gebruik van SharePoint als data opslag. Waar het bij PowerApps standaard ondersteund is als Connector moet er in Mendix en Outsystems zijn geval een REST API gebruikt worden. Bij gebruik van één van beiden is het dus interessanter om een alternatieve opslagmethode te gebruiken.
