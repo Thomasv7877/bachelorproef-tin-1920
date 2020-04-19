@@ -455,4 +455,34 @@
   urldate = {2020-04-18},
 }
 
+@Online{Outsystems,
+  author  = {{Outsystems}},
+  title   = {Pricing and Editions},
+  url     = {https://www.outsystems.com/pricing-and-editions/},
+  urldate = {2020-04-19},
+}
+
+@Online{Mendix,
+  author  = {{Mendix}},
+  title   = {Pricing},
+  url     = {https://www.mendix.com/pricing/},
+  urldate = {2020-04-19},
+}
+
+@Online{Marvin2017,
+  author  = {Rob Marvin},
+  date    = {2017-07-31},
+  title   = {OutSystems Review},
+  url     = {https://www.pcmag.com/reviews/outsystems},
+  urldate = {2020-04-18},
+}
+
+@Online{Marvin2017a,
+  author  = {Rob Marvin},
+  date    = {2017-07-31},
+  title   = {Mendix Review},
+  url     = {https://www.pcmag.com/reviews/mendix},
+  urldate = {2020-04-18},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
