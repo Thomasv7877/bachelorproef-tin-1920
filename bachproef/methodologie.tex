@@ -142,6 +142,7 @@ Het resultaat is dat er van de leiders (zie tabel~\ref{table:leiders} voor een g
 Hier worden de overgebleven platformen in diepte met elkaar vergeleken Maar in plaats van elke requirement af te toetsen werden deze eerst herleid naar hun achterliggende begrippen (bijvoorbeeld: mobile ondersteuning, automatisatie functionaliteit, security, leercurve en dergelijke).
 
 Gemaakte stellingen zijn afkomstig uit PCmagazine.com reviews van elk platform en zijn aangevuld met informatie uit de officiële documentatie per platvorm.
+% TODO: pcMag veotnoot met overzicht reviews
 
 \subsubsection{Microsoft}
 
@@ -151,7 +152,7 @@ Werd diepgaand behandeld in de Stand van Zaken. (specifiek in sectie~\ref{sec:po
 
 Gefocust op business users.
 Apps worden gebouwd met de Power Apps Studio in de cloud. Deze omgeving is volledig grafisch, er is geen code editing. Uitbreidingang kunnen enkel ingevoegd worden via Azure Functions of Azure web apps en worden geschreven in .NET. Logica is gedeclareerd met een Excel-achtige formule taal. Er is een grote catalogus aan connectors naar externe service of data opslag. Verbinding maken met SharePoint data is eenvoudig met de Connector ervoor. Automatisatie is mogelijk via Power Automate waarin geautomatiseerde stromen van aaneengeschakelde acties geconfigureerd kunnen worden. AI werd recent geïntroduceerd, dit component heet AI Builder, naast zelf trainen van gangbare modellen biedt Microsoft enkele voorgetrainde aan. Nog in bèta is het testing framework genaamd UI Test Studio. Power Apps zijn gefocust op interne business gebruikers, voor externe bestaat er Portals. De leercurve is hoger dan van de concurrentie maar beschikbare documentatie en tutorials zijn talrijk en volwassen. Performance en vooral database performantie is lager dan van de concurrentie, er staat ook een limiet op het aantal rijen dat per keer opgehaald kan worden (500). Microsoft toont toewijding aan het platform door constante ontwikkeling maar sommige licentiewijzigingen zijn minder goed ontvangen.
-Security: % TODO
+Security: % TODO: security aanvullen + bron met ()kritiek op) licentiewijziging
 
 
 \begin{itemize}
@@ -199,7 +200,7 @@ UI design is minder geavanceerd dan bij de concurrentie en er is meer werk nodig
 SharePoint gebruik is enkel mogelijk via de REST API. Dit is een grote beperking ten opzichte van Power Apps, waar het een standaard Connector is.\\
 Het platform is veilig en voldoet aan volgende certifieeringen: % TODO
 Om gerust te stellen voor vendor lock-in\footnote{Gedwongen een product of service moeten blijven gebruiken, onafhankelijk van kwaliteit, omdat het (financieel) niet praktisch is om er vanaf te stappen \autocite{Cloudflare}} is het mogelijk om de applicatie te genereren in .NET.\\
-\autocite{Marvin2017} \textit{en aangevuld informatie uit de officiële documentatie\footnote{\url{https://success.outsystems.com/Documentation}}} 
+\autocite{Marvin2017} \textit{en aangevuld met informatie uit de officiële documentatie\footnote{\url{https://success.outsystems.com/Documentation}}} 
 
 \begin{itemize}
     \item \textbf{Forrester}
@@ -248,7 +249,7 @@ Testing en analystics zijn geavanceerder dan bij concurrenten. Waar testing voor
 Over specifieke onderdelen: Buzz is een portaal dat dient als sociaal intranet waar collaboratie begint. SCRUM is ingebouwd in het platform. Integraties, plugins, gerbuikersapps zijn in de Mendix App Store te vinden, dit aspect is even matuur als varianten van Microsoft en Outsystems.\\
 Wat AI functionaliteit betreft is er integratie mogelijk met IBM Watson.\\
 Security is als verwacht voor een marktleider: \\ % TODO
-\autocite{Marvin2017a} \textit{en aangevuld informatie uit de officiële documentatie\footnote{\url{https://docs.mendix.com/}}}
+\autocite{Marvin2017a} \textit{en aangevuld met informatie uit de officiële documentatie\footnote{\url{https://docs.mendix.com/}}}
 
 
 \begin{itemize}
@@ -305,3 +306,6 @@ Dit platform is door \textcite{Vincent2019} bestempelt als een leider en heeft e
 \subsection{Besluit}
 
 Zoals verwacht is PowerApps is de beste kandidaat om de POC mee uit te werken ook al kan het schrijven van uitbreidingen omslachtig worden. Er zijn twee concurrenten gevonden: Outsystems en Mendix. Wat functionaliteit betreft zijn ze inwisselbaar. Beiden zijn gefocust op professionele ontwikkelaars en hebben aantrekkelijke gratis licenties. De grootste belemmering betreft het gebruik van SharePoint als data opslag. Waar het bij PowerApps standaard ondersteund is als Connector moet er in Mendix en Outsystems zijn geval een REST API gebruikt worden. Bij gebruik van één van beiden is het dus interessanter om een alternatieve opslagmethode te gebruiken.
+% TODO: keuze outsystems betere gratis versie dan mandix nuanceren
+
+
