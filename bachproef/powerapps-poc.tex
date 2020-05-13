@@ -24,19 +24,158 @@ Eens de nodige licenties aanwezig zijn is er toegang tot de Power Apps ontwikkel
     \item \textbf{Sjabloon:} Er zijn sjablonen voorzien voor gangbare scenario's.
 \end{itemize}
 
-Er is ook keuze tussen telefoon en tablet layout. De huidige case leent zich tot eerste optie maar hierin is men beperkt tot de telefoon layout. Een tablet layout is beter geschikt voor de hoeveelheid data die getoont moet kunnen worden en de extra grafische controls nodig voor sommige requirements. Om deze reden werd voor een leeg canvas met tablet layout gekozen.
+Er is ook keuze tussen telefoon en tablet layout. De huidige case leent zich tot de eerste optie maar hierin is men beperkt tot de telefoon layout. Een tablet layout is beter geschikt voor de hoeveelheid data die getoont moet kunnen worden en de extra grafische controls nodig voor sommige requirements. Om deze reden werd voor een leeg canvas met tablet layout gekozen.
+
+Meer over app gebruik: apps worden geopend vanuit het PowerApps portaal. Op Windows 10 kan via de Power Apps Store app snelkoppelingen voor de apps toegevoegd worden aan Start. Analoog hiermee kan op een smartphone via de Power Apps app snelkoppelingen aan het thuisscherm toegevoegd worden.
 
 \subsection{Data en data weergave}
 
+Om data te kunnen gebruiken moet de connectie ermee toegevoegd worden in de app. Er werden een aantal verschillende connecties gebruikt tijdens het verloop, deze kunnen gegeroepeerd worden per datatype:
+\begin{itemize}
+    \item Excel
+        \begin{itemize}
+            \item OneDrive for Business
+            \item Excel Online
+            \item Google Drive
+        \end{itemize}
+    \item SharePoint
+    \begin{itemize}
+        \item SharePoint Connector
+    \end{itemize}
+\end{itemize}
 
+Deze data wordt in de app gevisualiseerd  aan de hand van Gallerijen en formulieren. De flow waarmee een gallerij geconfigurerd wordt heeft een bepaalde structuur: 
+
+\hspace{1cm}Gegevensbron selecteren $\rightarrow$ indeling wijzigen $\rightarrow$ weer te geven velden aanpassen. 
+
+Dit is niet zo speciaal maar het is inbegrepen omdat het een fundamenteel deel is van app configuratie in PowerApps.
+
+Voor de meeste connectors wordt data ingelezen als Table. Als dit niet mogelijk is worden API calls gebruikt. Een sterk punt is dat in geval van relationele data de nodige joins automatisch gedaan worden. [bron-yt-pres]\\
+Naast Tables zijn er uiteraard variabelen. Deze kunnen een globale context of context per scherm hebben en worden impliciet gedeclareerd.
 
 \section{SharePoint Configuratie}
 
-
+% TODO
 
 \section{Model van Opstelling}
 
+% TODO
 
+Overzichtscherm
+detailscherm
+editscherm
 
 \section{Requirements}
+
+\subsubsection{Prijs}
+
+Tijdens het maken van de POC werd gevonden dat de enige requirements die niet uitgewerkt kunnen worden met het de bestaande licentie het complex filteren en rapportage is (Custom Connector nodig). Indien er niet vanaf gedaan kan worden is er een aanvullend stand alone plan mogelijk. Dit houd in dat individuele gebruikers applicaties (2 apps en één portal) zonder functionaliteit beperkingen kunnen uitvoeren voor \euro 8.40 per maand. [bron] Deze app wordt door vier personen op de helpdesk gebruikt, dat brengt het totaal op \euro 33.60.
+
+\begin{table}[h!]
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{PA met complexe functionaliteit} & \textbf{NEE} & \textbf{JA}             \\ \hline
+        \textless{}= 2 apps                      & -            & \textgreater{}= \euro 33.60  \\ \hline
+        \textgreater 2 apps                      & -            & \textgreater{}= \euro 134.40 \\ \hline
+    \end{tabular}
+    \caption{Meerprijs bovenop huidige licentie}
+\end{table}
+
+\subsubsection{Overzicht kunnen geven van belangrijkste info voor elk toestel in het netwerk}
+
+Zoals reeds besproken in [link] kan deze functionaliteit automatisch gegenereerd worden. Ook al is er voor tablet layout gekozen is het aantal realistisch weer te geven velden in het overzichtscherm beperkt en werden de netwerknaam, omschrijving en dienst geselecteerd. Visuele indicatie van status was belangrijk in LanReview maar in plaats van de hele tekst van een rij in te kleuren is gekozen voor een gekleurd bolletje aan het hoofd van elke rij.\\
+Data wordt aan de serverkant door SharePoint gevalideerd, het resultaat van deze validatie wordt getoond in de app zelf en dit is aangevuld met beperkte client side validatie. Dit komt neer op het aanwezig moeten zijn van de netwerknaam, het mac-adres en device serial. In het detail- en edit scherm worden respectievelijk detailform en editform controls gebruikt. elk veld hierin wordt voorgesteld door een data card. Het is de 'required' eingenschap van een data-card die uitwijst of een veld ingevuld moet zijn.
+% TODO: extra uitleg data cards
+
+De flow van deze requirement wordt duidelijk aan de hand van het overzicht van navigaties tussen de schermen:\\
+\begin{table}[h!]
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Beweging}         & \textbf{Code}                                                   \\ \hline
+        home $\rightarrow$ detail & \lstinline|Navigate(DetailScreen; ScreenTransition.None)|                   \\ \hline
+        home $\rightarrow$ edit   & \lstinline|NewForm(Editform);;Navigate(EditScreen; ScreenTransition.None)|  \\ \hline
+        home $\leftarrow$ detail  & \lstinline|Back()|                                                          \\ \hline
+        detail $\rightarrow$ edit & \lstinline|EditForm(Editform);;Navigate(EditScreen; ScreenTransition.None)| \\ \hline
+        detail $\leftarrow$ edit  & \lstinline|Back()|                                                          \\ \hline
+    \end{tabular}
+    \caption{Overzicht navigaties tussen schermen}
+    \label{tab:app-flow}
+\end{table}
+
+[[afb hoofdscherm][afb detailscherm]] % opm: data card moet zichtbaar zijn
+
+\subsubsection{Filtering / rapportage}
+
+\textbf{Filtering:}
+
+Er moet een onderscheid gemaakt worden tussen 'zoeken' en 'filteren'. Zoeken is het matchen van tekst in een zoekveld aan een vooropgesteld aantal kolommen elke keer deze tekst wijzigd. Implementatie ervan in PowerApps is eenvoudig te doen met één formule:
+
+\begin{lstlisting}
+Search(Tabel1_1; SearchInput.Text; "NETWNAAM";"NAAM";"IP")
+\end{lstlisting}
+
+In geval van filtering moet het resultaat voldoen aan bepaalde condities. In PowerApps is een Filter formule aanwezig. Een voorbeeld implementatie kan zijn:
+
+\begin{lstlisting}
+Filter(Tabel1_1; MODEL = `HP COOLBOOK` && OS = `Windows 10`)
+\end{lstlisting}
+
+Dit oogt statisch. In LanReview is het mogelijk de kolom, operator en de filterwaarde in te stellen. Bovendien kunnen meerdere condities aaneengeschakeld worden.
+Een gelijkaardige manier om filter data te verschaffen in PowerApps is door een gallerij te gebruiken waarbij elke rij een dropdown heeft voor te filteren kolom, een dropdown voor her nodige vergelijkingsteken en een tekstveld aan te passen zijn. ELke keer men een conditie toevoegt wordt deze data opgeslagen als rij in een Tabel.
+
+% TODO: meer over de fitler werking in LanReview, filter doel
+
+Wat nu met mogelijkheden om de filter effectief uit te voeren? Er zijn een aantal opties, telkens met stijgende complexiteit.
+
+\begin{enumerate}
+    \item In PowerApps zelf met behulp van formules.\\
+    Dit is niet mogelijk omdat we de te filteren kolomn niet kunnen bepalen aan de hand van een variabele, er is geen string substitutie mogelijk. Het is ook niet mogelijk om het aantal condities dynamisch toe te wijzen (in het 'Filter' commando)).\\
+    \textbf{$\rightarrow$ NEE}
+    \item Via een Power Automate flow
+    \begin{itemize}
+        \item Filteractie `Een lijst maken met rijen in een tabel` (ODATA filter-query)[voetnoot]\\ 
+            \textit{Wel:}  query kan als argument worden meegegeven.\\
+            \textit{Niet:} 'and' operaties zijn niet ondersteund\\
+         \item Filteractie `Matrix filteren` (flow expressie)[voetnoot]\\
+            \textit{Wel:} 'and' operaties zijn ondersteund\\
+            \textit{Niet:} query kan niet als argument worden meegegeven.\\
+    \end{itemize}
+    \textbf{$\rightarrow$ NEE}
+    \item Door gebruik van een Custom Connector.\\
+    \textbf{$\rightarrow$ Ja}
+    [zie deel custom connector]
+\end{enumerate}
+
+Ter verduidelijking: een samengestelde query in zowel ODATA als flow expressie:
+\begin{itemize}
+    \item \textbf{ODATA:} \verb|(NETWNAAM eq 'GLRDT00001') and (IP eq '192.168.1.1')|
+    \item \textbf{flow expressie:} \verb|@and(equals(item()?['NETWNAAM'], 'GLRDT00001'),equals(item()?['IP'], '192.168.1.1'))|
+\end{itemize}
+
+Dit beoogde soort filtering is overigens out of the box aanwezig in model based apps. [bron model filter]
+
+Als het dynamische aspect van filtering opgegeven wordt is het nog steeds mogelijk om 'statisch' te werken. Daarmee bedoeld een aantal voorgebouwde queries, voor gangbare scenario's zoals ze bestaat in LanReview zijn zonder problemen op te nemen in PowerApps.
+
+\textbf{Reporting:}
+
+Het is niet mogelijk om data met een Power App lokaal op te slaan. De workaround is om de resultaten weg te schrijven naar een Excel in OneDrive dat specifiek dient voor reporting.
+
+\section{Custom Connector}
+
+Een Custom Connector is de enige optie om code of een niet ondersteunde databron te introduceren in PowerApps. Er zijn twee varianten onderzocht:
+\begin{itemize}
+    \item Azure API App (Swagger definitie)
+    \item Blank Custom Connector
+\end{itemize}
+Het doel is om een complexe filter uit te werken. Een eerste idee was om alle data naar de API te posten en de filtering binnen de app zelf uit te werken. Hier werd snel vanaf gestapt naar de Microsoft Graph API.
+
+\subsection{Microsoft Graph}
+
+
+
+\subsection{Azure API App (ASP.NET)}
+
+
+
+\subsection{Blank Custom Connector}
 
