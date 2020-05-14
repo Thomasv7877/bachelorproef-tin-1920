@@ -30,6 +30,8 @@ Meer over app gebruik: apps worden geopend vanuit het PowerApps portaal. Op Wind
 
 \subsection{Data en data weergave}
 
+% TODO: uitleggen dat poc in zowal excel als sharepoint opgezet is
+
 Om data te kunnen gebruiken moet de connectie ermee toegevoegd worden in de app. Er werden een aantal verschillende connecties gebruikt tijdens het verloop, deze kunnen gegeroepeerd worden per datatype:
 \begin{itemize}
     \item Excel
@@ -135,10 +137,10 @@ Wat nu met mogelijkheden om de filter effectief uit te voeren? Er zijn een aanta
     \begin{itemize}
         \item Filteractie `Een lijst maken met rijen in een tabel` (ODATA filter-query)[voetnoot]\\ 
             \textit{Wel:}  query kan als argument worden meegegeven.\\
-            \textit{Niet:} 'and' operaties zijn niet ondersteund\\
+            \textit{Niet:} 'and' operaties zijn niet ondersteund
          \item Filteractie `Matrix filteren` (flow expressie)[voetnoot]\\
             \textit{Wel:} 'and' operaties zijn ondersteund\\
-            \textit{Niet:} query kan niet als argument worden meegegeven.\\
+            \textit{Niet:} query kan niet als argument worden meegegeven.
     \end{itemize}
     \textbf{$\rightarrow$ NEE}
     \item Door gebruik van een Custom Connector.\\
@@ -148,8 +150,8 @@ Wat nu met mogelijkheden om de filter effectief uit te voeren? Er zijn een aanta
 
 Ter verduidelijking: een samengestelde query in zowel ODATA als flow expressie:
 \begin{itemize}
-    \item \textbf{ODATA:} \verb|(NETWNAAM eq 'GLRDT00001') and (IP eq '192.168.1.1')|
-    \item \textbf{flow expressie:} \verb|@and(equals(item()?['NETWNAAM'], 'GLRDT00001'),equals(item()?['IP'], '192.168.1.1'))|
+    \item \textbf{ODATA:} \lstinline|(NETWNAAM eq 'GLRDT00001') and (IP eq '192.168.1.1')|
+    \item \textbf{flow expressie:} \lstinline|@and(equals(item()?['NETWNAAM'], 'GLRDT00001'),equals(item()?['IP'], '192.168.1.1'))|
 \end{itemize}
 
 Dit beoogde soort filtering is overigens out of the box aanwezig in model based apps. [bron model filter]
@@ -167,15 +169,208 @@ Een Custom Connector is de enige optie om code of een niet ondersteunde databron
     \item Azure API App (Swagger definitie)
     \item Blank Custom Connector
 \end{itemize}
-Het doel is om een complexe filter uit te werken. Een eerste idee was om alle data naar de API te posten en de filtering binnen de app zelf uit te werken. Hier werd snel vanaf gestapt naar de Microsoft Graph API.
+Het doel is om een complexe filter uit te werken. Een eerste idee was om alle data naar de API te posten en de filtering binnen de app zelf uit te werken. Hier werd snel vanaf gestapt naar de Microsoft Graph API. (link sectie graph)
+
+\subsubsection{Remote Desktop/Ping}
+
+
 
 \subsection{Microsoft Graph}
 
+[afb-graph]
+
+% info ms graph uitbreiden
+
+Microsoft Graph is een REST API [voetnoot] waarmee allerhande data uit Office365 services opgevraagd kan worden. De specifieke case is het filteren van Excel data in OneDrive.\\
+Een volgt een overzicht van de nodige stappen en bijbehorende requests om dit te verwezelijken.
+In dit eenvoudige voorbeeld wordt gefilterd op een pc met Netwerknaam 'GLRDT00001'. Niet relevante header waarden zijn weggelaten.
+\begin{enumerate}
+    \item Een sessie creëren in de Excel file met data. Dit is nodig om de filter effectief toe te kunnen passen in stap 3. In de response body is de sessie-id te vinden.
+\begin{lstlisting}
+POST https://graph.microsoft.com/v1.0/me/drive/root:/testdata.xlsx:/workbook/createsession
+BODY => {persistChanges:true}
+\end{lstlisting}
+    \item Reeds bestande filters verwijderen moesten deze nog aanwezig zijn.
+\begin{lstlisting}
+POST https://graph.microsoft.com/v1.0/me/drive/root:/testdata.xlsx:/workbook/worksheets('Blad1')/tables('tabel1')/clearFilters
+\end{lstlisting}
+    \item De filter toepassen. De sessie-id moet meegegeven worden als header waarde. In de URL is de kolomnaam te vinden `columns('NETWNAAM')'. De operator en eigenlijke fitlerwaarde staan in de request body '"criterion1": "=GLRDT00001"'.
+\begin{lstlisting}
+POST https://graph.microsoft.com/v1.0/me/drive/root:/testdata.xlsx:/workbook/worksheets('Blad1')/tables('tabel1')/columns('NETWNAAM')/filter/apply
+HEADER => workbook-session-id: {session-id}
+BODY => 
+{
+"criteria" : 
+    { "filterOn": "custom",
+    "criterion1": "=GLRDT00001"
+    }
+}
+\end{lstlisting}
+    \item Het resultaat van de filter opvragen. Enkel de 'values' tag volstaat, daarom wordt er op gefilterd in de visibleView met 'rows?\$select=values'
+\begin{lstlisting}
+GET https://graph.microsoft.com/v1.0/me/drive/root:/testdata.xlsx:/workbook/worksheets('Blad1')/tables('tabel1')/range/visibleView/rows?$select=values
+\end{lstlisting}
+\end{enumerate}
 
 
 \subsection{Azure API App (ASP.NET)}
 
+Via Microsoft Graph is er toegang tot de data maar nu is er vanuit de Power Apps zelf toegang nodig tot Microsoft Graph. De optie die de meeste vrijheid bied is het maken van een .NET API in Visual Studio, dit wordt naar Azure gedeployed (als Azure API App) en later geimporteerd in PowerApp als Custom Connector aan de hand van een Swagger definitie. Er is ook de keuze of de app gebouwd wordt in ASP.NET framework of .NET Core. Om practische redenen werd gekozen om de ASP.NET framework variant te maken, het is namelijk mogelijk om de nodige Azure app registratie vanuit Visual Studio zelf uit te voeren.
+In .NET zijn er aantal klassen beschikbaar waarmee Microsoft Graph bewerkingen uitgevoerd kunnen worden waarvan de belangrijkste 'GraphServiceClient' is. Het gerbuik ervan wordt verder uitgelegd.
+
+\textit{Voorbereiding: Azure App registratie}\\
+%[afb-conn-services]
+In de solution staat in de 'Connected services' lisjt een optie om te verbinden met Office365 services via de Microsoft Graph. In deze wizard wordt een nieuwe Azure App registratie aangemaakt (indien nog niet bestaand) en kunnen de nodige permissies aan de hand van 'scopes' bepald worden. De scopes om OneDrive bestanden te kunnen gebruiken zijn:
+\begin{itemize}
+    \item User.Read 
+    \item Files.Read 
+    \item Files.Read.All 
+    \item Files.ReadWrite 
+    \item Files.ReadWrite.All
+\end{itemize}
+
+Na afloop zijn zijn er enkele belangrijke stukken gegevens ingevoegd in de Web.config, een korte verklaring:
+\begin{itemize}
+    \item \textbf{TenantId:} Identifier van de Active Directory gebruiker/tenant, ook de id van de map waar waar de resources zich bevinden.
+    \item \textbf{ClientId:} Identifieert de app registratie in Active Directory.
+    \item \textbf{ClientSecret:} Secret geassocieerd met de ClientId.
+\end{itemize}
+
+Nu kan er over gegaan worden op de implementatie. Er zijn twee technieken toegepast om de 'GraphServiceClient' klasse te configureren. [bronnen]
+De eerse is gebaseerd op de techniek gebruikt door [bron1]:
+\begin{lstlisting}[style=CSharpStyle]
+//
+public static async Task<GraphServiceClient> GetGraphServiceClient()
+{
+var authentication = new
+{
+Authority = "https://graph.microsoft.com",
+Directory = WebConfigurationManager.AppSettings["ida:TenantId"],
+Application = WebConfigurationManager.AppSettings["ida:ClientId"],
+ClientSecret = WebConfigurationManager.AppSettings["ida:ClientSecret"]
+};
+
+var app = ConfidentialClientApplicationBuilder.Create(authentication.Application)
+.WithClientSecret(authentication.ClientSecret)
+.WithAuthority(AzureCloudInstance.AzurePublic, authentication.Directory)
+.Build();
+
+var scopes = new[] { "https://graph.microsoft.com/.default" };
+
+var authenticationResult = await app.AcquireTokenForClient(scopes)
+.ExecuteAsync();
+
+var graphServiceClient = new GraphServiceClient(
+new DelegateAuthenticationProvider(x =>
+{
+x.Headers.Authorization = new AuthenticationHeaderValue(
+"Bearer", authenticationResult.AccessToken);
+
+return Task.FromResult(0);
+}));
+return graphServiceClient;
+}
+\end{lstlisting}
+
+De tweede gebuikt een techniek beschreven door [bron]
+\begin{lstlisting}[style=CSharpStyle]
+//
+public static async Task<GraphServiceClient> GetGraphServiceClient2()
+{
+var authentication = new
+{
+Authority = "https://graph.microsoft.com/",
+Directory = WebConfigurationManager.AppSettings["ida:TenantId"],
+Application = WebConfigurationManager.AppSettings["ida:ClientId"],
+ClientSecret = WebConfigurationManager.AppSettings["ida:ClientSecret"],
+GraphResourceEndPoint = "v1.0",
+Instance = WebConfigurationManager.AppSettings["ida:AADInstance"],
+Domain = WebConfigurationManager.AppSettings["ida:Domain"]
+};
+var graphAPIEndpoint = $"{authentication.Authority}{authentication.GraphResourceEndPoint}";
+var newAuth = $"{authentication.Instance}{authentication.Directory}";
+//var newAuth2 = $"{authentication.Instance}{authentication.Domain}";
+
+AuthenticationContext authenticationContext = new AuthenticationContext(newAuth);
+Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential clientCred 
+= new Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential(authentication.Application, authentication.ClientSecret);
+Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationResult authenticationResult 
+= await authenticationContext.AcquireTokenAsync(authentication.Authority, clientCred);
+var token = authenticationResult.AccessToken;
+var delegateAuthProvider = new DelegateAuthenticationProvider((requestMessage) =>{
+requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", token.ToString());
+return Task.FromResult(0);
+});
+
+var graphClient = new GraphServiceClient(graphAPIEndpoint, delegateAuthProvider);
+return graphClient;
+}
+\end{lstlisting}
+
+Het verschil tussen beide zit in de dependencies die gebruikt worden om een instantie van de 'GraphServiceClient' te bouwen. De stappen die ze uitvoeren echter zijn hetzelfde en kunnen als volgt beschreven worden:
+\begin{enumerate}
+    \item Nodige variabelen declareren voor onder andere de CLientId, TenantId, ClientSecret.
+    \item De app/authenticatie(context) bouwen aan de hand van deze gegevens.
+    \item Een token genereren
+    \item Een instantie van GraphServiceClient aanmaken en returnen.
+    %\item Deze instantie gebruiken om operaties uit te voeren op Microsoft Graph.
+\end{enumerate}
+
+Deze instantie wordt teruggegeven naar een Controller classe (hier FIlterController) waar de HTTP operaties in gedeclareerd worden. In onderstaand voorbeeld worden alle aanwezige items in OneDrive teruggegeven:
+\begin{lstlisting}[style=CSharpStyle]
+// GET api/values/5
+public async Task<string> Get(string filter)
+{
+try
+{
+GraphServiceClient client = await MicrosoftGraphClient.GetGraphServiceClient2();
+var resultaat = await client.Users["db4fef52-9274-49e2-846c-1f325c4b9d7c"].Drive.Root.Children.Request().GetAsync();
+
+return resultaat.ToString();
+}
+catch (MsalUiRequiredException)
+{
+    //
+\end{lstlisting}
+
+Als bovenstaande test query uitgevoerd wordt via de Swagger UI wordt er een fout teruggegeven. [afb-swagger error]
+Het probleem is dat het hier aangemaakte soort token applicatie permissies in plaats van gedelegeerde permissies nodig heeft. Voor gedelegeerde permissies is een ingelogde gebruiker nodig. Applicatie permissies zijn in Azure enkel in te stellen met een Administrator account.
+
+Het sjabloon [footnote] uit de officiele graph documentatie gebruikt deze soort token.[bron-officiele-docs-graph] Dit is echter niet mogelijk voor een API die in Power Apps opgeroepen moet worden. Er is een andere oplossing nodig.
 
 
 \subsection{Blank Custom Connector}
 
+Er kan aangenomen worden dat als de Custom Connector in Power Apps zelf gemaakt wordt (via de optie 'Create from blank') en de nodige Microsoft Grpah requests rechtstreeks gedelrareerd worden, dat de permissies van de ingelogde PowerApps gerbuikt worden om deze later uit te voeren, dat het gebruikte soort token met andere woorden gedelegeerde permissies zal gebruiken.
+
+Vergeleken met hoe het in de vorige sectie ging moeten de stappen in Azure manueel uitgevoerd worden.
+%Vergeleken met hoe het in de vorige sectie ging moet de app eers manueel geregistreerd worden in Azure.
+\begin{enumerate}
+    \item Nieuwe app registratie maken.
+    \item Een Client secret aanmaken
+    \item Scope permissies instellen, dit was: \lstinline|User.Read Files.Read Files.Read.All Files.ReadWrite Files.ReadWrite.All|
+\end{enumerate}
+
+Als nu de optie 'Create from blank' geselecteerd wordt start een wizard:\\ 
+\textbf{General $\rightarrow$ Security $\rightarrow$ Definition $\rightarrow$ Test}
+
+In het 'Security' tab is het belangrijk OAuth v2.0 authenticatie te kiezen met als id provider 'Azure Active Directory'. Dan komt het neer op het invullen van de gegevens die net in Azure aangemaakt zijn. Het echte werk begint in de 'Definitie' tab. De operaties uit (link sectie) werden eerst in Microsoft Graph Explorer [voetnoot] getest, hierna worden de request en response gegevens gebruikt om een actie te maken. Deze actie kan licht aangepast worden wat variabelen gebruik betreft zoadat bijvoorbeeld de filterargumenten uit PowerApps correct kunnen doorgeven worden naar deze connector.\\
+Het is handig dat in de laatste stap de acties getest kunnen worden. De resultaten hiervan zijn ingevoegd.
+
+[res-blank-conn]
+
+In de PowerApp worden deze acties opgeroepen via formules gekoppeld aan de 'OnSelect' property van de 'Filter !' knop.
+\begin{lstlisting}
+Set(filterSessionID;MSGraphConnector.CreateSession({persistChanges:true}).id);;
+MSGraphConnector.ClearFilters();;
+ForAll(filterVelden;MSGraphConnector.FilterApply(veld.Value;filterSessionID;{filterOn:"custom";criterion1:gelijkTeken.Value & filterTekst}));;
+Set(filterResultaatItems;MSGraphConnector.GetResult({'$select':"values"}).value);;
+\end{lstlisting}
+\begin{enumerate}
+    \item Een sessie Excel workbook sessie starten en de gereturnde id koppelen aan een variabele
+    \item Vorige filters verwijderen.
+    \item Voor elke rij in de 'filterVelden' tabel wordt filter actie oproepen. De aanvaarde argumenten in volgorde zijn: kolomnaam, sessie id en een record waarin de stringwaarde van de operator en firlterwaarde aan elkaar geplakt worden (via '\&').
+    \item Er wordt een variable gedeclareerd dat het relevant stuk return json toegewezen krijgt via de 'GetResult' actie.
+\end{enumerate}
+
+Theoretisch ziet dit er goed uit, de tests ervoor slagen en de eerste actie geeft het sessie id succesvol terug. Jammer genoeg falen de andere. Er wordt telkens een 404 (resource not found) error teruggegeven. Verdere pogingen om deze requirement uit te werken zijn gestaakt. Dit is aanvaardbaar omdat voro deze requirement premium functionaliteit nodig is waar na afloop van de proef geen meerprijs voor betald zal worden. Deze functionaliteit zal met andere woorden nooit practisch toegepast worden.
