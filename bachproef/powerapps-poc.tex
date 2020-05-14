@@ -108,7 +108,7 @@ De flow van deze requirement wordt duidelijk aan de hand van het overzicht van n
 
 \subsubsection{Filtering / rapportage}
 
-\textbf{Filtering:}
+\textit{Filtering:}
 
 Er moet een onderscheid gemaakt worden tussen 'zoeken' en 'filteren'. Zoeken is het matchen van tekst in een zoekveld aan een vooropgesteld aantal kolommen elke keer deze tekst wijzigd. Implementatie ervan in PowerApps is eenvoudig te doen met één formule:
 
@@ -158,9 +158,57 @@ Dit beoogde soort filtering is overigens out of the box aanwezig in model based 
 
 Als het dynamische aspect van filtering opgegeven wordt is het nog steeds mogelijk om 'statisch' te werken. Daarmee bedoeld een aantal voorgebouwde queries, voor gangbare scenario's zoals ze bestaat in LanReview zijn zonder problemen op te nemen in PowerApps.
 
-\textbf{Reporting:}
+\textit{Reporting:}
 
 Het is niet mogelijk om data met een Power App lokaal op te slaan. De workaround is om de resultaten weg te schrijven naar een Excel in OneDrive dat specifiek dient voor reporting.
+
+\subsubsection{Remote Desktop/Ping}
+
+Dit stelt een probleem. In LanReview is ht mogelijk te rechtsklikken op een item en een remote desktop sessie te beginnen of een eenvoudige ping uit te voeren. Achter de schermen wordt dit als met de command prompt uitgevoerd. In Powerapps ishet om te beginnen niet mogelijk om te rechtsklikken. Custom code uitvoering is standaard niet ondersteund. Zelf een custom connector bied hier geen oplossing omdat de app in de cloud leeft en aan serverzijde uitvoeren van RDP of ping heeft geen nut. Er is een workaround nodig.
+
+PowerApps heeft een SaveData() methode om lokaal data op te slaan. Een typisch scenario is dat er geen internet is, app bewerkingen kunnen tijdelijk lokaal opgeslagen worden om definitief uit te werken als gedetecteerd wordt dat er terug internetverbinding is. Een eerste logische beperking is dat de SavaData() niet benaderbaar is buiten PowerApps, een tweede beperking is dat deze functionaliteit niet moglijk is wanneer de app in een webbrowser en niet in een smartphone/tablet gebruikt wordt. Het idee om een ip adres naar een configuratiebestand weg te schrijven om dan buiten de PowerApp te gebruiken om naar een pc te RDP'en of pingen stopt hier.
+
+Het is mogelijk om een data-gatway op te zetten. Dit zorgt voor een verbinding met on premises data. Dit stelt een actie beschikbaar in Power Automate waarmee een bsetand lokaal aangemaakt kan worden. Via een workaround kan er PowerShell mee uitgevoerd worden. [bron]\\
+Hier is niet voor gekozen om deze redenen: extra kosten, resource gebruik en configuratie voor een in verhouding kleine use case. Bovendien zou de data gateway ingesteld moeten worden op een gedeelde locatie, anders zou deze data-gateway op de pc van elke powerApp gerbuiker moeten staan.
+
+Een deel van het hierboven staande is bruikbaar, namelijk het idee om het ip adres van de te pingen/rdp'en toestel voor te bereiden op een pc lokaal zadat de laatste stap manueel uitgevoerd kan worden. Dit moet in een bestandsformaat zijn waar Power Apps vlot mee overweg kan. Excel is een optie.
+
+De uitwerking wordt:\\
+In OneDrive een Excel file aanmaken met een kolom voor elke gebruiker van de app. De header waarde is  de voornaam van de gebruiker. Er is maar één rij aanwezig waar per kolom het huidige te pingen/redp'n ip adres in staat. Instellen dat dit bestand lokaal gesynchroniseerd wordt (OndDrive is standaard Windows 10 functionaliteit).
+
+De gebruiksflow is:
+\begin{enumerate}
+    \item Het detailscherm openen van de beoogde pc.
+    \item Op de knop duwen om het ip adres weg te schrijven.
+\begin{lstlisting}
+OnStart => Set(Gebruiker;First(Split(User().FullName;" ")).Result)
+OnSelect => Patch(iptable;First(Filter(iptable;user = Gebruiker));{ ip: SelectedDevice.IP})
+\end{lstlisting}
+    De formule gekoppeld aan 'OnStart' haalt haalt de volledige naam van de ingelogde PowerApps gebruiker op en plitst deze waarna enkel het eerste resultaat wordt opgeslaan als 'Gebruiker' variabele.\\
+    De formule gekoppeld aan het 'OnSelect' property haalt het ip adres uit het detailformulier op en schrijft het weg naar de Excel tabel 'iptable' onder de kolom met de matchende gerbuikersnaam.
+    \item Lokaal kan nu een script uitgevoerd worden dat dit excel bestand inleest en het relevante commando uitvoert (keuze hiervan hangt af van de overeenkomende snelkoppeling). [bron github]\\
+\begin{lstlisting}
+$excelpad = "C:\Users\Thomas\OneDrive - Hogeschool Gent\rdpping_ips.xlsx"
+$iptable = Import-Excel -Path $excelpad
+$ip = $iptable.Where({$_.user -eq $env:USERNAME}).ip
+
+if($args[1] -eq "ping"){
+ping $ip
+}elseif($args[1] -eq "rdp"){
+Start-Process "$env:windir\system32\mstsc.exe" -ArgumentList "/v:$ip"
+}else{
+# extra commando
+}
+\end{lstlisting}
+    Het 'import-excel' commando is mogelijk met de module .. [bron]\\
+    Voor het gemak wordt de utivoering van het nodige commando gedaan via een snelkoppeling, de verwijzingen zijn:
+\begin{lstlisting}
+ping => C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoExit -command "& 'H:\Documenten_TOSH\HoGent_Docs\2019-2020\Batchelorproef\C# apps\localtools.ps1' -commando ping"
+RDP => C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoExit -command "& 'H:\Documenten_TOSH\HoGent_Docs\2019-2020\Batchelorproef\C# apps\localtools.ps1' -commando rdp"
+\end{lstlisting}
+\end{enumerate}
+
+Het nadeel is dat door deze extra overhead er 3-5 seconden gewacht moet worden voor het bestand gesynchroniseerd is en de nodige snelkoppeling uitgevoerd kan worden met het juiste ip adres.
 
 \section{Custom Connector}
 
@@ -170,9 +218,6 @@ Een Custom Connector is de enige optie om code of een niet ondersteunde databron
     \item Blank Custom Connector
 \end{itemize}
 Het doel is om een complexe filter uit te werken. Een eerste idee was om alle data naar de API te posten en de filtering binnen de app zelf uit te werken. Hier werd snel vanaf gestapt naar de Microsoft Graph API. (link sectie graph)
-
-\subsubsection{Remote Desktop/Ping}
-
 
 
 \subsection{Microsoft Graph}
