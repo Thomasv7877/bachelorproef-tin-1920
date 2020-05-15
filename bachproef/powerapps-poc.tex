@@ -186,8 +186,8 @@ OnSelect => Patch(iptable;First(Filter(iptable;user = Gebruiker));{ ip: Selected
 \end{lstlisting}
     De formule gekoppeld aan 'OnStart' haalt haalt de volledige naam van de ingelogde PowerApps gebruiker op en plitst deze waarna enkel het eerste resultaat wordt opgeslaan als 'Gebruiker' variabele.\\
     De formule gekoppeld aan het 'OnSelect' property haalt het ip adres uit het detailformulier op en schrijft het weg naar de Excel tabel 'iptable' onder de kolom met de matchende gerbuikersnaam.
-    \item Lokaal kan nu een script uitgevoerd worden dat dit excel bestand inleest en het relevante commando uitvoert (keuze hiervan hangt af van de overeenkomende snelkoppeling). [bron github]\\
-\begin{lstlisting}
+    \item Lokaal kan nu een script uitgevoerd worden dat dit excel bestand inleest en het relevante commando uitvoert (keuze hiervan hangt af van de overeenkomende snelkoppeling). [bron github]
+\begin{lstlisting}[style=powershellStyle]
 $excelpad = "C:\Users\Thomas\OneDrive - Hogeschool Gent\rdpping_ips.xlsx"
 $iptable = Import-Excel -Path $excelpad
 $ip = $iptable.Where({$_.user -eq $env:USERNAME}).ip
@@ -197,7 +197,7 @@ ping $ip
 }elseif($args[1] -eq "rdp"){
 Start-Process "$env:windir\system32\mstsc.exe" -ArgumentList "/v:$ip"
 }else{
-# extra commando
+// extra commando
 }
 \end{lstlisting}
     Het 'import-excel' commando is mogelijk met de module .. [bron]\\
@@ -209,6 +209,96 @@ RDP => C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoExit -comman
 \end{enumerate}
 
 Het nadeel is dat door deze extra overhead er 3-5 seconden gewacht moet worden voor het bestand gesynchroniseerd is en de nodige snelkoppeling uitgevoerd kan worden met het juiste ip adres.
+
+\subsubsection{Mobiel bruikbaar zijn}
+
+Een power app is onafhankelijk van platform of devicetype maar er wordt bij creatie wel gevraagd op welke layout er gefocust zal worden en het is zo dat de app er te groot of te klein uit zal zien als de app later gebruikt wordt op het toesteltype waar het niet voor ontworpen werd.\\
+Om deze reden werd er een versie van de app gemaakt specifiek voor mobiel gebruik met een beperkte functionaliteitsset. Deze app zal voornamelijk gebruikt worden om snel een overzicht te kunnen opvragen van de belangrijkste info van een pc en ook om het toevoegen van nieuwe toestellen te vergemakkelijken met barcode scanning functionaliteit.
+
+[[afb-hoofd][afb-detail]]
+
+\subsubsection{Future proof zijn}
+
+Gartner [bron] stelde dat klanten de licencing van producten in het Power platform verwarrend vonden. Hierboven komt dat deze licencing onderhevig kan zijn aan verrandering [bron-voorstel].\\
+Microsoft is een sterke aanwezigheid maar hetzelfde kan niet altijd egzegd worden over hun aangboden producten [bron-zdnet]
+De low code markt is nog steeds turbulent volgens het eerder aangehaalde report.
+Als gekeken wordt naar de cyclische aard van low-code en de voorgangers beschouwd worden (vb, )[bron] stelt de vraag zich of low-code vroeg of laat ook voorbij gestreefd zal worden?
+
+\subsubsection{Performant zijn}
+
+Een cloud applicatie die een lijst gebruikt in SharePoint of een Excel file in OneDrive zal niet even performant zijn als een lokale applicatie die een lokale access databank gebruikt. Er zijn echter een aantal technieken om data operaties te optimaliseren. []
+Er is nodige inefficientie geintroduceerd in de app door gebruik van workarounds, bijvoorbeeld (sectie rdp/ping)
+Er is kritiek dat gegenereerde code niet even geoptimaliseerd kan zijn als specifiek geschreven code. [bron]
+Een belangrijke aanpassing die gemaakt moet worden is om de app 2000 kolommen op te laten halen in plaats van de standaard ingestelde 500. Er zijn meer dan 1000 toestellen en zoek en filteroperaties zouden anders maar op de eerste 500 toegepast worden. [afb-setting]
+
+\subsubsection{Security}
+
+% TODO
+
+\subsubsection{Gerichte/basis taken kunnen automatiseren}
+
+De belangrijkste case hiervoor is dat er een wekelijks overzicht met toestellen moet rondegstuurd worden die langer dan een maand de status 'te schrappen' gekregen hebben, gekenmerkd door een 'KLEUR' veld met waarde 'BLAUW'. Een toestel krijgt de 'te schrappen' status wanneer ze verwijderd/vervangen worden uit de actieve omgeving en in opslag worden geplaatst. Het is dan de gewoonte om een maand te wachten voor een toestel effectief verwijdert wordt (in geval van ontbrekende data of een functioneel probleem in de nieuwe oplossing).\\
+Dit is als flow geimplementeerd:
+[afb-flow-sp-uitgebreid]
+er is ook een flow utigewerkt met excel als databron. Het verschil is dat een datum wordt teruggegeven als integer en dat enkele formules aangepast moeten worden om hier mee om te gaan. 
+[afb-flow-excel-beknopt]
+
+\begin{enumerate}
+    \item \textbf{Recurrence:} Het is een recurrente flow. Het tijdschema is wekelijks, maandag om 3.00u.
+    \item \textbf{Een lijst maken met rijen in een tabel:} In deze stap worden de rijen uit de nodige Excel tabel enkel opgehaald, filtering gebeurt in de volgende stap. Er wordt dus niet met ODATA gefilterd maar via flow expressies.
+    \item \textbf{Matrix filteren:} Om te voldoen moet KLEUR BLAUW zijn, het SCHRAPDATUM veld mag niet leeg zijn en moet een datum bevatten van meer dan een maand geleden.
+\begin{lstlisting}
+SharePoint => @and(equals(item()?['b0et']?['Value'], 'BLAUW'), if(not(empty(item()?['SCHRAPDATUM'])), lessOrEquals(item()?['SCHRAPDATUM'], addDays(utcNow(), -31)), false))
+Excel => @and(equals(item()?['KLEUR'], 'BLAUW'), if(not(empty(item()?['SCHRAPSINDS'])), lessOrEquals(addDays('1899-12-30', int(item()?['SCHRAPSINDS'])), addDays(utcNow(), -31)), false))
+\end{lstlisting}
+    Excel geeft datums terug als integers van het aantal dagen sinds 1900. Als dit toegevoegd wordt aan '1899-12-30' is de correcte datum terug opgesteld en kan dit vergeleken worden met de huidige datum \lstinline|utcNow()|. Dit werd besproken op Stackoverflow [voetnoot]
+    \item \textbf{Selecteren:} De in de mai te gebruiken kolommen uit het resultaat van de filter halen. Zo kunnen ze gebruikt worden in de volgende stap.
+    \item \textbf{HTML-tabel maken:} Het resultaat van de vorige stap wordt als argument opgegeven. Er wordt een html tabel opgesteld.
+    \item \textbf{Een e-mail verzenden (V2):} Het reele adres zal dat van de helpdesk zijn. In de body van de mail kan de HTML-tabel ingevoegd worden.
+\end{enumerate}
+
+Het resultaat is dat iedereen op de helpdesk automatisch een mail met het overzicht. Een voorbeeld hiervan:
+
+[afb-mail]
+
+% TODO: extra cases
+
+\subsubsection{Bruikbaar zijn buiten domein}
+
+De app leeft in de cloud. Het enige dat nodig is zijn geldige Office365 credentials en een internetverbinding.
+
+\subsubsection{SharePoint requirements}
+
+Requirements die met SharePoint te maken hebben zijn:
+\begin{itemize}
+    \item Nieuwe types toestellen opnemen
+    \item Randapparatuur opnemen
+    \item Revisie van elk dataveld per toesteltype
+    \item Data opslaan in SharePoint (cloud)
+\end{itemize}
+Deze worden besproken in [sectie sharepoint]
+
+\subsubsection{Leercurve moet degelijk zijn}
+\textit{(Dit deel is gebaseerd op persoonlijke ervaringen van de auteur)}
+
+\begin{itemize}
+    \item \textbf{Uiterlijk $\rightarrow$ Gemakkelijk:} Uiterlijk is eenvoudig te configureren met drag-en-drop. layout eigenschappen moeten niet vaak aangepast worden doordat controls in positie 'springen'. Groepen visuele controls kunnen gekopieerd en geplak worden.
+    \item \textbf{Data en variabelen $\rightarrow$ Opletten:} Data gerbuik kan uitdagend zijn indien niet goed ingepland. Gebruik van variabele is eenvoudig maar het overzicht erover kan verloren gaan omdat ze gedelcareerd worden bij het eerste gebruik
+    \item \textbf{Gedrag en uitbreidingen $\rightarrow$ Moeilijk:} Gedrag instellen is moeilijk, formules hebben een leercurve. Uitbreidingen schrijven is ook moeilijk, voorkennis van REST principes was nodig.
+\end{itemize}
+
+Als een case out of the box ondersteund is op powerapps zal een business gebruiker er geen problemen mee hebben. Zeker niet als ze voorkennis van Excel hebben.
+
+\subsubsection{Samenwerken met SCCM en/of synchroniseren met en data uit de SQL databank kunnen gebruiken}
+
+Dit werd niet geimplementeerd maar er is wel een mogelijke oplossing voor gevonden [bron]\\
+In essentie gaat het om een script dat volgens een tijdschema uitgevoerd wordt op de SCCM server dat sccm-cmdlets gebruikt om asset data op te vragen die weggeschreven worden naar een SharePoint omgeving.
+
+% TODO: meer utileg over script in bron
+
+\subsubsection{Diverse GUI verbeteringen/robuust GUI ontwerp ondersteunen}
+
+
 
 \section{Custom Connector}
 
@@ -230,7 +320,7 @@ Microsoft Graph is een REST API [voetnoot] waarmee allerhande data uit Office365
 Een volgt een overzicht van de nodige stappen en bijbehorende requests om dit te verwezelijken.
 In dit eenvoudige voorbeeld wordt gefilterd op een pc met Netwerknaam 'GLRDT00001'. Niet relevante header waarden zijn weggelaten.
 \begin{enumerate}
-    \item Een sessie creëren in de Excel file met data. Dit is nodig om de filter effectief toe te kunnen passen in stap 3. In de response body is de sessie-id te vinden.
+    \item Een sessie creeren in de Excel file met data. Dit is nodig om de filter effectief toe te kunnen passen in stap 3. In de response body is de sessie-id te vinden.
 \begin{lstlisting}
 POST https://graph.microsoft.com/v1.0/me/drive/root:/testdata.xlsx:/workbook/createsession
 BODY => {persistChanges:true}
