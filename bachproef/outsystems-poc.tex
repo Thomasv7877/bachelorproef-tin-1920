@@ -19,7 +19,7 @@
 
 De eerste stap is om een account aan te maken, hierna kan de Outsystems software geinstalleerd worden (Service Studio als gewone IDE en Extension studio om uitbreidingen te maken).\\
 In de persoonlijke omgeving kan naast het maken van een nieuwe app community componenten van de Forge ook rechtstreeks geinstalleerd worden. \\
-Bij het maken van een nieuwe app zijn er vijf keuzes: reactive of tradiotionele wab app. Tablet of Telefoon app. Ten laatste ook een service. Er is voor reactive gekozen omdat er in de POC in PowerApps twee versies gemaakt zijn en de app dus over meerde platformen moet kunnen gebruikt worden. Na de creatie van de app wordt ook een module aangemaakt.\\
+Bij het maken van een app zijn er vijf keuzes: reactive of tradiotionele wab app. Tablet of Telefoon app. Ten laatste ook een service. Er is voor reactive gekozen omdat er in de POC in PowerApps twee versies gemaakt zijn en de app dus over meerde platformen moet kunnen gebruikt worden. Na de creatie van de app wordt ook een module aangemaakt.\\
 De eenvoudigste manier om data te introduceren is door een Excel file op te laden. De data hieruit wordt naar een cloud instantie van SQL Server opgeslagen.\\
 Als de app gestart wordt moeten Outsystems credentials opgegeven worden.
 Dit is de basis om de requirements uit te kunnen beginnen werken maar eerst nog wat uitleg bij het gebruik van de IDE.
@@ -39,12 +39,132 @@ Er zijn een aantal begrippen die gekend moeten zijn bij het maken van applicatie
     \item TrueChange Debugger:\\
     Zoals verwacht van een debugger kunnen breakpoints gezet worden en zijn tijdnes uitvoering de waarden van de actieve variabelen in te kijken. Het interessante is dat hiernaast de app geanalyseerd wordt en performantie en security aanbevelingen teruggegeven worden.
     \item One Click Publish:\\
-    todo
+    Stappen uit traditionele software ontwikkeling om een ap beschikbaar te stellen (vierifieeren, compileren, uploaden en publiceren van code) worden geautomatiseerd met één knop. Als verificatie faalt moeten de fouten eerst uit de app gehaald worden.
+    Dit betekend ook dat wijzigingen altijd onine worden gezet voor het resultaat bekeken kan worden.
+    \item AI Assisted development:\\
+    Tijdens ontwikkeling wordt AI gebruikt om onder andere sleutelwoorden en app context te anlyseren en op basis hiervan acties aan te bevelen. Een voorbeeld van het gebruik in de POC was dat waneer een actie aangemaakt werd in de lijst op het hoofdscherm er voorspeld werd dat er detailweergave nodig was. Dit detailscherm en bijbehorend formulier werd automatisch gegenereerd.
+    \item Aggregate VS SQL Query:\\
+    Er zijn twee manieren om data te queryen. Een aggregate is is eenvoudig te declareren en beter geoptimaiseerd in Outsystems dan een gewone SQL query. Die is echter flexibeler en het gebruik ervan wordt aangeraden wanneer iets niet mogelijk is met een aggregate. Beiden werden gebruikt in de POC en komen verder aan bod.
+    \item Datatypen:
+    \item Expressie taal:
+    \item REST acties:
+    \item Meer over de Extenstion Studio:
 \end{itemize}
 
 \section{Model van Opstelling}
 
-
+%TODO
 
 \section{Requirements}
 
+\subsubsection{Prijs}
+
+De Personal Environment (gratis versie) legt geen beperkingen op de bruikbare functionaliteit of hoe lang deze omgeving beschikbaar is. Dit betekend echter niet dat er geen limieten zijn. De hamvraag is of deze limieten aanvaarbaar zijn voor het gebruiksscenario van de POC. Ze worden daarom één per één afgetoetst:
+
+\begin{itemize}
+    \item Maar één ontwikkelaar in de omgeving, er is geen samenwerking mogelijk.\\
+    $\rightarrow$ De app is niet zodanig complex dat meerdere personen nodig zijn om te ondersteunden of verder uit te bouwen.
+    \item Database capacitiet is gelimiteerd op 2GB.\\
+    $\rightarrow$ De bij te houden informatie over de meer dan 1000 assets valt hier nog steeds ruim onder.
+    \item Indien de app een maand niet gebruikt wordt gaat de omgeving 'in slaap' en moet de app opnieuw gegenereerd worden voro deze opnieuw gebruikt kan worden.\\
+    $\rightarrow$ De app zal dagelijks gebruikt worden dus dit zal nooit een risico worden.
+    \item Cloud resoruces worden gedeelt met andere gerbuikers, er is geen service garantie.\\
+    $\rightarrow$ De app eist geen intens reqource gebruik. 
+    \item er is geen harde limiet op aantal toegestane  app gebruikers maar als de vorige items in beschouwing genomen worden zal een app bruikbaar zijn tot maximum 100 personen.\\
+    $\rightarrow$ Maximum 6 personen zullen de app gebruiken.
+\end{itemize}
+[bron-licence-details]
+
+De marktleidende low-code paltformen gefocust op professionele ontwikkelaars zijn duurder van de concurrentie. Mendix en Outsystems rekenen meer dan \euro2000 voor hun basis plan. Het was daarom belangrijk dat de POC binnen de limieten bleef, de meerprijs zou niet worden aanvaard.
+
+\subsubsection{Overzicht kunnen geven van belangrijkste info voor elk toestel in het netwerk}
+
+Dit wordt gedaan via een hoofdscherm met een overzicht van de assets en een detail/editscherm dat meer informatie toont.
+Waar dit bij PowerApp gegenereerd kan worden uit data kunnen dezelfde resultaten eenvoudig bekomen worden met behulp van AI geassisteerde acties.
+\begin{enumerate}
+    \item Een nieuw scherm aanmaken en kiezen voor een lijstweergave sjabloon
+    \item De data slepen naar het tabel element volstaat na wat kolom aanpassingen om een gewenste weergave van de data te krijgen. Achter de schermen wordt een aggregate aangemaakt die de rijen ophaalt uit de databank.
+    \item Als een knop aangemaakt wordt in de rij zal als actie aanbevolen worden dat er een nieuw scherm wordt aangemaakt met een detailweergave. In de achtergrond wordt de id van de rij item meegegeven om in het detailscherm een aggregaet in te stellen die deze id gebruikt om alle data van de item op te halen en te tonen.
+    \item In het detailschemn kan de layout aangepast worden naar wens en kan validatie ingesteld worden.
+\end{enumerate}
+
+[[afb-hoofd][afb-detail]]
+
+Dit instellen van validatie is belangrijk. Omdat de data recent werd geïmporteerd naar de SQL instantie zijn er geen specifieke regels op ingesteld. Als een externe data bron gebruikt werd (bijvoorbeeld SharePoint) had dit wel het geval kunnen zijn.\\
+Outsystems heeft automatische client side validatie. [bron-validatie] In het formulier widget heeft elk inputveld geassocieerd met een kolom een nodig inputtype (zoals mail, datum, tekst) toegewezen gekregenn, elke input is standaard ook verplicht (via het 'mandatory' property). Het formulier zelf heeft een Valid boolean property dat op false wordt gezet als validatie in één van de inputs zou falen. Controle hierop gebeurt in de client actie gekoppeld aan de knop om toe te voegen of te wijzigen. Het is deze actie die gewijzigd moet worden volgens het specifieke scenario.
+
+[afb-validatie]
+[afb-validatie2]
+
+Gaat het om het toevoegen van nieuwe entry of wijzigen van een bestaande? Indien het een nieuwe is wordt gekeken of het ingevulde Netwnaam uniek is vie de server actie 'NetwNaamUnique'. Deze zal een aggregate uitvoeren waarin een filter toegepast is  die kijkt of de meegegeven Netwnaam matcht aan een waarde uit de NETWNAAM kolom. Indien de netwerknaam uniek is word verder gegaan met de formvalidatie. Indien niet wordt een error message gekoppeld aan de textinput van de Netwnaam en stopt de actie.
+
+\subsubsection{Filtering / rapportage}
+
+\textit{Filter}
+
+Zoeken en filteren is in tabbladen gescheiden en ook hun resultaten worden in aparte Tabke controls weergegeven.
+
+$\rightarrow$ Search:\\
+Voorbereidend wordt er een filter ingesteld in de reeds bestande aggregate (die items ophaalt om weer te geven in het hoofdscherm) die een zoekvariabele zal matchen aan elke kolom.
+Er wordt een zoekveld toegevoegd aan het scherm en deze zoekvariabele wordt eraan gekoppeld. Als OnChange event wordt een client actie utigevoerd die de aggregate ververst (en de filter opnieuw uitvoert met de gewijzigde zoekvariabele).
+
+\begin{lstlisting}
+Blad1.NETWNAAM like "%" + SearchVar + "%" or Blad1.RECTYPE like "%" + SearchVar + "%" or Blad1.NAAM like "%" + SearchVar + "%" or Blad1.USER like "%" + SearchVar + "%" or Blad1.IP like "%" + SearchVar + "%" or Blad1.SOORTIP like "%" + SearchVar + "%" or Blad1.MAC like "%" + SearchVar + "%" or Blad1.PATCH like "%" + SearchVar + "%" or Blad1.SWITCH like "%" + SearchVar + "%" or Blad1.POORT = "%" + SearchVar + "%" or Blad1.INST like "%" + SearchVar + "%" or Blad1.DIENST like "%" + SearchVar + "%" or Blad1.LOKATIE like "%" + SearchVar + "%" or Blad1.OS like "%" + SearchVar + "%" or Blad1.SP like "%" + SearchVar + "%" or Blad1.TYPEMERK like "%" + SearchVar + "%" or Blad1.SERIAL like "%" + SearchVar + "%" or Blad1.OPM like "%" + SearchVar + "%" or Blad1.KLEUR like "%" + SearchVar + "%"
+\end{lstlisting}
+
+$\rightarrow$ Filter:\\
+\begin{itemize}
+    \item Vorm en datatypen:\\
+    De filter bouwen gebeurt via een dynamisch groeiende lijst waarbij elke rij bestaat uit een keuzeveld voro de kolom, de soort vergelijking en de tekst om op te filteren.\\
+    Er moeten enkele datatypen voorbereid worden om dit mogelijk te maken:
+    \begin{itemize}
+        \item Statische entitieit die alle kolomnamen bevat
+        \item Statische entitieit die alle mogelijke vergelijkingen/operators bevat.
+        \item Structuur die de filterwaarden van een rij zal vasthouden. Dit is een samngesteld type, het bevat:
+        \begin{itemize}
+            \item Identifier van de entiteit met kolomnamen.
+            \item Identifier van de entiteit met operators.
+            \item Een Text variabele met de filterwaarde.
+        \end{itemize}
+    \end{itemize}
+    In de interface moeten nog twee variabelen aangemaatk worden: een Record List van de 'FilterVelden' (zal elke filterwaarde bevatten) en een Record van 'FilterVelden' (stelt een lege rij voor). [bron-advanced-fitler] werd gebruikt om hier wijs uit te geraken.
+    \item Query:\\
+    De 'Filter' knop voert de 'FilterOnClick' client actie uit die op zijn beurt de 'Fitler' server actie utivoert. De record List is wordt als argument meegegeven.\\
+    De 'Filter' actie:
+    \begin{enumerate}
+        \item Controleren of de Record List leeg is indien ja stopt de utivoering.
+        \item De eerste entry naar een string converteren.
+        \begin{lstlisting}
+        GetColNamen(VglRecList[0].velden.ColNaamAtt).ColNamen.Naam + " " + GetVergelijkTekens(VglRecList[0].velden.VergelijkTekenAtt).VergelijkTekens.Teken + " '" + VglRecList[0].velden.FilterWaarde + "'"
+        \end{lstlisting}
+        \item Controleren of er meerdere records zijn. Indien ja wordt er geloopt en wordt de string verder aangevult via  onderstaande expressie:
+        \begin{lstlisting}
+        TestStringParam + " and " + GetColNamen(VglRecList.Current.velden.ColNaamAtt).ColNamen.Naam + " " + GetVergelijkTekens(VglRecList.Current.velden.VergelijkTekenAtt).VergelijkTekens.Teken + " '" + VglRecList.Current.velden.FilterWaarde + "'"
+        \end{lstlisting}
+        \item De sql query uitvoeren. Een opmerking hierbij is dat de 'expand inline' optie actief moet staan om de gebouwde string effectief te kunnen gebruiken als argument.
+    \end{enumerate}
+    
+\end{itemize}
+
+\subsubsection{RDP / Ping}
+\subsubsection{Mobiel bruikbaar zijn}
+\subsubsection{Future proof zijn}
+\subsubsection{Performant zijn}
+\subsubsection{Security}
+\subsubsection{Gerichte/basis taken kunnen automatiseren}
+\subsubsection{Bruikbaar zijn buiten domein}
+\subsubsection{SharePoint requirements}
+
+Requirements die met SharePoint te maken hebben zijn:
+\begin{itemize}
+    \item Nieuwe types toestellen opnemen
+    \item Randapparatuur opnemen
+    \item Revisie van elk dataveld per toesteltype
+    \item Data opslaan in SharePoint (cloud)
+\end{itemize}
+
+\subsubsection{Leercurve moet degelijk zijn}
+\subsubsection{Samenwerken met SCCM en/of synchroniseren met en data uit de SQL databank kunnen gebruiken}
+\subsubsection{Diverse GUI verbeteringen/robuust GUI ontwerp ondersteunen}
+\subsubsection{Barcodes kunnen scannen}
+\subsubsection{AI functionaliteit}
