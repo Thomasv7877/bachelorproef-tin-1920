@@ -110,7 +110,7 @@ Voorbereidend wordt er een filter ingesteld in de reeds bestande aggregate (die 
 Er wordt een zoekveld toegevoegd aan het scherm en deze zoekvariabele wordt eraan gekoppeld. Als OnChange event wordt een client actie utigevoerd die de aggregate ververst (en de filter opnieuw uitvoert met de gewijzigde zoekvariabele).
 
 \begin{lstlisting}
-Blad1.NETWNAAM like "%" + SearchVar + "%" or Blad1.RECTYPE like "%" + SearchVar + "%" or Blad1.NAAM like "%" + SearchVar + "%" or Blad1.USER like "%" + SearchVar + "%" or Blad1.IP like "%" + SearchVar + "%" or Blad1.SOORTIP like "%" + SearchVar + "%" or Blad1.MAC like "%" + SearchVar + "%" or Blad1.PATCH like "%" + SearchVar + "%" or Blad1.SWITCH like "%" + SearchVar + "%" or Blad1.POORT = "%" + SearchVar + "%" or Blad1.INST like "%" + SearchVar + "%" or Blad1.DIENST like "%" + SearchVar + "%" or Blad1.LOKATIE like "%" + SearchVar + "%" or Blad1.OS like "%" + SearchVar + "%" or Blad1.SP like "%" + SearchVar + "%" or Blad1.TYPEMERK like "%" + SearchVar + "%" or Blad1.SERIAL like "%" + SearchVar + "%" or Blad1.OPM like "%" + SearchVar + "%" or Blad1.KLEUR like "%" + SearchVar + "%"
+Blad1.NETWNAAM like "%" + SearchVar + "%" or Blad1.RECTYPE like "%" + SearchVar + "%" or ... or Blad1.KLEUR like "%" + SearchVar + "%"
 \end{lstlisting}
 
 $\rightarrow$ Filter:
@@ -168,13 +168,13 @@ Downloadacties zijn goed ondersteund. Door een download control als eindpunt van
 
 Omdat de POC in de cloud draait is deze functionaliteit niet direct op te roepen, mogelijke workarounds:
 \begin{itemize}
-    \item \textbf{W1:} Client side javascript, specifiek ActiveX gebruiken om shell commando's uit te voeren. [voetnoot]\\
+    \item \textbf{Workaround 1:} Client side javascript, specifiek een ActiveX plugin gebruiken om shell commando's uit te voeren. [voetnoot]\\
     $\rightarrow$ 'ActiveX not defined' error. Dit enkel mogelijk met oudere versies van Internet Explorer. Het is ook logisch dat dit niet meer ondersteund is vanuit security aspect.
-    \item \textbf{W2:} Een 'link' control en de href property laten wijzen naar een locale RDP file\\
+    \item \textbf{Workaround 2:} Een 'link' control en de href property laten wijzen naar een locale RDP file\\
     $\rightarrow$ Niet flexibel genoeg: de rdp config file zou elke keer aangepast moeten worden met het relevante ip adres.
-    \item \textbf{W3:} De webbrowser waar de POC in werkt configureren om custom urls te kunnen gebruiken (zoals rdp://). Vanuit de app naar dat soort url navigeren via de ingebouwde 'RedirectToUrl' functie.\\
+    \item \textbf{Workaround 3:} De webbrowser waar de POC in werkt configureren om custom urls te kunnen gebruiken (zoals rdp://). Vanuit de app naar dat soort url navigeren via de ingebouwde 'RedirectToUrl' functie.\\
     $\rightarrow$ Te veel extra configuratie.
-    \item \textbf{W4:} Een RPD file maken voor de gewenste pc en downloaden/uitvoeren. Dit past delen toe zoals gezien in extensie [voetnoot]. Er is ook een dependancy nodig om text naar binaries te converteren.\\
+    \item \textbf{Workaround 4:} Een RPD file maken voor de gewenste pc en downloaden/uitvoeren. Dit past delen toe zoals gezien in extensie [voetnoot]. Er is ook een dependancy nodig om text naar binaries te converteren.\\
     Er worden drie gegevensstukken gecombineerd: ip adres van de doel pc, naam van de bevoegde rdp gebruiker en het sjabloon van een rdp configuratiebestand. In de client methode wordt het sjabloon ingevuld met de eerste twee waarden en hierna geconverteerd naar een binary. Ten laatste wordt dit bestand als download aangeboden. In de meeste webbrowsers is het als voorkeur in te stellen om bepaalde bestandstypen direct te openen na downlaod. Dat maakt het tijdsverlies bij elke uitvoering miniem.
     %[[afb-methode horizontaal][afb preview sjabloon met ingewisselde ip]]
 \end{itemize}
