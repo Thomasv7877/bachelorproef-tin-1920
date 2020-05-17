@@ -181,12 +181,73 @@ Omdat de POC in de cloud draait is deze functionaliteit niet direct op te roepen
 
 \textit{Ping}
 
+De basis van het probleem bij het uitwerken van RDP geldt ook hier. Toestellen zijn enkel benaderbar in het lokale netwerk, de ping moest dus uitgevoerd kunnen worden aan de client kant. Outsystems maakt uitvoeren van client side javascript mogelijk maar er werd geen oplossing gevonden om Ping op deze manier te laten slagen.\\
+Plan B is om een extensie te maken. In de persoonlijke omgeving moet dit in .NET en hier is onder andere mogelijk om de Pinger klasse te implementeren. [voetnoot] Een grote opmerking hierbij is dat de app on-premises gehost moet worden om dit echt te laten werken.
+
+Stappen om de extensie aan te maken:
+\begin{enumerate}
+    \item Een nieuwe extensie aanmaken in Integration Studio.
+    \item De actie 'PingHost' declareren. Er zijn twee parameters nodig:\\
+    $\rightarrow$ ipaddress (Text)\\
+    $\leftarrow$ pingable (Boolean)
+    \item Visual Studio openen met de 'Edit Source Code .NET' knop.
+    \item Een methode schrijven die de pinger klasse implementeerd (zie verder).
+    \item Net als in de Service Studio One CLick-Publish gebruiken om de extensie op te slaan en beschikbaar te maken.
+    \item De extensie als dependency toevoegen aan de POC maakt de PingHost actie bruikbaar.
+\end{enumerate}
+
+Deze eenvoudige methode maakt een instantie van de Pinger klasse, stuurt de ping naar het ip adres van de invoerparameter en evalueert het resultaat op success om dit als boolean uitvoer terug te sturen. 
+\begin{lstlisting}[style=CSharpStyle]
+public void MssPingHost(string ssipaddress, out bool sspingable) {
+    sspingable = false;
+    using (Ping pinger = new Ping())
+    {
+        try
+        {
+            PingReply reply = pinger.Send(ssipaddress);
+            sspingable = reply.Status == IPStatus.Success;
+        }
+        catch (PingException e)
+        {
+        sspingable = false;
+        }
+    }
+}
+\end{lstlisting}
 
 \subsubsection{Mobiel bruikbaar zijn}
+
+Het gekozen soort app is reactive om zowel op desktop als mobile layout bruikbaar te zijn maar er werd niet verwacht dat er bij deze keuze (tussen Traditional Web, Reactive en Mobile) functionaliteit verloren zou gaan. Dit was wel het geval:
+\begin{itemize}
+    \item \textbf{Automatisatie:} Het maken van een Timer die mail verstuurt is enkel mogelijk in een Tradional Web App, er was een workaround nodig [link sectie]
+    \item \textbf{Barcode Scanning:} Een Mobile App nodig is nodig om de Barcode Scanner te kunnen gebruiken [link sectie]
+\end{itemize}
+
 \subsubsection{Future proof zijn}
+
+Een indicator is de marktpositie. Zowel Gartner als Forrester bestempelen Outsystems als leider. Dit spreekt positief over de bestaanszekerheid.
+Ook hun traject over de jaren geeft vertrouwen.
+Outsystems is opgericht in 2005 en sinds dan is het product en de licencing ervan consistent gebleven.\\
+Hierboven komt dat er steeds vernieuwingen worden geïntroduceerd. [bron|voetnoot]
+
 \subsubsection{Performant zijn}
+
+Een app in de cloud meestal niet zo snel als een lokale applicatie. Zeker ophalen van data over het internet heeft een invloed op performantie.\\
+Hoe weegt deze POC dan op tegen de PowerApps POC?\\
+In [link sectie prijs] wordt een beeld gemaakt van de beperkingen. Vooral de punten ove rgedeelde resources en 'in slaap gaan' van de omgeving zijn reelvant tov performantie. PowerApps kent deze beperkingen niet. Dit is natuurlijk te verwachten als een gratis plan (Outsystems) vergeleken wordt met een betalend plan (PowerApps).\\
+Er kan dus besloten worden dat PowerApps consistentere performantie zal bieden.
+
 \subsubsection{Security}
+
+% TODO: gdpr bron
+De POC is toegankelijk met geldige Outsystems credentials. Alternatieve user management (bijvoorbeeld Azure Active Directory) is mogelijk maar niet in de gratis versie en in geval van Azure moet de App on premises gehost worden.
+
 \subsubsection{Gerichte/basis taken kunnen automatiseren}
+
+Net als bij de PowerApps POC bestaat de case uit het wekelijks genereren en uitsturen van een rapport met toestellen die langer dan een maand 'te schrappen' staan.\\
+Voor herhalende taken zijn Timers in te stellen. Het probleem is dat het in Traditional Web apps mogelijk is om mails te versturen in acties maar dat deze functionaliteit voor Reactive Web apps (nog) niet ondersteund is. Als workaround is gekozen om een aparte Traditional Web app te maken die het uitvoeren van deze stappen overneemt.\\
+Voorbereidend
+
 \subsubsection{Bruikbaar zijn buiten domein}
 \subsubsection{SharePoint requirements}
 
