@@ -245,10 +245,28 @@ De POC is toegankelijk met geldige Outsystems credentials. Alternatieve user man
 \subsubsection{Gerichte/basis taken kunnen automatiseren}
 
 Net als bij de PowerApps POC bestaat de case uit het wekelijks genereren en uitsturen van een rapport met toestellen die langer dan een maand 'te schrappen' staan.\\
-Voor herhalende taken zijn Timers in te stellen. Het probleem is dat het in Traditional Web apps mogelijk is om mails te versturen in acties maar dat deze functionaliteit voor Reactive Web apps (nog) niet ondersteund is. Als workaround is gekozen om een aparte Traditional Web app te maken die het uitvoeren van deze stappen overneemt.\\
-Voorbereidend
+Voor herhalende taken zijn Timers in te stellen. Het probleem is dat het in Traditional Web apps mogelijk is om mails te versturen in acties maar dat deze functionaliteit voor Reactive Web apps (nog) niet ondersteund is. Als workaround is gekozen om een aparte Traditional Web app te maken die het uitvoeren van deze stappen overneemt.
+
+Voorbereidend moet de omgeving in Service Center geconfigureerd worden om email te kunnen versturen. Dit gebeurt in Administration > Email. Meest notabel zijn de te gebruiken SMTP Server en standaard afzender adres. Het is ook mogelijk om voor testscenario's al de mails te redirecten naar een test lijst.
+
+Eens een nieuwe Traditional Web app is aangemaakt in de ServiceStudio vosltaat het om:
+\begin{enumerate}
+    \item Wat logica betreft: één server actie declareren met één 'Send Email' stap.
+    \item De mail body configureren: belangrijst is een Table dat het overzicht van de devices zal bevatten.
+    \item De asset databank uit de hoofd POC module als dependency declareren en toevoegen aan de Table. Dit maakt er automatisch een aggregate voor aan in een neiuwe Preparation stap. Elke keer de mail opgesteld wordt zal deze Preparation stap eert uitgevoerd worden.
+    \item In deze aggregate wordt een filter ingesteld om de juiste toestellen terug te geven.
+\begin{lstlisting}
+AddMonths(testdata.SCHRAPSINDS,1) <= CurrDateTime() and testdata.KLEUR = "BLAUW"
+\end{lstlisting} 
+    \item Een timer instellen om de actie uit stap één op een tijdschema uit te voeren [schedule-afb][overzicht-afb]
+\end{enumerate}
+
+% Eens een nieuwe Traditional Web app is aangemaakt in de ServiceStudio vosltaat het om één servar actie te declareren met één 'Send Email' stap.
 
 \subsubsection{Bruikbaar zijn buiten domein}
+
+De POC en databank zijn cloud gehost. Enkel internettoegang en Outsystems credentials zijn nodig om de POC te kunnen gebruiken.
+
 \subsubsection{SharePoint requirements}
 
 Requirements die met SharePoint te maken hebben zijn:
@@ -258,8 +276,38 @@ Requirements die met SharePoint te maken hebben zijn:
     \item Revisie van elk dataveld per toesteltype
     \item Data opslaan in SharePoint (cloud)
 \end{itemize}
+Dit wordt besproken in [link sharepoint sectie]
+
+\textit{Onderstaande aanpak werd onderzocht maar na afloop niet toegepast. Voor het huidige scenario voldoet de standaard voorziene SQL instantie en zijn er geen merkbare voordelen die de extra complexiteit verantwoorden.}
+
+Er is geen connector zoals in PowerApps dat rechtstreekse toegang geeft tot de SharePoint data. De verbinding zal met andere woroden via de beschikbare REST api's moeten verlopen. SharePoint heeft zijn eigen '\_api' toegang, alternatief is er ook de nieuwere Microsoft Graph. Omdat in de PowerApps POC Graph reeds gebruikt werd [link sectie] wordt er hier opnieuw voor gekozen. Iet s dat daar aan bod kwam was het verschil tussen delegated en application permissions. Ook hier wordt uitgegaan van delegated permissions gezien dit de vieligere optie is (Windows login nodig).
+
+Alvorens er data opgevraagd kan worden moet het authenticatie proces doorlopen worden (hier OAuth V2).
+[afb-auth+bron]
+
+De implementatie ervan in Outsystems gaat als volgt:
+\begin{enumerate}
+    \item Azure
+    \begin{enumerate}
+        \item App registratie.
+        \item Client secret anamaken
+        \item Scope definieeren. Voor SharePoint is dit: \lstinline|Sites.Manage.All Sites.Read.All SitesReadWrite.All|
+        \item Redirect URL naar de Outsystems app instellen. Structuur is \lstinline|https://<autsystems omgeving>/<app naam>/<afhandeling pagina>| 
+    \end{enumerate}
+    \item Athorizatie request doen(\lstinline|\authorize| eindpunt). Komt overeen met inloggen in Windows acctount en goedkeuren van de scope.\\
+    $\leftarrow$ Authorizatie code wordt teruggegeven.
+    \item Token aanvragen met de Authorisatie code (\lstinline|\token| eindpunt)\\
+    $\leftarrow$ Token wordt teruggegeven.
+\end{enumerate}
+Dit token moet aanwezig zijn in elke request naar de SharePoint data via Microsoft Graph.
+
+Het is echter mogelijk een deel van deze stappen door te geven naar een extensie (zoals Windows login connector [bron]). De implementatie daarvan is een pak eenvoudiger: In de standaard login actie van de POC wordt de methode uit de extensie geplaatst die het authenticatie proces start 'GetOAuth2AuthenticationURL'. Practisch gezien wordt na Outsystems login nu ook de Microsoft login uitgevoerd. Na afloop is het token beschikbaar om te gebruiken in REST operaties. Alleen de voorbereiding in Azure moet nog steeds gedaan worden.
+
 
 \subsubsection{Leercurve moet degelijk zijn}
+
+
+
 \subsubsection{Samenwerken met SCCM en/of synchroniseren met en data uit de SQL databank kunnen gebruiken}
 \subsubsection{Diverse GUI verbeteringen/robuust GUI ontwerp ondersteunen}
 \subsubsection{Barcodes kunnen scannen}
