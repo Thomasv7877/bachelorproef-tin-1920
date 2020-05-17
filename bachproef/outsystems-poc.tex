@@ -306,9 +306,49 @@ Het is echter mogelijk een deel van deze stappen door te geven naar een extensie
 
 \subsubsection{Leercurve moet degelijk zijn}
 
+\textit{(Dit deel is gebaseerd op persoonlijke ervaringe van de auteur)}
 
+Algemene leercurve van Outsystems ligt hoger dan bij PowerApps, dit logisch omdat het om een andere doelgroep gaat.\\
+Als er specifieker gekeken wordt naar de oorzaken van moeilijkheid tussen beide platfromen:
+\begin{itemize}
+    \item \textbf{Outystems:} Gebruik van data en datatypen kan in sommige scenario's overweldigend zijn voor een beginner.
+    \item \textbf{PowerApps:} Gebruik van fromules en vooral sommige technieken die er mee gebruikt moeten worden.
+\end{itemize}
+
+Over hulpmateriaal:\\
+De documentatie is goed en de community is actief. De instructie videos zijn ok. Deze zijn van outsystems zelf maar soms verouderd.\\
+Community apps uit de Forge zijn ook handig. componenten kunnen ingekeken worden specifiek om technieken aan te leren. Veel forge apps zijn als demo bedoelt of hebben een companion demo app.
 
 \subsubsection{Samenwerken met SCCM en/of synchroniseren met en data uit de SQL databank kunnen gebruiken}
+
+% todo: powerapps methode aan te passen om ook hier te gebruiken?
+
 \subsubsection{Diverse GUI verbeteringen/robuust GUI ontwerp ondersteunen}
+
+Om de GUI te bouwen wordt het UI framework genaamd Silk UI gebruikt. Er is een grote focus op Drag-en-drop.
+
+Een overzicht van Silk UI componenten, die telkens meer controle over detail geven:
+
+Screen templates $\rightarrow$ thema editor $\rightarrow$ UI patronen/controls voorgangbare use cases $\rightarrow$ Style properties $\rightarrow$ CSS editor
+
+Afhankelijk van heoveel tijd men wil spenderen is elk aspect van de UI met andere woorden aan te passen.
+
+De gemaakte POC is reactive. Een samenvatting van de ervaringen bij het bouwen van de UI is dat er veel controle is over details maar dat drag-en-drop warrig kan worden als er veel containers/componenten op het scherm zijn.
+
 \subsubsection{Barcodes kunnen scannen}
+
+Dit is mogelijk via de officiele barcode extensie van Outsystems [voetnoot].\\
+Na het importeren van de barcode scnner als dependency is het gebruik ervan analoog met de variant in PowerApps.
+\begin{enumerate}
+    \item Een knop toevoegen bij de Text Input horend bij de kolom waar de later ingescande waarde ingevuld zal worden. Dit is in de Form widget op het detailscherm.
+    \item Een Client actie declareren op het On Click event die 'ScanBarCode' oproept en de 'ScanResult' parameter aan een variabele koppelt.
+    \item Deze variabele instellen als inhoud van de doel Text Input (MAC of SERIAL).
+\end{enumerate}
+
+Bij de uitwerking werden snel problemen vastgesteld. Omdat de POC een Reactive Web app is zijn de nodige Apache Cordova componenten niet beschikbaar. Dit is beperkt tot een Mobile app en de POC zou als dusdanig moeten herschreven worden om de Barcode Scanner effectief te kunnen gebruiken.
+
 \subsubsection{AI functionaliteit}
+
+Geen enkele van de opgestelde requirements heeft AI nodig. Dit werd niet verder onderzocht.
+
+% TODO: extra uitleg tov wat in requirementsanalyse staat.
