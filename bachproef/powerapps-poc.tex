@@ -14,6 +14,7 @@
 % TODO: kleine inleiding
 
 \section{Voorbereiding}
+\label{sec:voorbereiding-pa}
 
 De POC is gemaakt in de cloud omgeving van PowerApps met de Office365 licentie van HoGent en AZ Glorieux. De beperkte mogelijkheden van deze licenties werden omzeild door gebruik van het Community Plan dat alle functionaliteitsrestricties opheft in een persoonlijke ontwikkelomgeving. Concreet beperkt de Office365 licentie uitbreidingen en toegang tot lokale resources. Eigen geschreven logica is mogelijk via custom connectors, deze moeten gehost of op z'n minst gedeclareerd zijn in Microsoft Azure. Dankzij het Azure Student plan via HoGent werd de nodige cloud capaciteit verschaft.
 
@@ -52,26 +53,25 @@ Deze data wordt in de app gevisualiseerd  aan de hand van Gallerijen en formulie
 
 Dit is niet zo speciaal maar het is inbegrepen omdat het een fundamenteel deel is van app configuratie in PowerApps.
 
-Voor de meeste connectors wordt data ingelezen als Table. Als dit niet mogelijk is worden API calls gebruikt. Een sterk punt is dat in geval van relationele data de nodige joins automatisch gedaan worden. [bron-yt-pres]\\
+Voor de meeste connectors wordt data ingelezen als Table. Als dit niet mogelijk is worden API calls gebruikt. Een sterk punt is dat in geval van relationele data de nodige joins automatisch gedaan worden. \autocite{Lindhorst2018}\\
 Naast Tables zijn er uiteraard variabelen. Deze kunnen een globale context of context per scherm hebben en worden impliciet gedeclareerd.
 
 \section{SharePoint Configuratie}
+\label{sec:sharepoint}
 
 % TODO
 
 \section{Model van Opstelling}
 
-% TODO
+% TODO: afbeedlingen
 
-Overzichtscherm
-detailscherm
-editscherm
+Overzichtscherm $\leftrightarrow$ Detailscherm $\leftrightarrow$ Editscherm
 
 \section{Requirements}
 
 \subsubsection{Prijs}
 
-Tijdens het maken van de POC werd gevonden dat de enige requirements die niet uitgewerkt kunnen worden met het de bestaande licentie het complex filteren en rapportage is (Custom Connector nodig). Indien er niet vanaf gedaan kan worden is er een aanvullend stand alone plan mogelijk. Dit houd in dat individuele gebruikers applicaties (2 apps en één portal) zonder functionaliteit beperkingen kunnen uitvoeren voor \euro 8.40 per maand. [bron] Deze app wordt door vier personen op de helpdesk gebruikt, dat brengt het totaal op \euro 33.60.
+Tijdens het maken van de POC werd gevonden dat de enige requirements die niet uitgewerkt kunnen worden met het de bestaande licentie het complex filteren en rapportage is (Custom Connector nodig). Indien er niet vanaf gedaan kan worden is er een aanvullend stand alone plan mogelijk. Dit houd in dat individuele gebruikers applicaties (2 apps en één portal) zonder functionaliteit beperkingen kunnen uitvoeren voor \euro 8.40 per maand\footnote{\url{https://powerapps.microsoft.com/en-us/pricing/}}. Deze app wordt door vier personen op de helpdesk gebruikt, dat brengt het totaal op \euro 33.60.
 
 \begin{table}[h!]
     \begin{tabular}{|l|c|c|}
@@ -85,9 +85,9 @@ Tijdens het maken van de POC werd gevonden dat de enige requirements die niet ui
 
 \subsubsection{Overzicht kunnen geven van belangrijkste info voor elk toestel in het netwerk}
 
-Zoals reeds besproken in [link] kan deze functionaliteit automatisch gegenereerd worden. Ook al is er voor tablet layout gekozen is het aantal realistisch weer te geven velden in het overzichtscherm beperkt en werden de netwerknaam, omschrijving en dienst geselecteerd. Visuele indicatie van status was belangrijk in LanReview maar in plaats van de hele tekst van een rij in te kleuren is gekozen voor een gekleurd bolletje aan het hoofd van elke rij.\\
+Zoals reeds besproken in Sectie~\ref{sec:voorbereiding-pa} kan deze functionaliteit automatisch gegenereerd worden. Ook al is er voor tablet layout gekozen is het aantal realistisch weer te geven velden in het overzichtscherm beperkt en werden de netwerknaam, omschrijving en dienst geselecteerd. Visuele indicatie van status was belangrijk in LanReview maar in plaats van de hele tekst van een rij in te kleuren is gekozen voor een gekleurd bolletje aan het hoofd van elke rij.\\
 Data wordt aan de serverkant door SharePoint gevalideerd, het resultaat van deze validatie wordt getoond in de app zelf en dit is aangevuld met beperkte client side validatie. Dit komt neer op het aanwezig moeten zijn van de netwerknaam, het mac-adres en device serial. In het detail- en edit scherm worden respectievelijk detailform en editform controls gebruikt. elk veld hierin wordt voorgesteld door een data card. Het is de 'required' eingenschap van een data-card die uitwijst of een veld ingevuld moet zijn.
-% TODO: extra uitleg data cards
+% TODO: extra uitleg data cards + afb data card?
 
 De flow van deze requirement wordt duidelijk aan de hand van het overzicht van navigaties tussen de schermen:\\
 \begin{table}[h!]
@@ -104,7 +104,19 @@ De flow van deze requirement wordt duidelijk aan de hand van het overzicht van n
     \label{tab:app-flow}
 \end{table}
 
-[[afb hoofdscherm][afb detailscherm]] % opm: data card moet zichtbaar zijn
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{\linewidth}
+        \includegraphics[width=\linewidth]{hoofdscherm-pa.JPG}
+        \caption{Hoofdscherm}
+    \end{subfigure}
+    \begin{subfigure}[b]{\linewidth}
+        \includegraphics[width=\linewidth]{detailscherm-pa.JPG}
+        \caption{Detailscherm}
+    \end{subfigure}
+    % \caption{overkoepelende caption}
+    \label{fig:hoofd-detail-pa}
+\end{figure}
 
 \subsubsection{Filtering / rapportage}
 
@@ -123,7 +135,7 @@ Filter(Tabel1_1; MODEL = `HP COOLBOOK` && OS = `Windows 10`)
 \end{lstlisting}
 
 Dit oogt statisch. In LanReview is het mogelijk de kolom, operator en de filterwaarde in te stellen. Bovendien kunnen meerdere condities aaneengeschakeld worden.
-Een gelijkaardige manier om filter data te verschaffen in PowerApps is door een gallerij te gebruiken waarbij elke rij een dropdown heeft voor te filteren kolom, een dropdown voor her nodige vergelijkingsteken en een tekstveld aan te passen zijn. ELke keer men een conditie toevoegt wordt deze data opgeslagen als rij in een Tabel.
+Een gelijkaardige manier om filter data te verschaffen in PowerApps is door een gallerij te gebruiken waarbij elke rij een dropdown heeft voor te filteren kolom, een dropdown voor her nodige vergelijkingsteken en een tekstveld aan te passen zijn. Elke keer men een conditie toevoegt wordt deze data opgeslagen als rij in een Tabel.
 
 % TODO: meer over de fitler werking in LanReview, filter doel
 
@@ -135,17 +147,17 @@ Wat nu met mogelijkheden om de filter effectief uit te voeren? Er zijn een aanta
     \textbf{$\rightarrow$ NEE}
     \item Via een Power Automate flow
     \begin{itemize}
-        \item Filteractie `Een lijst maken met rijen in een tabel` (ODATA filter-query)[voetnoot]\\ 
+        \item Filteractie `Een lijst maken met rijen in een tabel` (ODATA filter-query)\footnote{Filtering uitgelegd onder 'System Query Option \$filter' \url{http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part2-url-conventions/odata-v4.0-errata03-os-part2-url-conventions-complete.html}}\\ 
             \textit{Wel:}  query kan als argument worden meegegeven.\\
             \textit{Niet:} 'and' operaties zijn niet ondersteund
-         \item Filteractie `Matrix filteren` (flow expressie)[voetnoot]\\
+         \item Filteractie `Matrix filteren` (flow expressie)\footnote{\url{https://docs.microsoft.com/en-us/power-automate/use-expressions-in-conditions}}\\
             \textit{Wel:} 'and' operaties zijn ondersteund\\
             \textit{Niet:} query kan niet als argument worden meegegeven.
     \end{itemize}
     \textbf{$\rightarrow$ NEE}
     \item Door gebruik van een Custom Connector.\\
     \textbf{$\rightarrow$ Ja}
-    [zie deel custom connector]
+    (zie Sectie~\ref{sec:custom-connector})
 \end{enumerate}
 
 Ter verduidelijking: een samengestelde query in zowel ODATA als flow expressie:
@@ -154,7 +166,7 @@ Ter verduidelijking: een samengestelde query in zowel ODATA als flow expressie:
     \item \textbf{flow expressie:} \lstinline|@and(equals(item()?['NETWNAAM'], 'GLRDT00001'),equals(item()?['IP'], '192.168.1.1'))|
 \end{itemize}
 
-Dit beoogde soort filtering is overigens out of the box aanwezig in model based apps. [bron model filter]
+Dit beoogde soort filtering is overigens out of the box aanwezig in model based apps. \autocite{MicrosoftDocs2020c}
 
 Als het dynamische aspect van filtering opgegeven wordt is het nog steeds mogelijk om 'statisch' te werken. Daarmee bedoeld een aantal voorgebouwde queries, voor gangbare scenario's zoals ze bestaat in LanReview zijn zonder problemen op te nemen in PowerApps.
 
@@ -163,12 +175,13 @@ Als het dynamische aspect van filtering opgegeven wordt is het nog steeds mogeli
 Het is niet mogelijk om data met een Power App lokaal op te slaan. De workaround is om de resultaten weg te schrijven naar een Excel in OneDrive dat specifiek dient voor reporting.
 
 \subsubsection{Remote Desktop/Ping}
+\label{subsec:rdp-ping}
 
 Dit stelt een probleem. In LanReview is ht mogelijk te rechtsklikken op een item en een remote desktop sessie te beginnen of een eenvoudige ping uit te voeren. Achter de schermen wordt dit als met de command prompt uitgevoerd. In Powerapps ishet om te beginnen niet mogelijk om te rechtsklikken. Custom code uitvoering is standaard niet ondersteund. Zelf een custom connector bied hier geen oplossing omdat de app in de cloud leeft en aan serverzijde uitvoeren van RDP of ping heeft geen nut. Er is een workaround nodig.
 
 PowerApps heeft een SaveData() methode om lokaal data op te slaan. Een typisch scenario is dat er geen internet is, app bewerkingen kunnen tijdelijk lokaal opgeslagen worden om definitief uit te werken als gedetecteerd wordt dat er terug internetverbinding is. Een eerste logische beperking is dat de SavaData() niet benaderbaar is buiten PowerApps, een tweede beperking is dat deze functionaliteit niet moglijk is wanneer de app in een webbrowser en niet in een smartphone/tablet gebruikt wordt. Het idee om een ip adres naar een configuratiebestand weg te schrijven om dan buiten de PowerApp te gebruiken om naar een pc te RDP'en of pingen stopt hier.
 
-Het is mogelijk om een data-gatway op te zetten. Dit zorgt voor een verbinding met on premises data. Dit stelt een actie beschikbaar in Power Automate waarmee een bsetand lokaal aangemaakt kan worden. Via een workaround kan er PowerShell mee uitgevoerd worden. [bron]\\
+Het is mogelijk om een data-gatway op te zetten. Dit zorgt voor een verbinding met on premises data. Dit stelt een actie beschikbaar in Power Automate waarmee een bsetand lokaal aangemaakt kan worden. Via een workaround kan er PowerShell mee uitgevoerd worden. \autocite{Luca2017}\\
 Hier is niet voor gekozen om deze redenen: extra kosten, resource gebruik en configuratie voor een in verhouding kleine use case. Bovendien zou de data gateway ingesteld moeten worden op een gedeelde locatie, anders zou deze data-gateway op de pc van elke powerApp gerbuiker moeten staan.
 
 Een deel van het hierboven staande is bruikbaar, namelijk het idee om het ip adres van de te pingen/rdp'en toestel voor te bereiden op een pc lokaal zadat de laatste stap manueel uitgevoerd kan worden. Dit moet in een bestandsformaat zijn waar Power Apps vlot mee overweg kan. Excel is een optie.
@@ -186,7 +199,7 @@ OnSelect => Patch(iptable;First(Filter(iptable;user = Gebruiker));{ ip: Selected
 \end{lstlisting}
     De formule gekoppeld aan 'OnStart' haalt haalt de volledige naam van de ingelogde PowerApps gebruiker op en plitst deze waarna enkel het eerste resultaat wordt opgeslaan als 'Gebruiker' variabele.\\
     De formule gekoppeld aan het 'OnSelect' property haalt het ip adres uit het detailformulier op en schrijft het weg naar de Excel tabel 'iptable' onder de kolom met de matchende gerbuikersnaam.
-    \item Lokaal kan nu een script uitgevoerd worden dat dit excel bestand inleest en het relevante commando uitvoert (keuze hiervan hangt af van de overeenkomende snelkoppeling). [bron github]
+    \item Lokaal kan nu een script uitgevoerd worden dat dit excel bestand inleest en het relevante commando uitvoert (keuze hiervan hangt af van de overeenkomende snelkoppeling).
 \begin{lstlisting}[style=powershellStyle]
 $excelpad = "C:\Users\Thomas\OneDrive - Hogeschool Gent\rdpping_ips.xlsx"
 $iptable = Import-Excel -Path $excelpad
@@ -200,7 +213,7 @@ Start-Process "$env:windir\system32\mstsc.exe" -ArgumentList "/v:$ip"
 // extra commando
 }
 \end{lstlisting}
-    Het 'import-excel' commando is mogelijk met de module .. [bron]\\
+    Het 'import-excel' commando is mogelijk met de ImportExcel module\footnote{\url{https://github.com/dfinke/ImportExcel}}\\
     Voor het gemak wordt de utivoering van het nodige commando gedaan via een snelkoppeling, de verwijzingen zijn:
 \begin{lstlisting}
 ping => C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoExit -command "& 'H:\Documenten_TOSH\HoGent_Docs\2019-2020\Batchelorproef\C# apps\localtools.ps1' -commando ping"
@@ -219,17 +232,23 @@ Om deze reden werd er een versie van de app gemaakt specifiek voor mobiel gebrui
 
 \subsubsection{Future proof zijn}
 
-Gartner [bron] stelde dat klanten de licencing van producten in het Power platform verwarrend vonden. Hierboven komt dat deze licencing onderhevig kan zijn aan verrandering [bron-voorstel].\\
-Microsoft is een sterke aanwezigheid maar hetzelfde kan niet altijd egzegd worden over hun aangboden producten [bron-zdnet]
-De low code markt is nog steeds turbulent volgens het eerder aangehaalde report.
-Als gekeken wordt naar de cyclische aard van low-code en de voorgangers beschouwd worden (vb, )[bron] stelt de vraag zich of low-code vroeg of laat ook voorbij gestreefd zal worden?
+Zowel \textcite{Rymer2019} als \textcite{Vincent2019} stelden dat klanten de licencing van producten in het Power platform verwarrend vonden. Hierboven komt dat deze licencing onderhevig kan zijn aan verrandering \autocite{Pohl2019}.\\
+Microsoft is een sterke aanwezigheid maar hetzelfde kan niet altijd egzegd worden over hun aangboden producten \autocite{Bott2018}\\
+De low code markt is nog steeds turbulent volgens het eerder aangehaalde reports.
+Als gekeken wordt naar de cyclische aard van low-code en de voorgangers beschouwd worden (vb, COBOL, 4GL, RAD ) stelt de vraag zich of low-code vroeg of laat ook voorbij gestreefd zal worden? \autocite{Reselman2018}
 
 \subsubsection{Performant zijn}
 
-Een cloud applicatie die een lijst gebruikt in SharePoint of een Excel file in OneDrive zal niet even performant zijn als een lokale applicatie die een lokale access databank gebruikt. Er zijn echter een aantal technieken om data operaties te optimaliseren. []
-Er is nodige inefficientie geintroduceerd in de app door gebruik van workarounds, bijvoorbeeld (sectie rdp/ping)
-Er is kritiek dat gegenereerde code niet even geoptimaliseerd kan zijn als specifiek geschreven code. [bron]
-Een belangrijke aanpassing die gemaakt moet worden is om de app 2000 kolommen op te laten halen in plaats van de standaard ingestelde 500. Er zijn meer dan 1000 toestellen en zoek en filteroperaties zouden anders maar op de eerste 500 toegepast worden. [afb-setting]
+Een cloud applicatie die een lijst gebruikt in SharePoint of een Excel file in OneDrive zal niet even performant zijn als een lokale applicatie die een lokale access databank gebruikt. Er zijn echter een aantal technieken om data operaties te optimaliseren zoals data voorladen met 'ClearCollect', calls parallell uitvoeren met 'ConcurrentCall' en laden van data voor niet zichtbare UI controls uitstellen met de 'Delayed Load' optie. \autocite{Andaloussi2018}\\
+Er is nodige inefficientie geintroduceerd in de app door gebruik van workarounds, bijvoorbeeld (subsectie~\ref{subsec:rdp-ping})\\
+Er is kritiek dat gegenereerde code niet even geoptimaliseerd kan zijn als specifiek geschreven code. \autocite{Shiah2018}\\
+Een belangrijke aanpassing die gemaakt moet worden is om de app 2000 kolommen op te laten halen in plaats van de standaard ingestelde 500. Er zijn meer dan 1000 toestellen en zoek en filteroperaties zouden anders maar op de eerste 500 toegepast worden.
+
+\begin{figure}[h!]
+    \includegraphics[width=0.7\linewidth]{2000-rows.JPG}
+    \caption{Instelling voor aantal op te halen rijen}
+    \label{fig:2000-rows}
+\end{figure}
 
 \subsubsection{Security}
 
@@ -238,9 +257,15 @@ Een belangrijke aanpassing die gemaakt moet worden is om de app 2000 kolommen op
 \subsubsection{Gerichte/basis taken kunnen automatiseren}
 
 De belangrijkste case hiervoor is dat er een wekelijks overzicht met toestellen moet rondegstuurd worden die langer dan een maand de status 'te schrappen' gekregen hebben, gekenmerkd door een 'KLEUR' veld met waarde 'BLAUW'. Een toestel krijgt de 'te schrappen' status wanneer ze verwijderd/vervangen worden uit de actieve omgeving en in opslag worden geplaatst. Het is dan de gewoonte om een maand te wachten voor een toestel effectief verwijdert wordt (in geval van ontbrekende data of een functioneel probleem in de nieuwe oplossing).\\
-Dit is als flow geimplementeerd:
-[afb-flow-sp-uitgebreid]
-er is ook een flow utigewerkt met excel als databron. Het verschil is dat een datum wordt teruggegeven als integer en dat enkele formules aangepast moeten worden om hier mee om te gaan. 
+Dit is als flow geimplementeerd, zie afbeelding~\ref{fig:recurrent-flow-excel}
+
+\begin{figure}[h!]
+    \includegraphics[width=0.7\linewidth]{afb-herhaalde-flow.JPG}
+    \caption{Recurrente flow}
+    \label{fig:recurrent-flow-excel}
+\end{figure}
+
+Er is ook een flow utigewerkt met excel als databron. Het verschil is dat een datum wordt teruggegeven als integer en dat enkele formules aangepast moeten worden om hier mee om te gaan. 
 [afb-flow-excel-beknopt]
 
 \begin{enumerate}
@@ -251,15 +276,19 @@ er is ook een flow utigewerkt met excel als databron. Het verschil is dat een da
 SharePoint => @and(equals(item()?['b0et']?['Value'], 'BLAUW'), if(not(empty(item()?['SCHRAPDATUM'])), lessOrEquals(item()?['SCHRAPDATUM'], addDays(utcNow(), -31)), false))
 Excel => @and(equals(item()?['KLEUR'], 'BLAUW'), if(not(empty(item()?['SCHRAPSINDS'])), lessOrEquals(addDays('1899-12-30', int(item()?['SCHRAPSINDS'])), addDays(utcNow(), -31)), false))
 \end{lstlisting}
-    Excel geeft datums terug als integers van het aantal dagen sinds 1900. Als dit toegevoegd wordt aan '1899-12-30' is de correcte datum terug opgesteld en kan dit vergeleken worden met de huidige datum \lstinline|utcNow()|. Dit werd besproken op Stackoverflow [voetnoot]
+    Excel geeft datums terug als integers van het aantal dagen sinds 1900. Als dit toegevoegd wordt aan '1899-12-30' is de correcte datum terug opgesteld en kan dit vergeleken worden met de huidige datum \lstinline|utcNow()|. Dit werd besproken in de PowerApps forums\footnote{\url{https://powerusers.microsoft.com/t5/Building-Flows/Excel-Online-Date/td-p/134200}}
     \item \textbf{Selecteren:} De in de mai te gebruiken kolommen uit het resultaat van de filter halen. Zo kunnen ze gebruikt worden in de volgende stap.
     \item \textbf{HTML-tabel maken:} Het resultaat van de vorige stap wordt als argument opgegeven. Er wordt een html tabel opgesteld.
     \item \textbf{Een e-mail verzenden (V2):} Het reele adres zal dat van de helpdesk zijn. In de body van de mail kan de HTML-tabel ingevoegd worden.
 \end{enumerate}
 
-Het resultaat is dat iedereen op de helpdesk automatisch een mail met het overzicht. Een voorbeeld hiervan:
+Het resultaat is dat iedereen op de helpdesk automatisch een mail met het overzicht. Figuur~\ref{fig:flow-result}
 
-[afb-mail]
+\begin{figure}[h!]
+    \includegraphics[width=0.7\linewidth]{flow-result.JPG}
+    \caption{Een voorbeeld van de mail.}
+    \label{fig:flow-result}
+\end{figure}
 
 % TODO: extra cases
 
@@ -276,7 +305,7 @@ Requirements die met SharePoint te maken hebben zijn:
     \item Revisie van elk dataveld per toesteltype
     \item Data opslaan in SharePoint (cloud)
 \end{itemize}
-Deze worden besproken in [sectie sharepoint]
+Deze worden besproken in Sectie~\ref{sec:sharepoint}
 
 \subsubsection{Leercurve moet degelijk zijn}
 \textit{(Dit deel is gebaseerd op persoonlijke ervaringen van de auteur)}
@@ -291,8 +320,8 @@ Als een case out of the box ondersteund is op powerapps zal een business gebruik
 
 \subsubsection{Samenwerken met SCCM en/of synchroniseren met en data uit de SQL databank kunnen gebruiken}
 
-Dit werd niet geimplementeerd maar er is wel een mogelijke oplossing voor gevonden [bron]\\
-In essentie gaat het om een script dat volgens een tijdschema uitgevoerd wordt op de SCCM server dat sccm-cmdlets gebruikt om asset data op te vragen die weggeschreven worden naar een SharePoint omgeving.
+Dit werd niet geimplementeerd maar er is wel een mogelijke oplossing voor gevonden.
+In essentie gaat het om een script dat volgens een tijdschema uitgevoerd wordt op de SCCM server dat sccm-cmdlets gebruikt om asset data op te vragen die weggeschreven worden naar een SharePoint omgeving.\autocite{Ziehnert2020}
 
 % TODO: meer utileg over script in bron
 
@@ -334,6 +363,7 @@ Een eenvoudige voorbeeldcase die zo'n connector gebruikt (bijvoorbeeld Azure Com
 % TODO: ndoige connector acties invoegen
 
 \section{Custom Connector}
+\label{sec:custom-connector}
 
 Een Custom Connector is de enige optie om code of een niet ondersteunde databron te introduceren in PowerApps. Er zijn twee varianten onderzocht:
 \begin{itemize}
