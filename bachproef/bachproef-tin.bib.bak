@@ -485,4 +485,60 @@
   urldate = {2020-04-18},
 }
 
+@Online{Marvin2017b,
+  author  = {Rob Marvin},
+  date    = {2017-06-12},
+  title   = {Salesforce App Cloud Review},
+  url     = {https://www.pcmag.com/reviews/salesforce-app-cloud},
+  urldate = {2020-04-18},
+}
+
+@Online{Lindhorst2018,
+  author  = {Greg Lindhorst},
+  date    = {2018-05-09},
+  title   = {Advanced app building with PowerApps expressions and rules (Build 2018)},
+  url     = {https://www.youtube.com/watch?v=qRpD1w6gMPk},
+  urldate = {2020-05-18},
+}
+
+@Online{MicrosoftDocs2020c,
+  author  = {{Microsoft Docs}},
+  date    = {2020-04-02},
+  title   = {Create or edit filters in model-driven app views},
+  url     = {https://docs.microsoft.com/en-us/powerapps/maker/model-driven-apps/create-edit-view-filters},
+  urldate = {2020-05-18},
+}
+
+@Online{Luca2017,
+  author  = {Serge Luca},
+  date    = {2017-12-01},
+  title   = {Upload and run an On Premises PowerShell script from Microsoft Flow},
+  url     = {https://sergeluca.wordpress.com/2017/12/01/upload-and-run-a-remote-powershell-script-from-microsoft-flow/},
+  urldate = {2020-05-18},
+}
+
+@Online{Bott2018,
+  author  = {Ed Bott},
+  date    = {2018-04-09},
+  title   = {In Memoriam: All the consumer products Microsoft has killed off},
+  url     = {https://www.zdnet.com/pictures/in-memoriam-all-the-consumer-products-microsoft-has-killed-off/},
+  urldate = {2020-05-18},
+}
+
+@Online{Andaloussi2018,
+  author  = {Mehdi Slaoui Andaloussi},
+  date    = {2018-01-18},
+  title   = {Performance considerations with PowerApps},
+  url     = {https://powerapps.microsoft.com/en-us/blog/performance-considerations-with-powerapps/},
+  urldate = {2020-05-18},
+}
+
+@Online{Ziehnert2020,
+  author  = {Nathan Ziehnert},
+  date    = {2020-01-28},
+  title   = {Building PowerApps for ConfigMgr - The Frugal Way (Part 1)},
+  url     = {https://z-nerd.com/blog/2020/01/27-building-powerapps-for-configmgr-the-frugal-way/},
+  urldate = {2020-05-18},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
