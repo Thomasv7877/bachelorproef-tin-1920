@@ -16,10 +16,10 @@
 \section{Requirementsanalyse}
 
 
-De bedoeling van deze analyse is uitvinden hoe goed Power Apps voldoet aan de requirements en mogelijk ontdekken of er een alternatief bestaat dat overwogen kan worden. Als PowerApps in de toekomst effectief gebruikt zal worden, voornamelijk door het IT en Helpdesk team, is het dan niet logisch om dit alternatief te laten conformeren aan de bedoelde eindgebruiker, zijnde professionele IT'ers? Dit idee zal mee spelen bij de besluitvorming.
+De bedoeling van deze analyse is uitvinden hoe goed Power Apps voldoet aan de requirements en mogelijks ontdekken of er een alternatief bestaat dat overwogen kan worden. Als PowerApps in de toekomst effectief gebruikt zal worden, voornamelijk door het IT en Helpdesk team, is het dan niet logisch om dit alternatief te laten conformeren aan de bedoelde eindgebruiker, zijnde professionele IT'ers? Dit idee zal mee spelen bij de besluitvorming.
 
 \subsection{Functioneel VS Niet-functioneel}
-De requirements werden opgesteld tijdens herhaalde gesprekken met zowel Siemen als een lid van het Helpdesk team dat de app effectief zou gaan gebruiken.
+De requirements werden opgesteld tijdens herhaalde gesprekken met zowel de co-promotor als een lid van het Helpdesk team dat de app effectief zou gaan gebruiken.
 De resultaten zijn hieronder opgesplitst in functionele-\footnote{Functionele requirement: gewenst gedrag ven het systeem} en niet-functionele\footnote{Niet-functionele requirement: kwaliteitseis waaraan het systeem moet voldoen} requirements.
 
 \begin{itemize}
@@ -60,7 +60,7 @@ De volgende stap is prioriteiten stellen onder de requirements. Hiervoor wordt d
 \begin{itemize}
     \item \textbf{\colorbox{green}{Must have}}
     \begin{itemize}
-        \item Prijs.
+        \item Geen of beperkte meerprijs.
         \item Overzicht kunnen geven van belangrijkste info voor elk toestel in het netwerk.
         \item Rapporten kunnen genereren.
         \item PC's bedienen vanop afstand (Remote Desktop Protocol kunnen oproepen).
@@ -72,7 +72,8 @@ De volgende stap is prioriteiten stellen onder de requirements. Hiervoor wordt d
     \end{itemize}
     \item \textbf{\colorbox{yellow}{Should have}}
     \begin{itemize}
-        \item Gerichte/basis taken kunnen automatiseren.
+        \item Gerichte/basis taken kunnen automatiseren.\\
+        \textit{(Specifieke case: Een wekelijks rapport opstellen en rondmailen.)}
         \item Bruikbaar zijn buiten het domein.
         \item Nieuwe types toestellen opnemen.
         \item Randapparatuur opnemen.
@@ -146,20 +147,19 @@ Gemaakte stellingen zijn afkomstig uit PCmagazine.com reviews van elk platform e
 
 \subsubsection{Microsoft}
 
-Deel van het Power platform. Het bestaat sinds 2016 en is daarmee het jongste platform in de vergelijking maar heeft een snelle ontwikkeling ondergaan en is op slechts enkele jaren tijd een marktleider geworden.
+Power Apps is deel van het Power platform (zie afbeelding~\ref{fig:mspowerplatform}). Het bestaat sinds 2016 en is daarmee het jongste platform in de vergelijking maar heeft een snelle ontwikkeling ondergaan en is op slechts enkele jaren tijd een marktleider geworden.
 
 Werd diepgaand behandeld in de Stand van Zaken. (specifiek in sectie~\ref{sec:power-platform}). Een kort overzicht:
 
 Gefocust op business users.
-Apps worden gebouwd met de Power Apps Studio in de cloud. Deze omgeving is volledig grafisch, er is geen code editing. Uitbreidingang kunnen enkel ingevoegd worden via Azure Functions of Azure web apps en worden geschreven in .NET. Logica is gedeclareerd met een Excel-achtige formule taal. Er is een grote catalogus aan connectors naar externe service of data opslag. Verbinding maken met SharePoint data is eenvoudig met de Connector ervoor. Automatisatie is mogelijk via Power Automate waarin geautomatiseerde stromen van aaneengeschakelde acties geconfigureerd kunnen worden. AI werd recent geïntroduceerd, dit component heet AI Builder, naast zelf trainen van gangbare modellen biedt Microsoft enkele voorgetrainde aan. Nog in bèta is het testing framework genaamd UI Test Studio. Power Apps zijn gefocust op interne business gebruikers, voor externe bestaat er Portals. De leercurve is hoger dan van de concurrentie maar beschikbare documentatie en tutorials zijn talrijk en volwassen. Performance en vooral database performantie is lager dan van de concurrentie, er staat ook een limiet op het aantal rijen dat per keer opgehaald kan worden (500). Microsoft toont toewijding aan het platform door constante ontwikkeling maar sommige licentiewijzigingen zijn minder goed ontvangen.
-Security: % TODO: security aanvullen + bron met ()kritiek op) licentiewijziging
-
+Apps worden gebouwd met de Power Apps Studio in de cloud. Deze omgeving is volledig grafisch, er is geen code editing. Uitbreidingang kunnen enkel ingevoegd worden via Azure Functions of Azure web apps en worden geschreven in .NET. Logica is gedeclareerd met een Excel-achtige formule taal. Er is een grote catalogus aan connectors naar externe service of data opslag. Verbinding maken met SharePoint data is eenvoudig met de Connector ervoor. Automatisatie is mogelijk via Power Automate waarin geautomatiseerde stromen van aaneengeschakelde acties geconfigureerd kunnen worden. AI werd recent geïntroduceerd, dit component heet AI Builder, naast zelf trainen van gangbare modellen biedt Microsoft enkele voorgetrainde aan. Nog in bèta is het testing framework genaamd UI Test Studio. Power Apps zijn gefocust op interne business gebruikers, voor externe bestaat er Portals. De leercurve is hoger dan van de concurrentie maar beschikbare documentatie en tutorials zijn talrijk en matuur. Performantie en vooral database performantie is lager dan van de concurrentie, er staat ook een limiet op het aantal rijen dat per keer opgehaald kan worden (500). Microsoft toont toewijding aan het platform door constante ontwikkeling maar sommige licentiewijzigingen zijn minder goed ontvangen.
+% TODO: security aanvullen + bron met ()kritiek op) licentiewijziging
 
 \begin{itemize}
     \item \textbf{Forrester}
     \begin{itemize}
         \item \textit{Positief:} Maturiteit bereikt, krachtige features en grote catalogus aan integratie adapters.
-        \item \textit{Negatief:} Verwarrend product aanbod en licentiëring.
+        \item \textit{Negatief:} Verwarrend product aanbod en licentiëring. Voor elk product van het Power platform is bijvoorbeeld een aparte licentie nodig.
     \end{itemize}
     \item \textbf{Gartner}
     \begin{itemize}
@@ -191,11 +191,11 @@ Security: % TODO: security aanvullen + bron met ()kritiek op) licentiewijziging
 
 Outsystems werd opgericht in Lissabon in 2001, zit momenteel in 11 landen en telt 1228 medewerkers.
 
-Er is een focus op professionele ontwikkelaars, het is gemakkelijker om met code te werken. Het is mogelijk om op elk moment te switchen van de grafische omgeving naar de code editor. Iets anders dat dit professioneel aspect ondersteund is dat de IDE (genaamd Service Studio) offline geïnstalleerd dient te worden .De layout ervan komt sterk overeen met die van PowerApps en Mendix. Andere grote onderdelen zijn de Forge (respository voor gebruikersgemaakte apps en plug-ins) en de Integration Studio waar extensions geschreven worden.\\
+Er is een focus op professionele ontwikkelaars, het is gemakkelijker om met code te werken. Het is mogelijk om op elk moment te switchen van de grafische omgeving naar de code editor. Iets anders dat dit professioneel aspect ondersteund is dat de IDE (genaamd Service Studio) offline geïnstalleerd dient te worden. De layout ervan komt sterk overeen met die van PowerApps en Mendix. Andere grote onderdelen zijn de Forge (respository voor gebruikersgemaakte apps en plug-ins) en de Integration Studio waar extensions geschreven worden.\\
 Een nadeel van de technische focus is dat er geen volledig cloud no-code omgeving aanwezig is. Een ander nadeel is de hogere leercurve maar er is een uitgebreid aanbod van documentatie, tutorials online cursussen en webinars aanwezig in de OutSystems University om hiermee om te gaan.\\
 Het platform is gebouwd in .NET. Bouwen van mobiele of webapplicaties is ondersteund maar er moet gekozen worden tussen de twee.\\
 Een app is gestructureerd in modules: mobile (of web), service, library en extension modules. Dit om hergebruik aan te moedigen.\\
-Automatisatie functionaliteit is beperkt tot Timers. Het is enkel mogelijk om bepaalde acties op een tijdschema uit te voeren. Wat AI betreft zijn er connectors naar Azure Luis en Azure ML. Inhuis voorziet Outsystems.AI taal analyse componenten (sleutelzin detectie, gevoelsanalyse).\\
+Automatisatie functionaliteit is beperkt tot Timers. Het is enkel mogelijk om bepaalde acties op een tijdschema uit te voeren. Wat AI betreft zijn er connectors naar Azure Luis en Azure ML. Inhuis voorziet het Outsystems.AI programma taal analyse componenten (sleutelzin detectie, gevoelsanalyse).\\
 UI design is minder geavanceerd dan bij de concurrentie en er is meer werk nodig om het gewenst resultaat te krijgen.\\
 SharePoint gebruik is enkel mogelijk via de REST API. Dit is een grote beperking ten opzichte van Power Apps, waar het een standaard Connector is.\\
 Het platform is veilig en voldoet aan volgende certifieeringen: % TODO
@@ -206,7 +206,7 @@ Om gerust te stellen voor vendor lock-in\footnote{Gedwongen een product of servi
     \item \textbf{Forrester}
     \begin{itemize}
         \item \textit{Positief:} Krachtigste aanbod van features en consistent met introduceren van nieuwe features. Globale aanwezigheid.
-        \item \textit{Negatief:} Weinig zwakten. Soms manuele code nodig voor integratie. Complex prijsmodel dat potentiële klanten kan afschrikken.
+        \item \textit{Negatief:} Soms manuele code nodig voor integratie. Complex prijsmodel dat potentiële klanten kan afschrikken.
     \end{itemize}
     \item \textbf{Gartner}
     \begin{itemize}
@@ -239,14 +239,14 @@ Om gerust te stellen voor vendor lock-in\footnote{Gedwongen een product of servi
 
 Mendix werd opgericht in Nederland in 2005, werd in 2018 overgenomen door Siemens voor 730 miljoen dollar. Er zijn enkele grote partnerships aangegaan, onder andere met SAP die Mendix resellt als het SQL Cloud Platform.
 
-Net als bij Outsystems is de doelgroep eerder professionele ontwikkelaars. Er is zowel een volledige no-code cloud omgeving aanwezig (Mendix Studio) als een uitgebreidere variant (Mendix Studio Pro) die offline geïnstalleerd moet worden, gericht op developers. Het coderen gaat met Java.\\
+Net als bij Outsystems is de doelgroep eerder professionele ontwikkelaars. Er is zowel een volledige no-code cloud omgeving aanwezig (Mendix Studio) als een uitgebreidere variant (Mendix Studio Pro) die offline geïnstalleerd moet worden, eerder gericht op developers, aan wie het dan mogelijk gemaakt wordt om te coderen in Java.\\
 Er is een groot aanbod aan voorgebouwde templates en componenten die Microsoft en Outsystems evenaren.
 De UI filosofie is om te starten met design en wireframes, dan het model te maken met logica en workflows die in dat model passen. De apps zijn responsief. Het scherm wordt automatisch aangepast tussen smartphone, tablet of desktop views.\\
 Database integratie is beter dan bij Outsystems. Database wijzigingen worden automatisch herkend in de app, bij Outsystems is dit niet het geval. Specifiek naar SharePoint toe is verbinding net als bij Outsystems beperkt tot een REST API.\\
 App creatie is algemeen gezien gestroomlijnder dan bij Outsystems. Er kan na afloop gedeployed worden naar verschillende cloud omgevingen. % TODO: info over containerisatie
 App aanpassingen zijn eenvoudig (versionering is voorzien) maar voor elke nieuwe versie van het platform moet er gemigreerd worden.\\
-Testing en analystics zijn geavanceerder dan bij concurrenten. Waar testing voor PowerApps nog in bèta zit is het bij Mendix meer volwassen, tests worden bijvoorbeeld automatsch uitgevoerd.\\
-Over specifieke onderdelen: Buzz is een portaal dat dient als sociaal intranet waar collaboratie begint. SCRUM is ingebouwd in het platform. Integraties, plugins, gerbuikersapps zijn in de Mendix App Store te vinden, dit aspect is even matuur als varianten van Microsoft en Outsystems.\\
+Testing en analystics zijn geavanceerder dan bij concurrenten zoals bijvoorbeeld PowerApps waar dit nog in bèta zit. Bij Mendix is een hoge mate van maturiteit bereikt, tests worden bijvoorbeeld automatsch uitgevoerd.\\
+Over specifieke onderdelen: Buzz is een portaal dat dient als sociaal intranet waar collaboratie begint. SCRUM is ingebouwd in het platform. Integraties, plugins, gebruikersapps zijn in de Mendix App Store te vinden, dit aspect is even matuur als varianten van Microsoft en Outsystems.\\
 Wat AI functionaliteit betreft is er integratie mogelijk met IBM Watson.\\
 Security is als verwacht voor een marktleider: \\ % TODO
 \autocite{Marvin2017a} \textit{en aangevuld met informatie uit de officiële documentatie\footnote{\url{https://docs.mendix.com/}}}
@@ -289,6 +289,8 @@ Security is als verwacht voor een marktleider: \\ % TODO
 
 \subsubsection{Salesforce}
 
+% TODO: uitbreiden en beter argumenteren.
+
 Er is geen gratis licentie aanwezig en het platform is eerder gefocust op CRM\footnote{\url{https://nl.wikipedia.org/wiki/Customer_relationship_management}}
 
 \textcite{Marvin2017b} was minder gunstig over het platform en hekelde zich vooral aan de feature bloat en UI clutter. De tutorials zouden overigens niet up to date zijn.
@@ -297,7 +299,7 @@ Om deze redenen is het geen valide optie maar omdat de markt aanwezigheid zo gro
 
 \subsubsection{Appian}
 
-Net als Salesforce een grote speler. functioneel even sterk als Outsystems en Mendix maar helaas is er geen gratis licentie mogelijk.
+Net als Salesforce is dit een grote speler. Functioneel is het even sterk als Outsystems en Mendix maar helaas is er geen gratis licentie mogelijk.
 
 \subsubsection{Temenos Quantum (Kony)}
 
@@ -305,7 +307,9 @@ Dit platform is door \textcite{Vincent2019} bestempelt als een leider en heeft e
 
 \subsection{Besluit}
 
-Zoals verwacht is PowerApps is de beste kandidaat om de POC mee uit te werken ook al kan het schrijven van uitbreidingen omslachtig worden. Er zijn twee concurrenten gevonden: Outsystems en Mendix. Wat functionaliteit betreft zijn ze inwisselbaar. Beiden zijn gefocust op professionele ontwikkelaars en hebben aantrekkelijke gratis licenties. De grootste belemmering betreft het gebruik van SharePoint als data opslag. Waar het bij PowerApps standaard ondersteund is als Connector moet er in Mendix en Outsystems zijn geval een REST API gebruikt worden. Bij gebruik van één van beiden is het dus interessanter om een alternatieve opslagmethode te gebruiken.
+Er zijn geen redenen gevonden om weg te stappen van PowerApps als primaire kandidaat om de POC mee uit te werken ook al kan het schrijven van uitbreidingen omslachtig worden. Er zijn twee concurrenten gevonden: Outsystems en Mendix. Wat functionaliteit betreft zijn ze inwisselbaar. Beiden zijn gefocust op professionele ontwikkelaars en hebben aantrekkelijke gratis licenties. De grootste belemmering betreft het gebruik van SharePoint als data opslag. Waar het bij PowerApps standaard ondersteund is als Connector moet er in Mendix en Outsystems zijn geval een REST API gebruikt worden. Bij gebruik van één van beiden is het dus interessanter om een alternatieve opslagmethode te gebruiken.
+
 % TODO: keuze outsystems betere gratis versie dan mandix nuanceren
+Na overweging is voor Outsystems gekozen om de secundaire POC mee uit te werken. Wat doorslag gaf is de gratis versie die van Outsystems net iets beter is.
 
 
