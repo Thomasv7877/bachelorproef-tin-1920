@@ -20,20 +20,21 @@
 
 \subsection{Omgeving}
 
-Er zitten meer dan 1000 toestellen in het domein waar controle en overzicht voor nodig is. Het gaat om een ziekenhuis. Er is geen marge voor fouten en respons moet direct kunnen zijn.
-Zowel Servers als client computers gebruiken Microsoft Windows besturingssysteem varianten. De softwarecatalogus is uitgebreid. Relevant is dat Office gebruikt wordt, ook Office 365.
+AZ Glorieux is een groot regionaal ziekenhuis met een domein waarin er meer dan 1000 toestellen zitten waarover controle en overzicht nodig is. In deze soort omgeving is er geen marge voor fouten en moet respons direct kunnen zijn.
+Zowel Servers als client computers gebruiken Microsoft Windows besturingssysteem varianten. De softwarecatalogus bestaat uit een ruime selectie van zowel medische als ondersteunende programma's. Relevant is dat Office gebruikt wordt, zowel de gewone versie (offline) als Office 365.
 Er ligt een grote nadruk op documentering. Hiervoor wordt SharePoint gebruikt.
 
 \subsection{Toekomst}
 
 Migratie naar Windows 10 is een lopend proces. Veel bedrijven doen dit en proberen dit te versnellen wegens de komende end-of-life status van Windows 7 \autocite{MicrosoftSupport2020}. Per case kan dit tijdrovend zijn om softwarecompatibiliteit te garanderen.
-Verspreiding van nieuwe technologieën: interesse in het Power Platform, implementatie van Microsoft Teams, Intune wordt steeds meer gebruikt als aanvulling van SCCM (System Center Configuration Manager). Er worden steeds meer mobiele devices opgenomen in het domein.
+Verspreiding van nieuwe technologieën: interesse in het Power Platform, implementatie van Microsoft Teams, Intune wordt steeds meer gebruikt als aanvulling van SCCM (System Center Configuration Manager, zie Subsectie~\ref{subsec:itam}). Er worden steeds meer mobiele devices opgenomen in het domein.
 Wat digitale transformatie betreft wordt sommige verouderde, huiseigen software vervangen. Concreet gaat het om tools gemaakt met Visual Basic.
 Er wordt gestreefd naar een hogere mate van automatisatie. Het is wenselijk dat zoveel mogelijk software gedeployed kan worden vanuit SCCM.
 
 \subsection{IT Asset Management}
+\label{subsec:itam}
 
-Het onderzoek bevind zich in het domein van IT Asset Management. Enkele definities om dit begrip te verduidelijken.
+Dit onderzoek valt in het domein van IT Asset Management. Hieronder volgen enkele definities om dit begrip te verduidelijken.
 
 \textcite{IAITAM} geeft een algemene definitie: `IT Asset Management is a set of business practices that incorporates IT assets across the business units within the organization. It joins the financial, inventory, contractual and risk management responsibilities to manage the overall life cycle of these assets including tactical and strategic decision making.`
 
@@ -44,13 +45,14 @@ Een beschrijving voor de voor het onderzoek toepasbare categorie, de fysieke, ge
 
 Er werd verwacht dat de IoT (Internet of Things) trend IT Asset Management programma's zal laten evolueren om met deze devices om te kunnen gaan. Dit betekend meer assets en meer asset types. Hier zijn voordelen mee verbonden: `Increased Operational Efficiency, Productivity Is Enhanced, Resources Are Used Efficiently, Better Checks for Safety and Compliance, Maintenance and Repair Automation` \autocite{Badnakhe2020}.
 
-IT asset management oplossingen zijn vaak een aanvulling op het werken van SCCM. Een belangrijke functie van SCCM is het verschaffen van informatie. In sommige geevallen wordt functionaliteit van SCCM opgeroepen of zijn database geraadpleegd. Het is de moeite om meer informatie over SCCM te geven.
+IT asset management oplossingen zijn vaak een aanvulling op het werken van SCCM. Een belangrijke functie van SCCM is het verschaffen van informatie. In sommige gevallen wordt functionaliteit van SCCM opgeroepen of zijn database geraadpleegd. Door de belangrijke rol van SCCM loont het om in groter detail te gaan.
 
-\textcite{Droogenbroot2016} beschrijft het als volgt: `System Center Configuration Manager, afgekort als SCCM of ConfigMgr, is een onderdeel van de Microsoft System Center Suite en staat in voor het beheer \& inventarisatie van pc's en servers. Daarenboven is het mogelijk toepassingen uit te rollen, software updates te installeren en compliance te controleren en op te lossen`.
+\textcite{Droogenbroot2016} beschrijft het als volgt:\\
+\textit{`System Center Configuration Manager, afgekort als SCCM of ConfigMgr, is een onderdeel van de Microsoft System Center Suite en staat in voor het beheer \& inventarisatie van pc's en servers. Daarenboven is het mogelijk toepassingen uit te rollen, software updates te installeren en compliance te controleren en op te lossen`.}
 
 De primaire functies zijn het creëren van computer images, massa deployment van images, distribueren van silent installaties van software applicaties, cross campus managen van software en natuurlijk inventarisatie en organisatie van eigen hardware en devices.
 
-SCCM functioneert aan de hand van een aantal sleuteltechnologieën: PXE booting, de SCCM agent geïnstalleerd op client pc's die data voed aan SCCM en Task Sequences waarmee een hele reeks taken uitgevoerd kan worden. \autocite{Spitze2019}.
+SCCM functioneert aan de hand van een aantal sleuteltechnologieën: PXE booting, de SCCM agent geïnstalleerd op client pc's die data voedt aan SCCM en Task Sequences waarmee een hele reeks taken uitgevoerd kunnen worden. \autocite{Spitze2019}.
 
 Eerder werd gesproken over de relatie tussen ITAM oplossingen en SCCM. Waar traditionele oplossingen een aanvulling of uitbreiding zijn op SCCM is LanReview eerder een vereenvoudiging. Het is toegespitst op inventarisatie en organisatie van eigen hardware en devices.
 
@@ -97,9 +99,9 @@ Het had veel geheugen nodig en was niet geschikt voor programma's die veel proce
 
 \subsubsection{Vandaag}
 
-Uitvoering van VB applicaties blijft ondersteund op moderne Windows versies. Het maken van nieuwe echter niet \autocite{MicrosoftDocs2018}. Niettegenstaande heeft men manieren gevonden om alsnog te installeren. \autocite{Brust2015}
+Uitvoering van VB applicaties blijft ondersteund op moderne Windows versies. Het maken van nieuwe echter niet \autocite{MicrosoftDocs2018}. Niettegenstaande heeft men manieren gevonden om deze alsnog te installeren. \autocite{Brust2015}
 
-Er is nog een kleine maar vocale groep aanhangers van VB. Dit komt omdat ze de officiële opvolger, Visual Basic .NET, niet waardig vonden voornamelijk omdat de afhankelijkheid van .NET een extra abstractielaag was. Voorbeelden hiervan zijn: % TODO: David Platt bron?
+Er is nog een kleine maar vocale groep aanhangers van VB. Dit komt omdat ze de officiële opvolger, Visual Basic .NET, niet waardig vonden voornamelijk omdat de afhankelijkheid van .NET een extra abstractielaag was. Enkele voorbeelden hiervan zijn: % TODO: David Platt bron?
 \begin{itemize}
     \item Visual Basic behoud blijft hoog. Opvallend aanhoudend succes voor een `dode` tool. \autocite{ISpliter2014}.
     \item Er werd een petitie gemaakt voor verdere ontwikkeling van VB. \autocite{2005}
@@ -116,18 +118,16 @@ Er is nog een kleine maar vocale groep aanhangers van VB. Dit komt omdat ze de o
     \label{fig:lr-hoofd}
 \end{figure}
 
-LanReview houdt zijn informatie over assets in het domein bij in een Access databank. Deze informatie werd origineel geëxporteerd uit SCCM.
-De applicatie heeft twee views: de primaire view is een filterbaar overzicht van devices. voor elke entry kan een meer gedetailleerde view opgeroepen waar alle datavelden te zien zijn.
+LanReview is een belangrijke tool van de Helpdesk en wordt dagelijks gebruikt. Het houdt zijn informatie over assets in het domein bij in een Access databank. Deze informatie werd origineel geëxporteerd uit SCCM.
+De applicatie heeft twee views: de primaire view is een filterbaar overzicht van devices. Voor elke entry kan een meer gedetailleerde view opgeroepen worden waar alle datavelden te zien zijn.
 Aan de hand van de filter functionaliteit worden SQL achtige queries gebouwd die dan uitgevoerd worden op de Acces databank.
-
-LanReview is een belangrijke tool van de Helpdesk en wordt dagelijks gebruikt.
 
 Vaak voorkomende use cases:
 \begin{itemize}
-    \item De pc overnemen van iemand in nood. Het is een startpunt voor remote management.
-    \item Rapportage. Er kunnen voorgebouwde query's uitgevoerd worden op de data waarvan de resultaten onder andere naar Excel geëxporteerd kunnen worden.
-    \item Filteren van de dataset. Bijvoorbeeld een overzicht van alle laptops van een belaad model tonen die nog steeds met Windows 7 werken.
-    \item End of life beheer. Via markeringen is duidelijk of een device nog niet gebruikt wordt, in gebruik is of niet meer gebruikt wordt/in storage is.
+    \item Het overnemen van iemand zijn PC die de helpdesk contacteert met een vraag om assistentie. Het is een startpunt voor remote management.
+    \item Het genereren van rapporten. Er kunnen voorgebouwde query's uitgevoerd worden op de data waarvan de resultaten onder andere naar Excel geëxporteerd kunnen worden.
+    \item Filteren van de dataset. Bijvoorbeeld een overzicht van alle laptops van een bepaald model tonen die nog steeds met Windows 7 werken.
+    \item End-of-life beheer van toestellen. Via markeringen is duidelijk of een device nog niet gebruikt wordt, in gebruik is of niet meer gebruikt wordt/in storage is.
 \end{itemize}
 
 % TODO: uiteg datavelden
@@ -147,7 +147,7 @@ De POC zal gebouwd worden met een low-code platform. Cloud services maken hier e
 Definiëren van wat low-code zoal inhoud kan best begonnen worden met een formele definitie:\\
 \textit{`It is an application platform that supports rapidapplication development, one-step deployment, execution and management using declarative,high-level programming abstractions, such as model-driven and metadata-based programminglanguages. They support the development of user interfaces, business logic and data services,and improve productivity at the expense of portability across vendors, as compared withconventional application platforms.`} \autocite{Vincent2019}
 
-De bedoeling van low-code is om applicaties sneller te kunnen maken en ontwikkeling voor een grotere groep toegankelijk te maken. Typisch gezien wordt er een WYSIWYG (What You See Is What You Get) interface gebruikt waarin visuele componenten geconfigureerd worden via drag-and-drop. Vaak is er ondersteuning om aangepaste toe te voegen indien het platform bepaalde functionaliteit out of the box niet ondersteund. \autocite{Kissflow2018}
+De bedoeling van low-code is om applicaties sneller te kunnen maken en ontwikkeling voor een grotere groep toegankelijk te maken. Typisch gezien wordt er een WYSIWYG (What You See Is What You Get) interface gebruikt waarin visuele componenten geconfigureerd worden via drag-and-drop. Vaak is er ondersteuning om aangepaste code toe te voegen indien het platform bepaalde functionaliteit out of the box niet ondersteund. \autocite{Kissflow2018}
 
 Low code is een software ontwikkelingsaanpak dat snellere oplevering van applicaties mogelijk maakt met minimaal manueel coderen. Dit werkt met visueel modeling in een grafische user interface om applicaties op te zetten en configureren. Hiermee slaat de ontwikkelaar de infrastructuur en her-implementatie van patronen die hun werk vertraagd en kunnen ze focussen op de unieke 10\% van een applicatie. \autocite{Revell2020}
 
@@ -160,46 +160,49 @@ Een low-code platform bestaat typisch uit volgende delen:
     \item App Lifecycle Management. Hiermee bedoelt geautomatiseerde tools voor build, debug, en deploy. Ook beheer van de app tijdens test, staging en productie.
 \end{itemize} \autocite{Revell2020}
 
-\subsubsection{low-code VS no-code}
+\subsubsection{Low-code VS No-code}
 
 Een no-code platform is een gespecialiseerde versie van een low-code platform waar men manuele aanpassingen zoveel mogelijk wil vermijden, al dan niet door het pre-builden van de nodige visuele componenten.
 
-\textcite{Bloomberg2017} nuanceert de verschillen door te focussen op de bedoelde gebruiker:
+\textcite{Bloomberg2017} nuanceert de verschillen door te focussen op de eindgebruiker:
 \begin{itemize}
-    \item low-code: Volgende generatie applicatie ontwikkeling dat het werk van professionele ontwikkelaars versneld en stroomlijnt.
-    \item no-code: Self-service applicatie assembly voor business users die citizen developers worden.
+    \item Low-code: Volgende generatie applicatie ontwikkeling dat het werk van professionele ontwikkelaars versneld en stroomlijnt.
+    \item No-code: Self-service applicatie assembly voor business users die citizen developers worden (Zie Subsectie~\ref{subsec:citizen-dev}).
 \end{itemize}
 
 \subsubsection{low-code development VS traditional software development}
 
 % TODO: extra uitleg
 
-\begin{landscape}
-\begin{table}[]
-    \begin{tabular}{@{}lll@{}}
-        \toprule
-        & \textbf{Traditional} & \textbf{Low Code} \\ \midrule
-        1 & requirements bepalen & requirements bepalen \\
-        2 & architectuur plannen & derde partij API's selecteren \\
-        3 & selectie van back-end framework, bibliotheken, data-stores en API's & app workflow, data models en user interface tekenen in de visuele IDE \\
-        4 & selectie van front-end framework & API's verbinden \\
-        5 & keuze van deployment stack, opzetten van CI (Continuous Integration) en operatieplan creeren & indien nodig handgeschreven code toevoegen aan front-end of aanpassing van automatisch gegenereerde SQL queries \\
-        6 & wireframes en prototypes maken & gebruikersacceptatietests \\
-        7 & ui coderen in gekozen Javascript framework & deployment naar productie, hierna updates eenvoudig doorduwen \\
-        8 & falende tests schrijven &  \\
-        9 & modellen definieeren en koppelen aan data stores &  \\
-        10 & business logic definieeren en coderen &  \\
-        11 & views maken om JSON data te voorzien/ontvangen van en naar de front-end &  \\
-        12 & implementeren van workflows &  \\
-        13 & integreren van derde partij API's via gepubliceerde interface of support bibliotheek &  \\
-        14 & herhalen tot tests slagen &  \\
-        15 & testen voor security, performance, kwaliteit en gebruikersacceptatie &  \\
-        16 & deploy, patch, monitor en updat tot levenseinde van de app &  \\ \bottomrule
-    \end{tabular}
-\end{table} \autocite{Revell2020}
-\end{landscape} 
+\begin{table}[h!]
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|l|l|}
+            \hline
+            \textbf{} & \textbf{Traditional} & \textbf{Low-Code} \\ \hline
+            1 & requirements bepalen & requirements bepalen \\ \hline
+            2 & architectuur plannen & derde partij API's selecteren \\ \hline
+            3 & \begin{tabular}[c]{@{}l@{}}selectie van back-end framework, bibliotheken, \\ data-stores en API's\end{tabular} & \begin{tabular}[c]{@{}l@{}}app workflow, data models en user interface tekenen \\ in de visuele IDE\end{tabular} \\ \hline
+            4 & selectie van front-end framework & API's verbinden \\ \hline
+            5 & \begin{tabular}[c]{@{}l@{}}keuze van deployment stack, opzetten van \\ CI (Continuous Integration) en operatieplan creeren\end{tabular} & \begin{tabular}[c]{@{}l@{}}indien nodig handgeschreven code toevoegen aan front-end of \\ aanpassing van automatisch gegenereerde SQL queries\end{tabular} \\ \hline
+            6 & wireframes en prototypes maken & gebruikersacceptatietests \\ \hline
+            7 & ui coderen in gekozen Javascript framework & deployment naar productie, hierna updates eenvoudig doorduwen \\ \hline
+            8 & falende tests schrijven &  \\ \cline{1-2}
+            9 & modellen definieeren en koppelen aan data stores &  \\ \cline{1-2}
+            10 & business logic definieeren en coderen &  \\ \cline{1-2}
+            11 & \begin{tabular}[c]{@{}l@{}}views maken om JSON data te voorzien/ontvangen \\ van en naar de front-end\end{tabular} &  \\ \cline{1-2}
+            12 & implementeren van workflows &  \\ \cline{1-2}
+            13 & \begin{tabular}[c]{@{}l@{}}integreren van derde partij API's via \\ gepubliceerde interface of support bibliotheek\end{tabular} &  \\ \cline{1-2}
+            14 & herhalen tot tests slagen &  \\ \cline{1-2}
+            15 & \begin{tabular}[c]{@{}l@{}}testen voor security, performance, kwaliteit \\ en gebruikersacceptatie\end{tabular} &  \\ \cline{1-2}
+            16 & \begin{tabular}[c]{@{}l@{}}deploy, patch, monitor en updat tot levenseinde \\ van de app\end{tabular} &  \\ \hline
+        \end{tabular}%
+    }
+    \caption{Vergelijking van het traditionele en low-code ontwikkelingsproces \autocite{Revell2020}}
+    \label{tab:ontw-stappen}
+\end{table}
 
 \subsubsection{Citizen developers}
+\label{subsec:citizen-dev}
 
 De survey uitgevoerd door \textcite{McKendrick2017} geeft de volgende definitie:\\
 \textit{`we define citizen developers as business users, not part of IT departments or contracted IT services, who build and use their own scripts, programs, algorithms, or interfaces designed to perform business functions or support business processes.`}
@@ -211,6 +214,24 @@ Er zijn enkele interessante statistieken uit voortgekomen:
     \item 45\% van citizen development activiteiten worden tijdens de werkuren gedaan, de grootste motivatie hiervoor (42\%) is omdat het IT departement te traag is.
     \item In slechts 17\% van de gevallen duurt ontwikkeling van een citizen developer applicatie langer dan drie maand.
 \end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{apps-buiten-it.JPG}
+        \caption{Percentage van Apps die buiten IT komen.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{tijdens-werkuren.JPG}
+        \caption{Wanneer de apps gemaakt worden.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{turnaround.JPG}
+    \caption{Typische turnaround tijd.}
+    \end{subfigure}
+    \caption{Citizen Development statistieken \autocite{McKendrick2017}}
+    \label{fig:test2cols}
+\end{figure}
 
 \subsubsection{Mythes}
 
