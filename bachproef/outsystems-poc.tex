@@ -336,10 +336,26 @@ Eens een nieuwe Traditional Web app is aangemaakt in de ServiceStudio vosltaat h
 \begin{lstlisting}
 AddMonths(testdata.SCHRAPSINDS,1) <= CurrDateTime() and testdata.KLEUR = "BLAUW"
 \end{lstlisting} 
-    \item Een timer instellen om de actie uit stap één op een tijdschema uit te voeren [schedule-afb][overzicht-afb]
+    \item Een timer instellen om de actie uit stap één op een tijdschema uit te voeren (Zie Figuur~\ref{fig:mail-timer})
 \end{enumerate}
 
-% Eens een nieuwe Traditional Web app is aangemaakt in de ServiceStudio vosltaat het om één servar actie te declareren met één 'Send Email' stap.
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.5\linewidth}
+        \includegraphics[width=\linewidth]{timer-schedule.JPG}
+        \caption{Bepalen van het tijdschema voor de Mail Timer.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{mailtimer.JPG}
+        \caption{Mail Timer context overzicht.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.6\linewidth}
+        \includegraphics[width=\linewidth]{res-mail-os.JPG}
+        \caption{Voorbeeld van het resultaat.}
+    \end{subfigure}
+    %\caption{Overzicht van de filtering voorbereidingen.}
+    \label{fig:mail-timer}
+\end{figure}
 
 \subsubsection{Bruikbaar zijn buiten domein}
 
@@ -354,14 +370,20 @@ Requirements die met SharePoint te maken hebben zijn:
     \item Revisie van elk dataveld per toesteltype
     \item Data opslaan in SharePoint (cloud)
 \end{itemize}
-Dit wordt besproken in [link sharepoint sectie]
+Dit wordt besproken in Sectie~\ref{sec:sharepoint}.
 
 \textit{Onderstaande aanpak werd onderzocht maar na afloop niet toegepast. Voor het huidige scenario voldoet de standaard voorziene SQL instantie en zijn er geen merkbare voordelen die de extra complexiteit verantwoorden.}
 
-Er is geen connector zoals in PowerApps dat rechtstreekse toegang geeft tot de SharePoint data. De verbinding zal met andere woroden via de beschikbare REST api's moeten verlopen. SharePoint heeft zijn eigen '\_api' toegang, alternatief is er ook de nieuwere Microsoft Graph. Omdat in de PowerApps POC Graph reeds gebruikt werd [link sectie] wordt er hier opnieuw voor gekozen. Iet s dat daar aan bod kwam was het verschil tussen delegated en application permissions. Ook hier wordt uitgegaan van delegated permissions gezien dit de vieligere optie is (Windows login nodig).
+Er is geen connector zoals in PowerApps dat rechtstreekse toegang geeft tot de SharePoint data. De verbinding zal met andere woroden via de beschikbare REST api's moeten verlopen. SharePoint heeft zijn eigen '\_api' toegang, alternatief is er ook de nieuwere Microsoft Graph. Omdat in de PowerApps POC Graph reeds gebruikt werd (Subsectie~\ref{subsec:ms-graph}) wordt er hier opnieuw voor gekozen. Iet s dat daar aan bod kwam was het verschil tussen delegated en application permissions. Ook hier wordt uitgegaan van delegated permissions gezien dit de vieligere optie is (Windows login nodig).
 
-Alvorens er data opgevraagd kan worden moet het authenticatie proces doorlopen worden (hier OAuth V2).
-[afb-auth+bron]
+Alvorens er data opgevraagd kan worden moet het authenticatie proces (hier OAuth V2) doorlopen worden (Figuur~\ref{fig:auth-proces}).
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{auth-proces.png}
+    \caption{Weergave van het authenticatie proces. \autocite{MSLCT2019}}
+    \label{fig:auth-proces}
+\end{figure}
 
 De implementatie ervan in Outsystems gaat als volgt:
 \begin{enumerate}
@@ -370,7 +392,7 @@ De implementatie ervan in Outsystems gaat als volgt:
         \item App registratie.
         \item Client secret anamaken
         \item Scope definieeren. Voor SharePoint is dit: \lstinline|Sites.Manage.All Sites.Read.All SitesReadWrite.All|
-        \item Redirect URL naar de Outsystems app instellen. Structuur is \lstinline|https://<autsystems omgeving>/<app naam>/<afhandeling pagina>| 
+        \item Redirect URL naar de Outsystems app instellen. Structuur is \lstinline|https://<outsystems omgeving>/<app naam>/<afhandeling pagina>| 
     \end{enumerate}
     \item Athorizatie request doen(\lstinline|\authorize| eindpunt). Komt overeen met inloggen in Windows acctount en goedkeuren van de scope.\\
     $\leftarrow$ Authorizatie code wordt teruggegeven.
@@ -379,8 +401,7 @@ De implementatie ervan in Outsystems gaat als volgt:
 \end{enumerate}
 Dit token moet aanwezig zijn in elke request naar de SharePoint data via Microsoft Graph.
 
-Het is echter mogelijk een deel van deze stappen door te geven naar een extensie (zoals Windows login connector [bron]). De implementatie daarvan is een pak eenvoudiger: In de standaard login actie van de POC wordt de methode uit de extensie geplaatst die het authenticatie proces start 'GetOAuth2AuthenticationURL'. Practisch gezien wordt na Outsystems login nu ook de Microsoft login uitgevoerd. Na afloop is het token beschikbaar om te gebruiken in REST operaties. Alleen de voorbereiding in Azure moet nog steeds gedaan worden.
-
+Het is echter mogelijk een deel van deze stappen door te geven naar een Forge component (zoals Microsoft Login Connector Reactive \autocite{MSLCT2019}). De implementatie daarvan is een pak eenvoudiger: In de standaard login actie van de POC wordt de methode uit de extensie geplaatst die het authenticatie proces start 'GetOAuth2AuthenticationURL'. Practisch gezien wordt na Outsystems login nu ook de Microsoft login uitgevoerd. Na afloop is het token beschikbaar om te gebruiken in REST operaties. Alleen de voorbereiding in Azure moet nog steeds gedaan worden.
 
 \subsubsection{Leercurve moet degelijk zijn}
 
@@ -400,23 +421,24 @@ Community apps uit de Forge zijn ook handig. componenten kunnen ingekeken worden
 \subsubsection{Samenwerken met SCCM en/of synchroniseren met en data uit de SQL databank kunnen gebruiken}
 
 % todo: powerapps methode aan te passen om ook hier te gebruiken?
+Dit valt buiten de scope van het onderzoek.
 
 \subsubsection{Diverse GUI verbeteringen/robuust GUI ontwerp ondersteunen}
 
-Om de GUI te bouwen wordt het UI framework genaamd Silk UI gebruikt. Er is een grote focus op Drag-en-drop.
+Om de GUI te bouwen wordt het UI framework genaamd Silk UI\footnote{\url{https://silkui.outsystems.com/}} gebruikt. Er is een grote focus op Drag-en-drop.
 
 Een overzicht van Silk UI componenten, die telkens meer controle over detail geven:
 
-Screen templates $\rightarrow$ thema editor $\rightarrow$ UI patronen/controls voorgangbare use cases $\rightarrow$ Style properties $\rightarrow$ CSS editor
+\textit{Screen templates $\rightarrow$ thema editor $\rightarrow$ UI patronen/controls voorgangbare use cases $\rightarrow$ Style properties $\rightarrow$ CSS editor}
 
-Afhankelijk van heoveel tijd men wil spenderen is elk aspect van de UI met andere woorden aan te passen.
+Afhankelijk van hoeveel tijd men wil spenderen is elk aspect van de UI met andere woorden aan te passen.
 
 De gemaakte POC is reactive. Een samenvatting van de ervaringen bij het bouwen van de UI is dat er veel controle is over details maar dat drag-en-drop warrig kan worden als er veel containers/componenten op het scherm zijn.
 
 \subsubsection{Barcodes kunnen scannen}
 \label{subsec:os-barcode}
 
-Dit is mogelijk via de officiele barcode extensie van Outsystems [voetnoot].\\
+Dit is mogelijk via het officiele Forge Component van Outsystems\footnote{\url{https://www.outsystems.com/forge/component-overview/1403/barcode-plugin}}.\\
 Na het importeren van de barcode scnner als dependency is het gebruik ervan analoog met de variant in PowerApps.
 \begin{enumerate}
     \item Een knop toevoegen bij de Text Input horend bij de kolom waar de later ingescande waarde ingevuld zal worden. Dit is in de Form widget op het detailscherm.
