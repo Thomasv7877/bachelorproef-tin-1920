@@ -138,6 +138,7 @@ Dit oogt statisch. In LanReview is het mogelijk de kolom, operator en de filterw
 Een gelijkaardige manier om filter data te verschaffen in PowerApps is door een gallerij te gebruiken waarbij elke rij een dropdown heeft voor te filteren kolom, een dropdown voor her nodige vergelijkingsteken en een tekstveld aan te passen zijn. Elke keer men een conditie toevoegt wordt deze data opgeslagen als rij in een Tabel.
 
 % TODO: meer over de fitler werking in LanReview, filter doel
+% TODO: afb!
 
 Wat nu met mogelijkheden om de filter effectief uit te voeren? Er zijn een aantal opties, telkens met stijgende complexiteit.
 
@@ -320,20 +321,38 @@ Als een case out of the box ondersteund is op powerapps zal een business gebruik
 
 \subsubsection{Samenwerken met SCCM en/of synchroniseren met en data uit de SQL databank kunnen gebruiken}
 
+% TODO: meer utileg over script in bron
 Dit werd niet geimplementeerd maar er is wel een mogelijke oplossing voor gevonden.
 In essentie gaat het om een script dat volgens een tijdschema uitgevoerd wordt op de SCCM server dat sccm-cmdlets gebruikt om asset data op te vragen die weggeschreven worden naar een SharePoint omgeving.\autocite{Ziehnert2020}
 
-% TODO: meer utileg over script in bron
+Het vorige betreft synchronisatie, Alternatief kan een de AdminService REST API gebruikt worden om rechtstreekse toegang te krijgen tot SCCM data vanuit PowerApps of Automate. \autocite{Gross2019}\\
+De configuratie hiervan valt buiten de scope van het onderzoek, de grote stappen illustreren dit:
+
+SMS Provider API (SCCM) $\rightarrow$ SMS Provider rol (site server) $\rightarrow$ Cloud Management Gateway $\rightarrow$ certificaat $\rightarrow$ Azure App resgistratie $\rightarrow$ Custom Connector
+
+In de POC zijn er bovendien geen requirements die nood hebben aan directe toegang tot SCCM en de Custom Connector brengt extra kosten mee.
 
 \subsubsection{Diverse GUI verbeteringen/robuust GUI ontwerp ondersteunen}
 
-[[afb-toolbar-muis-over-pin][afb-pin-detailscreen]
+% [[afb-toolbar-muis-over-pin][afb-pin-detailscreen]
 
-Het is mogelijk items vast te pinnen op de toolbar. Toevoegen gaat door rechtsboven op het 'pin' symbool te klikken in de detailweergave van een pc. losmaken van de toolbar is analoog door op de rode 'pin' rechtsboven van het icoon op de toolbar in de klikken. Als gehovered wordt over de toolbar wordt de Netwerknaam ook getoond.
+Het is mogelijk items vast te pinnen op de toolbar. Toevoegen gaat door rechtsboven op het 'pin' symbool te klikken in de detailweergave van een pc. losmaken van de toolbar is analoog door op de rode 'pin' rechtsboven van het icoon op de toolbar in de klikken. Als gehovered wordt over de toolbar wordt de Netwerknaam ook getoond. (Figuur~\ref{fig:toolbar-pin-clipped})
+
+\begin{figure}[h!]
+    \includegraphics[width=0.5\linewidth]{toolbar-pin-clipped.jpg}
+    \caption{Een voorbeeld van vastpinnen aan de toolbar.}
+    \label{fig:toolbar-pin-clipped}
+\end{figure}
 
 Voor duidelijkheid zijn de zoek in filter velden van elkaar gescheiden door tabs. Tabs worden gemaakt met Gallerij controls.
 
-De filter layout is ook gemaakt met een Gallerij control. De layou past zich dynamisch aan als er filtervelden worden toegevoegd.
+De filter layout is ook gemaakt met een Gallerij control. De layou past zich dynamisch aan als er filtervelden worden toegevoegd. (Figuur~\ref{fig:filter-clipped})
+
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{filter-clipped.jpg}
+    \caption{Dynamisch aanpassen van layout aan filter condities.}
+    \label{fig:filter-clipped}
+\end{figure}
 
 \subsubsection{Barcodes kunnen scannen}
 
@@ -358,8 +377,8 @@ If(IsBlank(ScannedMac);Parent.Default;ScannedMac)
 
 Er werd geen enkele requirement opgesteld die AI nodig zou hebben maar de mogelijke opties werden toch even verkend.
 
-Zoals reeds besproken werd (link sectie AI) zijn er verschillende opties. Via AI BUilder kan een model getraind worden of kan een voorgebouwd model gebruikt worden voor een typisch scenario. Gebruik van AI Builder is prijzig (\euro 421.70 per unit/maand), er is een calculator om exacte berekeningen te maken [voetnoot]. Een alternatief is om AI functionaliteit te introduceren aan de hand van een specifieke connector.\\
-Een eenvoudige voorbeeldcase die zo'n connector gebruikt (bijvoorbeeld Azure Computervision [voetnoot]) is om het Netwerknaam uit te lezen van de label die op een PC plakt met tekstherkenning. Indien het aantal API calls beperkt blijft is het gebruik van deze connector bovendien gratis.
+Zoals reeds besproken werd in Subsectie~\ref{subsec:recente-wijzigingen} zijn er verschillende opties. Via AI BUilder kan een model getraind worden of kan een voorgebouwd model gebruikt worden voor een typisch scenario. Gebruik van AI Builder is prijzig (\euro 421.70 per unit/maand), er is een calculator\footnote{\url{https://powerapps.microsoft.com/nl-nl/ai-builder-calculator/}} om exacte berekeningen te maken. Een alternatief is om AI functionaliteit te introduceren aan de hand van een specifieke connector.\\
+Een eenvoudige voorbeeldcase die zo'n connector gebruikt (bijvoorbeeld Azure Computervision\footnote{\url{https://azure.microsoft.com/nl-nl/services/cognitive-services/computer-vision/}}) is om het Netwerknaam uit te lezen van de label die op een PC plakt met tekstherkenning. Indien het aantal API calls beperkt blijft is het gebruik van deze connector bovendien gratis.
 % TODO: ndoige connector acties invoegen
 
 \section{Custom Connector}
@@ -370,16 +389,21 @@ Een Custom Connector is de enige optie om code of een niet ondersteunde databron
     \item Azure API App (Swagger definitie)
     \item Blank Custom Connector
 \end{itemize}
-Het doel is om een complexe filter uit te werken. Een eerste idee was om alle data naar de API te posten en de filtering binnen de app zelf uit te werken. Hier werd snel vanaf gestapt naar de Microsoft Graph API. (link sectie graph)
+Het doel is om een complexe filter uit te werken. Een eerste idee was om alle data naar de API te posten en de filtering binnen de app zelf uit te werken. Hier werd snel vanaf gestapt naar de Microsoft Graph API. %(Zie Subsectie~\ref{subsec:ms-graph})
 
 
 \subsection{Microsoft Graph}
+\label{subsec:ms-graph}
 
-[afb-graph]
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{ms-graph.png}
+    \caption{Microsoft Graph in het Microsoft 365 platform \autocite{MicrosoftDocs2020d}}
+    \label{fig:ms-graph}
+\end{figure}
 
 % info ms graph uitbreiden
 
-Microsoft Graph is een REST API [voetnoot] waarmee allerhande data uit Office365 services opgevraagd kan worden. De specifieke case is het filteren van Excel data in OneDrive.\\
+Microsoft Graph is een REST\footnote{REpresentational State Transfer \url{https://restfulapi.net/}} API waarmee allerhande data uit Office365 services opgevraagd kan worden. De specifieke case is het filteren van Excel data in OneDrive.\\
 Een volgt een overzicht van de nodige stappen en bijbehorende requests om dit te verwezelijken.
 In dit eenvoudige voorbeeld wordt gefilterd op een pc met Netwerknaam 'GLRDT00001'. Niet relevante header waarden zijn weggelaten.
 \begin{enumerate}
@@ -416,9 +440,15 @@ GET https://graph.microsoft.com/v1.0/me/drive/root:/testdata.xlsx:/workbook/work
 Via Microsoft Graph is er toegang tot de data maar nu is er vanuit de Power Apps zelf toegang nodig tot Microsoft Graph. De optie die de meeste vrijheid bied is het maken van een .NET API in Visual Studio, dit wordt naar Azure gedeployed (als Azure API App) en later geimporteerd in PowerApp als Custom Connector aan de hand van een Swagger definitie. Er is ook de keuze of de app gebouwd wordt in ASP.NET framework of .NET Core. Om practische redenen werd gekozen om de ASP.NET framework variant te maken, het is namelijk mogelijk om de nodige Azure app registratie vanuit Visual Studio zelf uit te voeren.
 In .NET zijn er aantal klassen beschikbaar waarmee Microsoft Graph bewerkingen uitgevoerd kunnen worden waarvan de belangrijkste 'GraphServiceClient' is. Het gerbuik ervan wordt verder uitgelegd.
 
-\textit{Voorbereiding: Azure App registratie}\\
-%[afb-conn-services]
-In de solution staat in de 'Connected services' lisjt een optie om te verbinden met Office365 services via de Microsoft Graph. In deze wizard wordt een nieuwe Azure App registratie aangemaakt (indien nog niet bestaand) en kunnen de nodige permissies aan de hand van 'scopes' bepald worden. De scopes om OneDrive bestanden te kunnen gebruiken zijn:
+\textit{Voorbereiding: Azure App registratie}
+
+\begin{figure}[h!]
+    \includegraphics[width=0.7\linewidth]{vs-connected-services.JPG}
+    \caption{Microsoft Graph in de Connected Services}
+    \label{fig:vs-connected-services}
+\end{figure}
+
+In de solution staat in de 'Connected services' lisjt een optie om te verbinden met Office365 services via de Microsoft Graph (Figuur~\ref{fig:vs-connected-services}). In deze wizard wordt een nieuwe Azure App registratie aangemaakt (indien nog niet bestaand) en kunnen de nodige permissies aan de hand van 'scopes' bepald worden. De scopes om OneDrive bestanden te kunnen gebruiken zijn:
 \begin{itemize}
     \item User.Read 
     \item Files.Read 
@@ -434,8 +464,8 @@ Na afloop zijn zijn er enkele belangrijke stukken gegevens ingevoegd in de Web.c
     \item \textbf{ClientSecret:} Secret geassocieerd met de ClientId.
 \end{itemize}
 
-Nu kan er over gegaan worden op de implementatie. Er zijn twee technieken toegepast om de 'GraphServiceClient' klasse te configureren. [bronnen]
-De eerse is gebaseerd op de techniek gebruikt door [bron1]:
+Nu kan er over gegaan worden op de implementatie. Er zijn twee technieken toegepast om de 'GraphServiceClient' klasse te configureren.\\
+De eerse is gebaseerd op de techniek gevonden op CodeProject\footnote{Demystifying Microsoft Graph - \url{https://www.codeproject.com/Tips/5249834/Demystifying-Microsoft-Graph}}:
 \begin{lstlisting}[style=CSharpStyle]
 //
 public static async Task<GraphServiceClient> GetGraphServiceClient()
@@ -470,7 +500,7 @@ return graphServiceClient;
 }
 \end{lstlisting}
 
-De tweede gebuikt een techniek beschreven door [bron]
+De tweede gebuikt een techniek beschreven op CSharpCorner\footnote{Integrate Microsoft Graph With .NET CORE Web APIs - \url{https://www.c-sharpcorner.com/blogs/integrate-microsoft-graph-with-net-core-web-apis}}:
 \begin{lstlisting}[style=CSharpStyle]
 //
 public static async Task<GraphServiceClient> GetGraphServiceClient2()
@@ -531,15 +561,20 @@ catch (MsalUiRequiredException)
     //
 \end{lstlisting}
 
-Als bovenstaande test query uitgevoerd wordt via de Swagger UI wordt er een fout teruggegeven. [afb-swagger error]
+Als bovenstaande test query uitgevoerd wordt via de Swagger UI wordt er een fout teruggegeven. (Zie Figuur~\ref{fig:swagger-error})
 Het probleem is dat het hier aangemaakte soort token applicatie permissies in plaats van gedelegeerde permissies nodig heeft. Voor gedelegeerde permissies is een ingelogde gebruiker nodig. Applicatie permissies zijn in Azure enkel in te stellen met een Administrator account.
 
-Het sjabloon [footnote] uit de officiele graph documentatie gebruikt deze soort token.[bron-officiele-docs-graph] Dit is echter niet mogelijk voor een API die in Power Apps opgeroepen moet worden. Er is een andere oplossing nodig.
+Het sjabloon\footnote{GitHub GraphSDK - \url{https://github.com/rogreen/GraphSDK/blob/master/GraphSDKDemo/Views/MainPage.xaml.cs}} uit de officiele graph documentatie gebruikt deze soort token.\autocite{MicrosoftDocs2020d} Dit is echter niet mogelijk voor een API die in Power Apps opgeroepen moet worden. Er is een andere oplossing nodig.
 
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{swagger-error.JPG}
+    \caption{Teruggegeven error bij het maken van requests.}
+    \label{fig:swagger-error}
+\end{figure}
 
 \subsection{Blank Custom Connector}
 
-Er kan aangenomen worden dat als de Custom Connector in Power Apps zelf gemaakt wordt (via de optie 'Create from blank') en de nodige Microsoft Grpah requests rechtstreeks gedelrareerd worden, dat de permissies van de ingelogde PowerApps gerbuikt worden om deze later uit te voeren, dat het gebruikte soort token met andere woorden gedelegeerde permissies zal gebruiken.
+Er kan aangenomen worden dat als de Custom Connector in Power Apps zelf gemaakt wordt (via de optie 'Create from blank') en de nodige Microsoft Graph requests rechtstreeks gedeclareerd worden, dat de permissies van de ingelogde PowerApps gerbuikt worden om deze later uit te voeren, dat het gebruikte soort token met andere woorden gedelegeerde permissies zal gebruiken.
 
 Vergeleken met hoe het in de vorige sectie ging moeten de stappen in Azure manueel uitgevoerd worden.
 %Vergeleken met hoe het in de vorige sectie ging moet de app eers manueel geregistreerd worden in Azure.
@@ -552,10 +587,14 @@ Vergeleken met hoe het in de vorige sectie ging moeten de stappen in Azure manue
 Als nu de optie 'Create from blank' geselecteerd wordt start een wizard:\\ 
 \textbf{General $\rightarrow$ Security $\rightarrow$ Definition $\rightarrow$ Test}
 
-In het 'Security' tab is het belangrijk OAuth v2.0 authenticatie te kiezen met als id provider 'Azure Active Directory'. Dan komt het neer op het invullen van de gegevens die net in Azure aangemaakt zijn. Het echte werk begint in de 'Definitie' tab. De operaties uit (link sectie) werden eerst in Microsoft Graph Explorer [voetnoot] getest, hierna worden de request en response gegevens gebruikt om een actie te maken. Deze actie kan licht aangepast worden wat variabelen gebruik betreft zoadat bijvoorbeeld de filterargumenten uit PowerApps correct kunnen doorgeven worden naar deze connector.\\
-Het is handig dat in de laatste stap de acties getest kunnen worden. De resultaten hiervan zijn ingevoegd.
+In het 'Security' tab is het belangrijk OAuth v2.0 authenticatie te kiezen met als id provider 'Azure Active Directory'. Dan komt het neer op het invullen van de gegevens die net in Azure aangemaakt zijn. Het echte werk begint in de 'Definitie' tab. De operaties uit Subsectie~\ref{subsec:ms-graph} werden eerst in Microsoft Graph Explorer\footnote{\url{https://developer.microsoft.com/en-us/graph/graph-explorer}} getest, hierna worden de request en response gegevens gebruikt om een actie te maken. Deze actie kan licht aangepast worden wat variabelen gebruik betreft zoadat bijvoorbeeld de filterargumenten uit PowerApps correct kunnen doorgeven worden naar deze connector.\\
+Het is handig dat in de laatste stap de acties getest kunnen worden. De resultaten hiervan zijn ingevoegd. (Figuur~\ref{fig:res-blank-conn})
 
-[res-blank-conn]
+\begin{figure}[h!]
+    \includegraphics[width=0.5\linewidth]{res-blank-conn.JPG}
+    \caption{Resultaat van de Graph queries.}
+    \label{fig:res-blank-conn}
+\end{figure}
 
 In de PowerApp worden deze acties opgeroepen via formules gekoppeld aan de 'OnSelect' property van de 'Filter !' knop.
 \begin{lstlisting}
