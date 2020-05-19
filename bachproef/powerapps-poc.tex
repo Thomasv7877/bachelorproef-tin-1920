@@ -227,9 +227,21 @@ Het nadeel is dat door deze extra overhead er 3-5 seconden gewacht moet worden v
 \subsubsection{Mobiel bruikbaar zijn}
 
 Een power app is onafhankelijk van platform of devicetype maar er wordt bij creatie wel gevraagd op welke layout er gefocust zal worden en het is zo dat de app er te groot of te klein uit zal zien als de app later gebruikt wordt op het toesteltype waar het niet voor ontworpen werd.\\
-Om deze reden werd er een versie van de app gemaakt specifiek voor mobiel gebruik met een beperkte functionaliteitsset. Deze app zal voornamelijk gebruikt worden om snel een overzicht te kunnen opvragen van de belangrijkste info van een pc en ook om het toevoegen van nieuwe toestellen te vergemakkelijken met barcode scanning functionaliteit.
+Om deze reden werd er een versie van de app gemaakt specifiek voor mobiel gebruik met een beperkte functionaliteitsset (Figuur~\ref{fig:pa-mobile}). Deze app zal voornamelijk gebruikt worden om snel een overzicht te kunnen opvragen van de belangrijkste info van een pc en ook om het toevoegen van nieuwe toestellen te vergemakkelijken met barcode scanning functionaliteit.
 
-[[afb-hoofd][afb-detail]]
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{pa-mobile-hoofd.JPG}
+        \caption{Hoofdscherm}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{pa-mobile-detail.JPG}
+        \caption{Detailscherm}
+    \end{subfigure}
+    \caption{Overzicht van de beperktere mobiele PowerApps POC}
+    \label{fig:pa-mobile}
+\end{figure}
 
 \subsubsection{Future proof zijn}
 
@@ -258,16 +270,23 @@ Een belangrijke aanpassing die gemaakt moet worden is om de app 2000 kolommen op
 \subsubsection{Gerichte/basis taken kunnen automatiseren}
 
 De belangrijkste case hiervoor is dat er een wekelijks overzicht met toestellen moet rondegstuurd worden die langer dan een maand de status 'te schrappen' gekregen hebben, gekenmerkd door een 'KLEUR' veld met waarde 'BLAUW'. Een toestel krijgt de 'te schrappen' status wanneer ze verwijderd/vervangen worden uit de actieve omgeving en in opslag worden geplaatst. Het is dan de gewoonte om een maand te wachten voor een toestel effectief verwijdert wordt (in geval van ontbrekende data of een functioneel probleem in de nieuwe oplossing).\\
-Dit is als flow geimplementeerd, zie afbeelding~\ref{fig:recurrent-flow-excel}
+Dit is als flow geimplementeerd, zie Figuur~\ref{fig:flow-sharepoint-kort}
 
 \begin{figure}[h!]
-    \includegraphics[width=0.7\linewidth]{afb-herhaalde-flow.JPG}
-    \caption{Recurrente flow}
-    \label{fig:recurrent-flow-excel}
+    \centering
+    \includegraphics[width=0.7\linewidth]{flow-sharepoint-kort.JPG}
+    \caption{Recurrente flow met SharePoint databron}
+    \label{fig:flow-sharepoint-kort}
 \end{figure}
 
-Er is ook een flow utigewerkt met excel als databron. Het verschil is dat een datum wordt teruggegeven als integer en dat enkele formules aangepast moeten worden om hier mee om te gaan. 
-[afb-flow-excel-beknopt]
+Er is ook een flow utigewerkt met excel als databron. Het verschil is dat een datum wordt teruggegeven als integer en dat enkele formules aangepast moeten worden om hier mee om te gaan (Figuur~\ref{fig:recurrent-flow-excel}). 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{afb-herhaalde-flow.JPG}
+    \caption{Recurrente flow met Excel databron.}
+    \label{fig:recurrent-flow-excel}
+\end{figure}
 
 \begin{enumerate}
     \item \textbf{Recurrence:} Het is een recurrente flow. Het tijdschema is wekelijks, maandag om 3.00u.
