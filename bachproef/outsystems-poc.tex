@@ -25,14 +25,18 @@ Als de app gestart wordt moeten Outsystems credentials opgegeven worden.
 Dit is de basis om de requirements uit te kunnen beginnen werken maar eerst nog wat uitleg bij het gebruik van de IDE.
 
 \subsection{IDE en begrippen}
-Er zijn een aantal functies aanwezig, hier uitgelegd per mogelijke weergave paneel:
+Er zijn een aantal functies aanwezig, hier uitgelegd per mogelijke weergave paneel (Zie Figuur~\ref{fig:ide-overzicht}):
 \begin{itemize}
     \item \textbf{Centraal:} Hier kunnen de UI flows (onderlinge verhouding van de schermen), ontwerpweergave van een scherm of een methode weegave staan.
     \item \textbf{Links:} Een overzicht van de beschikbare UI controls of methode acties.
     \item \textbf{Rechts:} Context views voor de processen, interface, de logica en de data. Aangevuld met een properties paneel wanneer toepasselijk.
 \end{itemize}
 
-[afb-ide]
+\begin{figure}[h!]
+     \makebox[\textwidth]{\includegraphics[width=1.3\linewidth]{ide-overzicht-edited.JPG}}
+     \caption{Overzicht van de Outsystems Service Studio.}
+     \label{fig:ide-overzicht}
+\end{figure}
 
 Er zijn een aantal begrippen die gekend moeten zijn bij het maken van applicaties.
 \begin{itemize}
@@ -45,10 +49,10 @@ Er zijn een aantal begrippen die gekend moeten zijn bij het maken van applicatie
     Tijdens ontwikkeling wordt AI gebruikt om onder andere sleutelwoorden en app context te anlyseren en op basis hiervan acties aan te bevelen. Een voorbeeld van het gebruik in de POC was dat waneer een actie aangemaakt werd in de lijst op het hoofdscherm er voorspeld werd dat er detailweergave nodig was. Dit detailscherm en bijbehorend formulier werd automatisch gegenereerd.
     \item Aggregate VS SQL Query:\\
     Er zijn twee manieren om data te queryen. Een aggregate is is eenvoudig te declareren en beter geoptimaiseerd in Outsystems dan een gewone SQL query. Die is echter flexibeler en het gebruik ervan wordt aangeraden wanneer iets niet mogelijk is met een aggregate. Beiden werden gebruikt in de POC en komen verder aan bod.
-    \item Datatypen:
-    \item Expressie taal:
-    \item REST acties:
-    \item Meer over de Extenstion Studio:
+    %\item Datatypen:
+    %\item Expressie taal:
+    %\item REST acties:
+    %\item Meer over de Extenstion Studio:
 \end{itemize}
 
 \section{Model van Opstelling}
@@ -59,7 +63,7 @@ Er zijn een aantal begrippen die gekend moeten zijn bij het maken van applicatie
 
 \subsubsection{Prijs}
 
-De Personal Environment (gratis versie) legt geen beperkingen op de bruikbare functionaliteit of hoe lang deze omgeving beschikbaar is. Dit betekend echter niet dat er geen limieten zijn. De hamvraag is of deze limieten aanvaarbaar zijn voor het gebruiksscenario van de POC. Ze worden daarom één per één afgetoetst:
+De Personal Environment\footnote{What's an OutSystems personal environment? - \url{https://success.outsystems.com/Support/Personal_Environment/What's_an_OutSystems_personal_environment}} (gratis versie) legt geen beperkingen op de bruikbare functionaliteit of hoe lang deze omgeving beschikbaar is. Dit betekend echter niet dat er geen limieten zijn. De hamvraag is of deze limieten aanvaarbaar zijn voor het gebruiksscenario van de POC. Ze worden daarom één per één afgetoetst:
 
 \begin{itemize}
     \item Maar één ontwikkelaar in de omgeving, er is geen samenwerking mogelijk.\\
@@ -73,13 +77,12 @@ De Personal Environment (gratis versie) legt geen beperkingen op de bruikbare fu
     \item er is geen harde limiet op aantal toegestane  app gebruikers maar als de vorige items in beschouwing genomen worden zal een app bruikbaar zijn tot maximum 100 personen.\\
     $\rightarrow$ Maximum 6 personen zullen de app gebruiken.
 \end{itemize}
-[bron-licence-details]
 
-De marktleidende low-code paltformen gefocust op professionele ontwikkelaars zijn duurder van de concurrentie. Mendix en Outsystems rekenen meer dan \euro2000 voor hun basis plan. Het was daarom belangrijk dat de POC binnen de limieten bleef, de meerprijs zou niet worden aanvaard.
+De marktleidende low-code paltformen gefocust op professionele ontwikkelaars zijn duurder van de concurrentie. Mendix en Outsystems rekenen meer dan \euro2000 voor hun basis plan (Zie Tabel \ref{tab:price-outsystems} en \ref{tab:price-mendix}). Het was daarom belangrijk dat de POC binnen de limieten bleef, de meerprijs zou niet worden aanvaard.
 
 \subsubsection{Overzicht kunnen geven van belangrijkste info voor elk toestel in het netwerk}
 
-Dit wordt gedaan via een hoofdscherm met een overzicht van de assets en een detail/editscherm dat meer informatie toont.
+Dit wordt gedaan via een hoofdscherm met een overzicht van de assets en een detail/editscherm dat meer informatie toont (Zie Figuur \ref{fig:os-hoofd} en \ref{fig:os-detail}).
 Waar dit bij PowerApp gegenereerd kan worden uit data kunnen dezelfde resultaten eenvoudig bekomen worden met behulp van AI geassisteerde acties.
 \begin{enumerate}
     \item Een nieuw scherm aanmaken en kiezen voor een lijstweergave sjabloon
@@ -88,15 +91,28 @@ Waar dit bij PowerApp gegenereerd kan worden uit data kunnen dezelfde resultaten
     \item In het detailschemn kan de layout aangepast worden naar wens en kan validatie ingesteld worden.
 \end{enumerate}
 
-[[afb-hoofd][afb-detail]]
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{os-hoofd.JPG}
+    \caption{Hoofdscherm Outsystems POC}
+    \label{fig:os-hoofd}
+\end{figure}
+
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{os-detail.JPG}
+    \caption{Detailscherm Outsystems POC}
+    \label{fig:os-detail}
+\end{figure}
 
 Dit instellen van validatie is belangrijk. Omdat de data recent werd geïmporteerd naar de SQL instantie zijn er geen specifieke regels op ingesteld. Als een externe data bron gebruikt werd (bijvoorbeeld SharePoint) had dit wel het geval kunnen zijn.\\
-Outsystems heeft automatische client side validatie. [bron-validatie] In het formulier widget heeft elk inputveld geassocieerd met een kolom een nodig inputtype (zoals mail, datum, tekst) toegewezen gekregenn, elke input is standaard ook verplicht (via het 'mandatory' property). Het formulier zelf heeft een Valid boolean property dat op false wordt gezet als validatie in één van de inputs zou falen. Controle hierop gebeurt in de client actie gekoppeld aan de knop om toe te voegen of te wijzigen. Het is deze actie die gewijzigd moet worden volgens het specifieke scenario.
-
-[afb-validatie]
-[afb-validatie2]
+Outsystems heeft automatische client side validatie. \autocite{OutSystemsDocs} In het formulier widget heeft elk inputveld geassocieerd met een kolom een nodig inputtype (zoals mail, datum, tekst) toegewezen gekregenn, elke input is standaard ook verplicht (via het 'mandatory' property). Het formulier zelf heeft een Valid boolean property dat op false wordt gezet als validatie in één van de inputs zou falen. Controle hierop gebeurt in de client actie gekoppeld aan de knop om toe te voegen of te wijzigen. Het is deze actie die gewijzigd moet worden volgens het specifieke scenario. (Zie Figuur~\ref{fig:os-validatie-tesamen})
 
 Gaat het om het toevoegen van nieuwe entry of wijzigen van een bestaande? Indien het een nieuwe is wordt gekeken of het ingevulde Netwnaam uniek is vie de server actie 'NetwNaamUnique'. Deze zal een aggregate uitvoeren waarin een filter toegepast is  die kijkt of de meegegeven Netwnaam matcht aan een waarde uit de NETWNAAM kolom. Indien de netwerknaam uniek is word verder gegaan met de formvalidatie. Indien niet wordt een error message gekoppeld aan de textinput van de Netwnaam en stopt de actie.
+
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{os-validatie-tesamen.png}
+    \caption{Uitbreiding van de standaard formuliervalidatie.}
+    \label{fig:os-validatie-tesamen}
+\end{figure}
 
 \subsubsection{Filtering / rapportage}
 
@@ -128,11 +144,11 @@ $\rightarrow$ Filter:
             \item Een Text variabele met de filterwaarde.
         \end{itemize}
     \end{itemize}
-    In de interface moeten nog twee variabelen aangemaatk worden: een Record List van de 'FilterVelden' (zal elke filterwaarde bevatten) en een Record van 'FilterVelden' (stelt een lege rij voor). Ten laatste moet wat hierboven aangemaakt is correct toegewezen worden aan de properties van de dropdowns.[afb-props]\\
-    Een extensie werd gebruikt om hier wijs uit te geraken. [bron-advanced-fitler]
+    In de interface moeten nog twee variabelen aangemaatk worden: een Record List van de 'FilterVelden' (zal elke filterwaarde bevatten) en een Record van 'FilterVelden' (stelt een lege rij voor). Ten laatste moet wat hierboven aangemaakt is correct toegewezen worden aan de properties van de dropdowns.(Zie Figuur~\ref{fig:data-en-dropdown})
+    Het Advanced Filter Builder\footnote{\url{https://www.outsystems.com/forge/component-overview/365/advanced-filter-builder}} Forge component werd gebruikt om hier wijs uit te geraken.\\
     \item \textbf{Query:}\\
     De 'Filter' knop voert de 'FilterOnClick' client actie uit die op zijn beurt de 'Fitler' server actie utivoert. De record List is wordt als argument meegegeven.\\
-    De 'Filter' actie: [link naar afbeelding]
+    De 'Filter' actie (Zie Figuur \ref{fig:filter-action}):
     \begin{enumerate}
         \item Controleren of de Record List leeg is indien ja stopt de utivoering.
         \item De eerste entry naar een string converteren. 
@@ -143,14 +159,45 @@ GetColNamen(VglRecList[0].velden.ColNaamAtt).ColNamen.Naam + " " + GetVergelijkT
 \begin{lstlisting}
 TestStringParam + " and " + GetColNamen(VglRecList.Current.velden.ColNaamAtt).ColNamen.Naam + " " + GetVergelijkTekens(VglRecList.Current.velden.VergelijkTekenAtt).VergelijkTekens.Teken + " '" + VglRecList.Current.velden.FilterWaarde + "'"
 \end{lstlisting}
-        \item De sql query uitvoeren. Een opmerking hierbij is dat de 'expand inline' optie actief moet staan om de gebouwde string effectief te kunnen gebruiken als argument. De query zelf is een simpele WHERE met door AND aaneengeschakelde evaluaties.
-        [afb-query]
+        \item De sql query uitvoeren. Een opmerking hierbij is dat de 'expand inline' optie actief moet staan om de gebouwde string effectief te kunnen gebruiken als argument. De query zelf is een simpele WHERE met door AND aaneengeschakelde evaluaties. (Afbeelding~\ref{fig:sql-query})
     \end{enumerate}
     De gereturnde filterresultaten worden in een aparte Table geplaatst. Dit maakt het exporteren als report ook makkelijker\\
     De gevonden beperkingen zijn dat het evalueren met sommige kolommen niet juist werkt en dat de performantie lager is dan bij een aggregate.
 \end{itemize}
 
 [filter-afb]
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{data-tesamen.jpg}
+        \caption{Overzicht van de datastructuren en variabelen.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+        \includegraphics[width=\linewidth]{dropdown-props.JPG}
+        \caption{Hoe de data aan de dropdown met kolomnamen gekoppeld wordt.}
+    \end{subfigure}
+    %\begin{subfigure}[b]{0.5\linewidth}
+    %    \includegraphics[width=\linewidth]{sql-query.JPG}
+    %    \caption{De SQL query.}
+    %\end{subfigure}
+    \caption{Overzicht van de filtering voorbereidingen.}
+    \label{fig:data-en-dropdown}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{filter-action.JPG}
+    \caption{De Filter actie.}
+    \label{fig:filter-action}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\linewidth]{sql-query-edited.JPG}
+    \caption{De SQL query.}
+    \label{fig:sql-query}
+\end{figure}
 
 \textit{Reporting}
 
