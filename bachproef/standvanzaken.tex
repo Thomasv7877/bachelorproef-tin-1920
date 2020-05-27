@@ -174,8 +174,12 @@ Een no-code platform is een gespecialiseerde versie van een low-code platform wa
 
 % TODO: extra uitleg
 
+%\resizebox{\textwidth}{!}{%
+%\makebox[\textwidth]{
+
 \begin{table}[h!]
-    \resizebox{\textwidth}{!}{%
+    \makebox[\textwidth]{
+        \resizebox{1.3\textwidth}{!}{%
         \begin{tabular}{|l|l|l|}
             \hline
             \textbf{} & \textbf{Traditional} & \textbf{Low-Code} \\ \hline
@@ -196,6 +200,7 @@ Een no-code platform is een gespecialiseerde versie van een low-code platform wa
             15 & \begin{tabular}[c]{@{}l@{}}testen voor security, performance, kwaliteit \\ en gebruikersacceptatie\end{tabular} &  \\ \cline{1-2}
             16 & \begin{tabular}[c]{@{}l@{}}deploy, patch, monitor en updat tot levenseinde \\ van de app\end{tabular} &  \\ \hline
         \end{tabular}%
+    }
     }
     \caption{Vergelijking van het traditionele en low-code ontwikkelingsproces \autocite{Revell2020}}
     \label{tab:ontw-stappen}
