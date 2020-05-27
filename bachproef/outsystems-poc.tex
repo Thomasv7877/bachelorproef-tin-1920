@@ -167,7 +167,7 @@ GetColNamen(VglRecList[0].velden.ColNaamAtt).ColNamen.Naam + " " + GetVergelijkT
 \begin{lstlisting}
 TestStringParam + " and " + GetColNamen(VglRecList.Current.velden.ColNaamAtt).ColNamen.Naam + " " + GetVergelijkTekens(VglRecList.Current.velden.VergelijkTekenAtt).VergelijkTekens.Teken + " '" + VglRecList.Current.velden.FilterWaarde + "'"
 \end{lstlisting}
-        \item De sql query uitvoeren. Een opmerking hierbij is dat de 'expand inline' optie actief moet staan om de gebouwde string effectief te kunnen gebruiken als argument. De query zelf is een simpele WHERE met door AND aaneengeschakelde evaluaties. (Afbeelding~\ref{fig:sql-query})
+        \item De sql query uitvoeren. Een opmerking hierbij is dat de 'expand inline' optie actief moet staan om de gebouwde string effectief te kunnen gebruiken als argument. De query zelf is een simpele WHERE met door AND aaneengeschakelde evaluaties. (Figuur~\ref{fig:sql-query})
     \end{enumerate}
     De gereturnde filterresultaten worden in een aparte Table geplaatst. Dit maakt het exporteren als report ook makkelijker\\
     De gevonden beperkingen zijn dat het evalueren met sommige kolommen niet juist werkt en dat de performantie lager is dan bij een aggregate.
