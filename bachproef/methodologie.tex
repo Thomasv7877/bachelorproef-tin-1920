@@ -257,7 +257,7 @@ Security is als verwacht voor een marktleider: \\ % TODO
     \item \textbf{Forrester}
     \begin{itemize}
         \item \textit{Positief:} Trendsetter in features, krachtig aanbod. Goede ondersteuning voor app levenscyclus, uitbreidingen naar CI toe. Sterke partners: SAP, Siemens en IBM.
-        \item \textit{Negatief:} Weinig zwakten. Extra code nodig voor integraties. Services voor content management binnen apps is iets zwakker. Prijzen voor platform adoptie moeilijk te voorspellen.
+        \item \textit{Negatief:} Extra code nodig voor integraties. Services voor content management binnen apps is iets zwakker. Prijzen voor platform adoptie moeilijk te voorspellen.
     \end{itemize}
     \item \textbf{Gartner}
     \begin{itemize}
@@ -291,13 +291,54 @@ Security is als verwacht voor een marktleider: \\ % TODO
 
 \subsubsection{Salesforce}
 
-% TODO: uitbreiden en beter argumenteren.
+Salesforce is een Amerikaans cloud-georiënteerd software bedrijf met hoofdzetel in San Francisco, Californië. Het verleent sinds 1999 CRM\footnote{\url{https://nl.wikipedia.org/wiki/Customer_relationship_management}} services en complementaire enterprise applicaties waaronder het Lightning low-code platform.
 
-Er is geen gratis licentie aanwezig en het platform is eerder gefocust op CRM\footnote{\url{https://nl.wikipedia.org/wiki/Customer_relationship_management}}
+Het platform bied opties aan voor zowel low-code als traditionele ontwikkeling.\\
+Er is een focus op CRM en het doelpubliek van de apps is business gebruikers. Voor externe gebruikers bestaat er de Lightning Community Builder. Dit is analoog met Microsoft zijn PowerApps en Portals.\\
+De apps kunnen enkel vanuit het Salesforce portaal gebruikt worden. Hosting gebeurt altijd in de Salesforce cloud. Apps zijn standaard responsief.\\
+De Lightning App Builder is een point-en-klik low-code oplossing. Ondersteunend zijn er de Process Builder om datamodellen op te stellen en de Schema Builder voor complexe geautomatiseerde logica. In de Schema Builder is gebruik van de binnenhuis ontwikkelde programmeertaal Apex ook mogelijk. De syntax ervan komt overeen met Java. Vanuit Apex kan data gemanipuleerd worden aan de hand van SOQL (Salesforce Object Query Language).\\
+De UI wordt gebouwd met componenten uit het Lightning UI framework. Er is een sterke focus op herbruikbaarheid.\\
+Er kunnen onder andere REST en SOAP API's gebruikt worden maar dit moet ingesteld worden via Apex.\\
+Net als bij Outsystems kan app bouw geassisteerd worden door AI. Salesforce doet dit met Einstein. Hierbuiten kan Einstein ook gebruikt worden voor traditionele toepassingen in dit domein zoals AI assistentie en image herkenning met de Vision API. Chatbots bouwen is mogelijk met Einstein Bots.\\
+Voor professionele ontwikkelaars is er het Heroku web development platform. Hier is men vrij om te kiezen welke programmeertaal gebruikt wordt.
 
-\textcite{Marvin2017b} was minder gunstig over het platform en hekelde zich vooral aan de feature bloat en UI clutter. De tutorials zouden overigens niet up to date zijn.
+Het heeft de meest uitgebreide feature-set en de beste aanbieding van community componenten en apps in de App Exchange. De keerzijde hiervan is dat de features overweldigend kunnen worden (feature bloat, UI clutter).\\
+Er zijn trails (tutorials) beschikbaar op de trailhead interactieve leer-en training site maar de pagina's zijn niet altijd up-to-date.\\
+Het is mogelijk dat database aanpassingen problemen geven in de app.
+\autocite{Marvin2017b}
 
-Om deze redenen is het geen valide optie maar omdat de markt aanwezigheid zo groot is was het de moeite om kort te bespreken.
+Salesforce biedt een gratis Developer Edition aan. Dit heeft alle features en is bedoelt om te leren. Er is ook een proefversie mogelijk. De betalende opties zijn te zien in Tabel~\ref{tab:plan-salesforce}
+
+\begin{itemize}
+    \item \textbf{Forrester}
+    \begin{itemize}
+        \item \textit{Positief:} Grote partner lijst en security certificaten.
+        \item \textit{Negatief:} Code moeten gebruiken om aan noden te kunnen voldoen.
+    \end{itemize}
+    \item \textbf{Gartner}
+    \begin{itemize}
+        \item \textit{Positief:} App Exchange, innovatie (onder andere Einstein en IoT mogelijkheden)
+        \item \textit{Negatief:} Zowel Lightning als Apex moeten gebruiken om requirements uit te kunnen werken.
+    \end{itemize}
+\end{itemize}
+
+Licentiëring:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{}                      & \multicolumn{1}{l|}{\textbf{Platform Starter}} & \multicolumn{1}{l|}{\textbf{Platform Plus}} \\ \hline
+        \textbf{Custom objecten}       & 10                                             & 110                                         \\ \hline
+        \textbf{Lichtning App Builder} & x                                              & x                                           \\ \hline
+        \textbf{AppExchange}           & x                                              & x                                           \\ \hline
+        \textbf{Process Automatie}     & x                                              & x                                           \\ \hline
+        \textbf{Lighting Console}      & (x)\textsuperscript{\$25 extra}                                            & x                                           \\ \hline
+        \textbf{}                      &                                                &                                             \\ \hline
+        \textbf{Maandelijkse prijs}    & \$25                                           & \$100                                       \\ \hline
+    \end{tabular}
+    \caption{Prijsmodel Salesforce \autocite{Salesforcea}}
+    \label{tab:plan-salesforce}
+\end{table}
 
 \subsubsection{Appian}
 
@@ -312,6 +353,7 @@ Dit platform is door \textcite{Vincent2019} bestempelt als een leider en heeft e
 Er zijn geen redenen gevonden om weg te stappen van PowerApps als primaire kandidaat om de POC mee uit te werken ook al kan het schrijven van uitbreidingen omslachtig worden. Er zijn twee concurrenten gevonden: Outsystems en Mendix. Wat functionaliteit betreft zijn ze inwisselbaar. Beiden zijn gefocust op professionele ontwikkelaars en hebben aantrekkelijke gratis licenties. De grootste belemmering betreft het gebruik van SharePoint als data opslag. Waar het bij PowerApps standaard ondersteund is als Connector moet er in Mendix en Outsystems zijn geval een REST API gebruikt worden. Bij gebruik van één van beiden is het dus interessanter om een alternatieve opslagmethode te gebruiken.
 
 % TODO: keuze outsystems betere gratis versie dan mandix nuanceren
-Na overweging is voor Outsystems gekozen om de secundaire POC mee uit te werken. Wat doorslag gaf is de gratis versie die van Outsystems net iets beter is.
+Na overweging is voor Outsystems gekozen om de secundaire POC mee uit te werken. Wat doorslag gaf is de gratis versie die van Outsystems net iets beter is.\\
+Bovendien vallen de resource noden van de POC volledig binnen de limieten van het plan, in \ref{subsec:os-prijs} staat dit uitgelicht.
 
 
