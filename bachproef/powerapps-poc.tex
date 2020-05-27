@@ -59,7 +59,11 @@ Naast Tables zijn er uiteraard variabelen. Deze kunnen een globale context of co
 \section{SharePoint Configuratie}
 \label{sec:sharepoint}
 
-% TODO
+% TODO: aanvullen
+
+Voor het bouwen van de POC werd een testsite voorzien. De asset data werd in een enkele Lijst geplaatst. Er werd beperkte validatie ingesteld.\\
+Het is de bedoeling dat in de definitieve versie Content Types gebruikt zullen worden: in grote lijnen een overkoepelnd type met gemeenschappelijke kolommen en dan unieke subtypen (pc/Laptop, Switch, Server). \\
+Dit zal geen effect hebben op de PowerApps POC omdat er automatische Lookups gedaan worden.
 
 \section{Model van Opstelling}
 
@@ -270,8 +274,20 @@ Een belangrijke aanpassing die gemaakt moet worden is om de app 2000 kolommen op
 
 \subsubsection{Security}
 
-% TODO
-Eens een app gepubliceerd is kan gekozen wie de app mag gebruiken. Goedgekeurde gebruikers hebben toegang met hun Office365 login.
+% TODO:laatste controle
+Eens een app gepubliceerd is kan gekozen worden wie de app mag gebruiken. Dit kan op ook groepsniveau gebeuren door te publiceren naar een bepaalde Environment. Goedgekeurde gebruikers hebben toegang met hun Office365 login, authenticatie gebeurt met andere woorden via Azure AD. Er moet opgepast worden dat deze gebruikers over de nodige permissies beschikken voor de aanwezige connectors om ontbrekende functionaliteit te vermijden.
+
+Er zijn enkele technieken om granulaire permissies in te stellen, die van \textcite{Dunnam2019} wordt hier uitgelegd:
+
+\textbf{Scenario:} Enkel bepaalde gebruikers mogen een formulier aanpassen.\\
+\textbf{Toepassing:} Een (SharePoint) lijst opslaan met de email adressen van de gebruikers met bevoegdheid. Bij app start controleren of men in deze lijst zit. In de app zal de edit knop enkel maar voor hun zichtbaar zijn.\\
+\textbf{Concreet:} 
+\begin{lstlisting}
+OnStart => ClearCollect(acceptedApprovers, Filter(Approvers, Title = User().FullName))
+Visibkle (editknop) => If(IsEmpty(acceptedApprovers),false, true)
+\end{lstlisting} 
+
+Bovenstaande werd niet ingewerkt maar iets dergelijk zou later gebruikt kunnen worden om de app open te stellen voor een groter publiek (buiten enkel de IT).
 
 \subsection{Should have}
 
