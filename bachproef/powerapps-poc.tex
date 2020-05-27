@@ -129,7 +129,7 @@ De flow van deze requirement wordt duidelijk aan de hand van het overzicht van n
 
 \subsubsection{Filtering / rapportage}
 
-\textit{Filtering:}
+\textit{Filtering (met Excel databron):}
 
 Er moet een onderscheid gemaakt worden tussen 'zoeken' en 'filteren'. Zoeken is het matchen van tekst in een zoekveld aan een vooropgesteld aantal kolommen elke keer deze tekst wijzigt. Implementatie ervan in PowerApps is eenvoudig te doen met één formule:
 
@@ -179,6 +179,53 @@ Ter verduidelijking: een samengestelde query in zowel ODATA als flow expressie:
 Dit beoogde soort filtering is overigens out of the box aanwezig in model based apps. \autocite{MicrosoftDocs2020c}
 
 Als het dynamische aspect van filtering opgegeven wordt is het nog steeds mogelijk om 'statisch' te werken. Daarmee bedoeld een aantal voorgebouwde queries, voor gangbare scenario's zoals ze bestaat in LanReview zijn zonder problemen op te nemen in PowerApps.
+
+\textit{Filtering (met SharePoint databron):}
+
+Filtering met SharePoint kan anders aangepakt worden, om dit aan te tonen worden de uitvoeringsopties opnieuw overlopen.
+\begin{enumerate}
+    \item In PowerApps zelf met behulp van formules.\\
+    \textbf{$\rightarrow$ NEE}
+    \item Via een Power Automate flow\\
+    ODATA filters uitgevoert op SharePoint items hebben geen beperking op het aantal via 'and' aaneengekoppelde operaties, de filter kan dus in Power Automate uitgewerkt worden.\\
+    \textbf{$\rightarrow$ JA}
+\end{enumerate}
+
+De belangrijkste operaties van de flow (Figuur~\ref{fig:sp-flow-open}) zijn:
+\begin{itemize}
+    \item \textbf{Items ophalen:} De ODATA filter query wordt als enkel string argument vanuit PowerApps doorgegeven naar de flow en is bruikbaar in het 'FilterQuery' veld.
+    \item \textbf{Reactie:} Als eerst een test antwoord werd voorzien als voorbeeld om het schema uit te genereren wordt er een bruikbare json naar Powerapps teruggegeven.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{sp-flow-open.JPG}
+    \caption{De Automate flow waarmee SharePoint gefilterd wordt.}
+    \label{fig:sp-flow-open}
+\end{figure}
+
+Gebruik in de PowerApp (Figuur~\ref{fig:sp-filter-res}):\\
+De kolommen van SharePoint zijn enkel via een speciale soort naam toegankelijk, er moet mapping gebeuren. Daarvoor wordt een tabel gebruikt waarbij 'colPA' de kolomnaam is voor weergave in de PowerApp en 'colAUT' de bruikbare kolomnaam is in Automate.
+\begin{lstlisting}
+Set(ColNamesTable;Table({colPA:"NETWNAAM";colAUT:"Title"};{colPA:"NAAM";colAUT:"yh3z"};[..])) // entries voor eerste twee kolommen getoond.
+\end{lstlisting}
+Elke keer op 'formatquery' geduwd wordt:
+\begin{lstlisting}
+OnSelect => Collect(FormattedQueryHTTP;LookUp(ColNamesTable;colPA = colNameDropdown_1.SelectedText.Value).colAUT & " " & LookUp(OperatorsTable;eqPA = eqNameDropdown_1.SelectedText.Value).eqAUT & " '" & FilterValueText_1 & "'")
+\end{lstlisting}
+De waarden worden gemapt naar odata aanvaardbare waarden (via lookup), aan elkaar geplakt en toegevoegd aan tabel FormattedQueryHTTP als een enkelvoudige filter operatie.\\
+Wanneer de query uitgevoerd wordt ('dynquery' knop):
+\begin{lstlisting}
+OnSelect => Set(HTTPFilterResults;'PowerApps-knop'.Run(Left(Concat(FormattedQueryHTTP;Value & " and ");Len(Concat(FormattedQueryHTTP;Value & " and "))- 5)))
+\end{lstlisting}
+De waarden van de tabel worden geconcateneerd met ' and' ertussen. De laatste 'and' wordt ervan gehaald via \lstinline|len(.., -5)|. De flow wordt uitgevoerd.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{sp-filter-res.png}
+    \caption{Voorbeeld van SharePoint filtering in de PowerApp.}
+    \label{fig:sp-filter-res}
+\end{figure}
 
 \textit{Reporting:}
 
@@ -636,7 +683,8 @@ In het 'Security' tab is het belangrijk OAuth v2.0 authenticatie te kiezen met a
 Het is handig dat in de laatste stap de acties getest kunnen worden. De resultaten hiervan zijn ingevoegd. (Figuur~\ref{fig:res-blank-conn})
 
 \begin{figure}[h!]
-    \includegraphics[width=0.5\linewidth]{res-blank-conn.JPG}
+    \centering
+    \includegraphics[width=0.4\linewidth]{res-blank-conn.JPG}
     \caption{Resultaat van de Graph queries.}
     \label{fig:res-blank-conn}
 \end{figure}
@@ -655,4 +703,18 @@ Set(filterResultaatItems;MSGraphConnector.GetResult({'$select':"values"}).value)
     \item Er wordt een variable gedeclareerd dat het relevant stuk return json toegewezen krijgt via de 'GetResult' actie.
 \end{enumerate}
 
-Theoretisch ziet dit er goed uit, de tests ervoor slagen en de eerste actie geeft het sessie id succesvol terug. Jammer genoeg falen de andere. Er wordt telkens een 404 (resource not found) error teruggegeven. Verdere pogingen om deze requirement uit te werken zijn gestaakt. Dit is aanvaardbaar omdat voor deze requirement premium functionaliteit nodig is waar na afloop van de proef waarschijnlijk geen meerprijs voor betaald zal worden. Deze functionaliteit zal met andere woorden nooit praktisch toegepast worden.
+Theoretisch ziet dit er goed uit, de tests ervoor slagen en de eerste actie geeft het sessie id succesvol terug. Jammer genoeg falen de andere. Er wordt telkens een 404 (resource not found) error teruggegeven.
+
+De gevonden workaround is om de oproepen naar de Custom connector uit te laten voeren vanuit een flow. Figuur~\ref{fig:excel-filter-flow-success} toont de succesvolle uitvoering hiervan.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{excel-filter-flow-success.JPG}
+    \caption{Gebruik van de Custom Connector in een flow, de acties van deze connector zijn groen.}
+    \label{fig:excel-filter-flow-success}
+\end{figure}
+
+Enkele opmerkingen die het gebruik van de flow verduidelijken:\\
+In de powerapps wordt de flow uitgevoerd via 'Filter !' knop.
+De filterargumenten moeten als invoerparameters meegegeven worden. Deze moeten formatting krijgen.
+De resultaten van 'GetResult' worden teruggestuurd in 'Reactie' en zijn als json toegankelijk vanuit de PowerApp mits het schema eerst gedefinieerd werd.
