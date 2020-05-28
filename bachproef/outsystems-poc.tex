@@ -22,6 +22,7 @@ In de persoonlijke omgeving kan naast het maken van een nieuwe app community com
 Bij het maken van een app zijn er vijf keuzes: reactive of tradiotionele web app. Tablet of Telefoon app. Ten laatste ook een service. Er is voor reactive gekozen omdat er in de POC in PowerApps twee versies gemaakt zijn en de app dus over meerde platformen moet kunnen gebruikt worden. Na de creatie van de app wordt ook een module aangemaakt.\\
 De eenvoudigste manier om data te introduceren is door een Excel file op te laden. De data hieruit wordt naar een cloud instantie van SQL Server opgeslagen.\\
 Als de app gestart wordt moeten Outsystems credentials opgegeven worden.
+
 Dit is de basis om de requirements uit te kunnen beginnen werken maar eerst nog wat uitleg bij het gebruik van de IDE.
 
 \subsection{IDE en begrippen}
@@ -43,10 +44,10 @@ Er zijn een aantal begrippen die gekend moeten zijn bij het maken van applicatie
     \item TrueChange Debugger:\\
     Zoals verwacht van een debugger kunnen breakpoints gezet worden en zijn tijdens uitvoering de waarden van de actieve variabelen in te kijken. Het interessante is dat hiernaast de app geanalyseerd wordt en performantie en security aanbevelingen teruggegeven worden.
     \item One Click Publish:\\
-    Stappen uit traditionele software ontwikkeling om een aap beschikbaar te stellen (verifiëren, compileren, uploaden en publiceren van code) worden geautomatiseerd met één knop. Als verificatie faalt moeten de fouten eerst uit de app gehaald worden.
+    Stappen uit traditionele software ontwikkeling om een app beschikbaar te stellen (verifiëren, compileren, uploaden en publiceren van code) worden geautomatiseerd met één knop. Als verificatie faalt moeten de fouten eerst uit de app gehaald worden.
     Dit betekend ook dat wijzigingen altijd online worden gezet voor het resultaat bekeken kan worden.
     \item AI Assisted development:\\
-    Tijdens ontwikkeling wordt AI gebruikt om onder andere sleutelwoorden en app context te analyseren en op basis hiervan acties aan te bevelen. Een voorbeeld van het gebruik in de POC was dat wanneer een actie aangemaakt werd in de lijst op het hoofdscherm er voorspeld werd dat er detailweergave nodig was. Dit detailscherm en bijbehorend formulier werd automatisch gegenereerd.
+    Tijdens ontwikkeling wordt AI gebruikt om onder andere sleutelwoorden en app context te analyseren en op basis hiervan acties aan te bevelen. Een voorbeeld van het gebruik ervan in de POC was dat wanneer een actie aangemaakt werd in de lijst op het hoofdscherm er voorspeld werd dat er een detailweergave nodig was. Dit detailscherm en bijbehorend formulier werd automatisch gegenereerd.
     \item Aggregate VS SQL Query:\\
     Er zijn twee manieren om data te queryen. Een aggregate is eenvoudig te declareren en beter geoptimaliseerd in Outsystems dan een gewone SQL query. Die is echter flexibeler en het gebruik ervan wordt aangeraden wanneer iets niet mogelijk is met een aggregate. Beiden werden gebruikt in de POC en komen verder aan bod.
     %\item Datatypen:
@@ -96,7 +97,7 @@ Waar dit bij PowerApps gegenereerd kan worden uit data kunnen dezelfde resultate
     \item Een nieuw scherm aanmaken en kiezen voor een lijstweergave sjabloon.
     \item De data slepen naar het tabel element volstaat na wat kolom aanpassingen om een gewenste weergave van de data te krijgen. Achter de schermen wordt een aggregate aangemaakt die de rijen ophaalt uit de databank.
     \item Als een knop aangemaakt wordt in de rij zal als actie aanbevolen worden dat er een nieuw scherm wordt aangemaakt met een detailweergave. In de achtergrond wordt de id van de rij item meegegeven om in het detailscherm een aggregate in te stellen die deze id gebruikt om alle data van de item op te halen en te tonen.
-    \item In het detailschemn kan de layout aangepast worden naar wens en kan validatie ingesteld worden.
+    \item In het detailscherm kan de layout aangepast worden naar wens en kan validatie ingesteld worden.
 \end{enumerate}
 
 \begin{figure}[h!]
@@ -114,7 +115,7 @@ Waar dit bij PowerApps gegenereerd kan worden uit data kunnen dezelfde resultate
 Dit instellen van validatie is belangrijk. Omdat de data recent werd geïmporteerd naar de SQL instantie zijn er geen specifieke regels op ingesteld. Als een externe data bron gebruikt werd (bijvoorbeeld SharePoint) had dit wel het geval kunnen zijn.\\
 Outsystems heeft automatische client side validatie. \autocite{OutSystemsDocs} In de formulier widget heeft elk inputveld geassocieerd met een kolom een nodig inputtype (zoals mail, datum, tekst) toegewezen gekregen, elke input is standaard ook verplicht (via het 'mandatory' property). Het formulier zelf heeft een Valid boolean property dat op false wordt gezet als validatie in één van de inputs zou falen. Controle hierop gebeurt in de client actie gekoppeld aan de knop om toe te voegen of te wijzigen. Het is deze actie die gewijzigd moet worden volgens het specifieke scenario. (Zie Figuur~\ref{fig:os-validatie-tesamen})
 
-Gaat het om het toevoegen van nieuwe entry of wijzigen van een bestaande? Indien het een nieuwe is wordt gekeken of het ingevulde Netwnaam uniek is via de server actie 'NetwNaamUnique'. Deze zal een aggregate uitvoeren waarin een filter toegepast is  die kijkt of de meegegeven Netwnaam matcht aan een waarde uit de NETWNAAM kolom. Indien de netwerknaam uniek is word verder gegaan met de formuliervalidatie. Indien niet wordt een error message gekoppeld aan de textinput van de Netwnaam en stopt de actie.
+Gaat het om het toevoegen van een nieuwe entry of wijzigen van een bestaande? Indien het een nieuwe is wordt gekeken of het ingevulde Netwnaam uniek is via de server actie 'NetwNaamUnique'. Deze zal een aggregate uitvoeren waarin een filter toegepast is  die kijkt of de meegegeven Netwnaam matcht aan een waarde uit de NETWNAAM kolom. Indien de netwerknaam uniek is word verder gegaan met de formuliervalidatie. Indien niet wordt een error message gekoppeld aan de textinput van de Netwnaam en stopt de actie.
 
 \begin{figure}[h!]
     \includegraphics[width=\linewidth]{os-validatie-tesamen.png}
@@ -143,7 +144,7 @@ $\rightarrow$ Filter:
     De filter bouwen gebeurt via een dynamisch groeiende lijst waarbij elke rij bestaat uit een keuzeveld voor de kolom, de soort vergelijking en de tekst om op te filteren.\\
     Er moeten enkele datatypen voorbereid worden om dit mogelijk te maken:
     \begin{itemize}
-        \item Statische entitieit die alle kolomnamen bevat
+        \item Statische entitieit die alle kolomnamen bevat.
         \item Statische entitieit die alle mogelijke vergelijkingen/operators bevat.
         \item Structuur die de filterwaarden van een rij zal vasthouden. Dit is een samengesteld type, het bevat:
         \begin{itemize}
@@ -169,7 +170,7 @@ TestStringParam + " and " + GetColNamen(VglRecList.Current.velden.ColNaamAtt).Co
 \end{lstlisting}
         \item De sql query uitvoeren. Een opmerking hierbij is dat de 'expand inline' optie actief moet staan om de gebouwde string effectief te kunnen gebruiken als argument. De query zelf is een simpele WHERE met door AND aaneengeschakelde evaluaties. (Figuur~\ref{fig:sql-query})
     \end{enumerate}
-    De gereturnde filterresultaten worden in een aparte Table geplaatst. Dit maakt het exporteren als report ook makkelijker\\
+    De gereturnde filterresultaten worden in een aparte Table geplaatst. Dit maakt het exporteren als report later makkelijker.\\
     De gevonden beperkingen zijn dat het evalueren met sommige kolommen niet juist werkt en dat de performantie lager is dan bij een aggregate.
 \end{itemize}
 
@@ -232,7 +233,7 @@ Omdat de POC in de cloud draait is deze functionaliteit niet direct op te roepen
 \begin{itemize}
     \item \textbf{Workaround 1:} Client side javascript, specifiek een ActiveX plugin gebruiken om shell commando's uit te voeren\footnote{How to Run cmd.exe with parameters from javascript - \url{https://stackoverflow.com/questions/10186813/how-to-run-cmd-exe-with-parameters-from-javascript}}.\\
     $\rightarrow$ 'ActiveX not defined' error. Dit enkel mogelijk met oudere versies van Internet Explorer. Het is ook logisch dat dit niet meer ondersteund is vanuit security aspect.
-    \item \textbf{Workaround 2:} Een 'link' control en de href property laten wijzen naar een locale RDP file\\
+    \item \textbf{Workaround 2:} Een 'link' control en de href property laten wijzen naar een lokale RDP file.\\
     $\rightarrow$ Niet flexibel genoeg: de rdp config file zou elke keer aangepast moeten worden met het relevante ip adres.
     \item \textbf{Workaround 3:} De webbrowser waar de POC in werkt configureren om custom urls te kunnen gebruiken (zoals rdp://). Vanuit de app naar dat soort url navigeren via de ingebouwde 'RedirectToUrl' functie.\\
     $\rightarrow$ Te veel extra configuratie buiten Outsystems en twijfelachtige ondersteuning.
@@ -267,7 +268,7 @@ Stappen om de extensie aan te maken:
     $\rightarrow$ ipaddress (Text)\\
     $\leftarrow$ pingable (Boolean)
     \item Visual Studio openen met de 'Edit Source Code .NET' knop.
-    \item Een methode schrijven die de pinger klasse implementeerd (Zie Listing~\ref{lst:pinger-meth}). 
+    \item Een methode schrijven die de Pinger klasse implementeert (Zie Listing~\ref{lst:pinger-meth}). 
     \item Net als in de Service Studio One Click-Publish gebruiken om de extensie op te slaan en beschikbaar te maken.
     \item De extensie als dependency toevoegen aan de POC maakt de PingHost actie bruikbaar.
 \end{enumerate}
@@ -296,7 +297,7 @@ public void MssPingHost(string ssipaddress, out bool sspingable) {
 Het gekozen soort app is reactive om zowel op desktop als mobiele layout bruikbaar te zijn maar er werd niet verwacht dat er bij deze keuze (tussen Traditional Web, Reactive en Mobile) functionaliteit verloren zou gaan. Dit was wel het geval:
 \begin{itemize}
     \item \textbf{Automatisatie:} Het maken van een Timer die mail verstuurt is enkel mogelijk in een Tradional Web App, er was een workaround nodig (Zie Subsectie~\ref{subsec:os-automatisatie}).
-    \item \textbf{Barcode Scanning:} Een Mobile App nodig is nodig om de Barcode Scanner te kunnen gebruiken (Zie Subsectie~\ref{subsec:os-barcode}).
+    \item \textbf{Barcode Scanning:} Een Mobile App is nodig om de Barcode Scanner te kunnen gebruiken (Zie Subsectie~\ref{subsec:os-barcode}).
 \end{itemize}
 
 \begin{figure}[h!]
@@ -440,7 +441,7 @@ Om de GUI te bouwen wordt het UI framework genaamd Silk UI\footnote{\url{https:/
 
 Een overzicht van Silk UI componenten, die telkens meer controle over detail geven:
 
-\textit{Screen templates $\rightarrow$ thema editor $\rightarrow$ UI patronen/controls voorgangbare use cases $\rightarrow$ Style properties $\rightarrow$ CSS editor}
+\textit{Screen templates $\rightarrow$ thema editor $\rightarrow$ UI patronen/controls voor gangbare use cases $\rightarrow$ Style properties $\rightarrow$ CSS editor}
 
 Afhankelijk van hoeveel tijd men wil spenderen is elk aspect van de UI met andere woorden aan te passen.
 
