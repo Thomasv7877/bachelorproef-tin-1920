@@ -19,16 +19,16 @@
 
 De eerste stap is om een account aan te maken, hierna kan de Outsystems software geïnstalleerd worden (Service Studio als gewone IDE en Extension Studio om uitbreidingen te maken).\\
 In de persoonlijke omgeving kan naast het maken van een nieuwe app community componenten van de Forge ook rechtstreeks geïnstalleerd worden. \\
-Bij het maken van een app zijn er vijf keuzes: reactive of tradiotionele web app. Tablet of Telefoon app. Ten laatste ook een service. Er is voor reactive gekozen omdat er in de POC in PowerApps twee versies gemaakt zijn en de app dus over meerde platformen moet kunnen gebruikt worden. Na de creatie van de app wordt ook een module aangemaakt.\\
+Bij het maken van een app zijn er vijf keuzes: reactive of traditionele web app, tablet of telefoon app en ten laatste ook een service. Er is voor reactive gekozen omdat er in de POC in PowerApps twee versies gemaakt zijn en de app dus op meerdere platformen moet kunnen gebruikt worden. Na de creatie van de app wordt ook een module aangemaakt.\\
 De eenvoudigste manier om data te introduceren is door een Excel file op te laden. De data hieruit wordt naar een cloud instantie van SQL Server opgeslagen.\\
 Als de app gestart wordt moeten Outsystems credentials opgegeven worden.
 
 Dit is de basis om de requirements uit te kunnen beginnen werken maar eerst nog wat uitleg bij het gebruik van de IDE.
 
 \subsection{IDE en begrippen}
-Er zijn een aantal functies aanwezig, hier uitgelegd per mogelijke weergave paneel (Zie Figuur~\ref{fig:ide-overzicht}):
+Er zijn een aantal functies aanwezig, hier uitgelegd per mogelijk weergavepaneel (Zie Figuur~\ref{fig:ide-overzicht}):
 \begin{itemize}
-    \item \textbf{Centraal:} Hier kunnen de UI flows (onderlinge verhouding van de schermen), ontwerpweergave van een scherm of een actie/methode weegave staan.
+    \item \textbf{Centraal:} Hier kunnen de UI flows (onderlinge verhouding van de schermen), ontwerpweergave van een scherm of een actie/methode weergave staan.
     \item \textbf{Links:} Een overzicht van de beschikbare UI controls of actie stappen.
     \item \textbf{Rechts:} Context views voor de processen, interface, de logica en de data. Aangevuld met een properties paneel wanneer toepasselijk.
 \end{itemize}
@@ -44,8 +44,8 @@ Er zijn een aantal begrippen die gekend moeten zijn bij het maken van applicatie
     \item TrueChange Debugger:\\
     Zoals verwacht van een debugger kunnen breakpoints gezet worden en zijn tijdens uitvoering de waarden van de actieve variabelen in te kijken. Het interessante is dat hiernaast de app geanalyseerd wordt en performantie en security aanbevelingen teruggegeven worden.
     \item One Click Publish:\\
-    Stappen uit traditionele software ontwikkeling om een app beschikbaar te stellen (verifiëren, compileren, uploaden en publiceren van code) worden geautomatiseerd met één knop. Als verificatie faalt moeten de fouten eerst uit de app gehaald worden.
-    Dit betekend ook dat wijzigingen altijd online worden gezet voor het resultaat bekeken kan worden.
+    Stappen uit traditionele software ontwikkeling om een app beschikbaar te stellen (verifiëren, compileren, uploaden en publiceren van code) worden geautomatiseerd met één knop. Als de verificatie faalt moeten de fouten eerst uit de app gehaald worden.
+    Dit betekent ook dat wijzigingen altijd online worden gezet voor het resultaat bekeken kan worden.
     \item AI Assisted development:\\
     Tijdens ontwikkeling wordt AI gebruikt om onder andere sleutelwoorden en app context te analyseren en op basis hiervan acties aan te bevelen. Een voorbeeld van het gebruik ervan in de POC was dat wanneer een actie aangemaakt werd in de lijst op het hoofdscherm er voorspeld werd dat er een detailweergave nodig was. Dit detailscherm en bijbehorend formulier werd automatisch gegenereerd.
     \item Aggregate VS SQL Query:\\
@@ -72,7 +72,7 @@ Er zijn een aantal begrippen die gekend moeten zijn bij het maken van applicatie
 \subsubsection{Prijs}
 \label{subsec:os-prijs}
 
-De Personal Environment\footnote{What's an OutSystems personal environment? - \url{https://success.outsystems.com/Support/Personal_Environment/What's_an_OutSystems_personal_environment}} (gratis versie) legt geen beperkingen op de bruikbare functionaliteit of hoe lang deze omgeving beschikbaar is. Dit betekend echter niet dat er geen limieten zijn. De hamvraag is of deze limieten aanvaardbaar zijn voor het gebruiksscenario van de POC. Ze worden daarom één per één afgetoetst:
+De Personal Environment\footnote{What's an OutSystems personal environment? - \url{https://success.outsystems.com/Support/Personal_Environment/What's_an_OutSystems_personal_environment}} (gratis versie) legt geen beperkingen op de bruikbare functionaliteit of hoe lang deze omgeving beschikbaar is. Dit betekent echter niet dat er geen limieten zijn. De hamvraag is of deze limieten aanvaardbaar zijn voor het gebruiksscenario van de POC. Ze worden daarom één per één afgetoetst:
 
 \begin{itemize}
     \item Maar één ontwikkelaar in de omgeving, er is geen samenwerking mogelijk.\\
@@ -81,13 +81,13 @@ De Personal Environment\footnote{What's an OutSystems personal environment? - \u
     $\rightarrow$ De bij te houden informatie over de meer dan 1000 assets valt hier nog steeds ruim onder.
     \item Indien de app een maand niet gebruikt wordt gaat de omgeving 'in slaap' en moet de app opnieuw gegenereerd worden voor deze opnieuw gebruikt kan worden.\\
     $\rightarrow$ De app zal dagelijks gebruikt worden dus dit zal nooit een risico worden.
-    \item Cloud resoruces worden gedeeld met andere gebruikers, er is geen service garantie.\\
+    \item Cloud resources worden gedeeld met andere gebruikers, er is geen service garantie.\\
     $\rightarrow$ De app eist geen intens resource gebruik. 
-    \item Er is geen harde limiet op aantal toegestane app gebruikers maar als de vorige items in beschouwing genomen worden zal een app bruikbaar zijn tot maximum 100 personen.\\
-    $\rightarrow$ Maximum 6 personen zullen de app gebruiken.
+    \item Er is geen harde limiet op het aantal toegestane app gebruikers maar als de vorige items in beschouwing genomen worden zal een app bruikbaar zijn tot maximum 100 personen.\\
+    $\rightarrow$ Maximum zes personen zullen de app gebruiken.
 \end{itemize}
 
-De marktleidende low-code platformen gefocust op professionele ontwikkelaars zijn duurder dan de concurrentie. Mendix en Outsystems rekenen meer dan \euro2000 voor hun basis plan (Zie Tabel \ref{tab:price-outsystems} en \ref{tab:price-mendix}). Het was daarom belangrijk dat de POC binnen de limieten bleef, de meerprijs zou niet worden aanvaard.
+De marktleidende low-code platformen gefocust op professionele ontwikkelaars zijn duurder dan de concurrentie. Mendix en Outsystems rekenen meer dan \euro2000 voor hun basisplan (Zie Tabel \ref{tab:price-outsystems} en \ref{tab:price-mendix}). Het was daarom belangrijk dat de POC binnen de limieten bleef, de meerprijs zou niet worden aanvaard.
 
 \subsubsection{Overzicht kunnen geven van belangrijkste info voor elk toestel in het netwerk}
 
@@ -95,8 +95,8 @@ Dit wordt gedaan via een hoofdscherm met een overzicht van de assets en een deta
 Waar dit bij PowerApps gegenereerd kan worden uit data kunnen dezelfde resultaten eenvoudig bekomen worden met behulp van AI geassisteerde acties.
 \begin{enumerate}
     \item Een nieuw scherm aanmaken en kiezen voor een lijstweergave sjabloon.
-    \item De data slepen naar het tabel element volstaat na wat kolom aanpassingen om een gewenste weergave van de data te krijgen. Achter de schermen wordt een aggregate aangemaakt die de rijen ophaalt uit de databank.
-    \item Als een knop aangemaakt wordt in de rij zal als actie aanbevolen worden dat er een nieuw scherm wordt aangemaakt met een detailweergave. In de achtergrond wordt de id van de rij item meegegeven om in het detailscherm een aggregate in te stellen die deze id gebruikt om alle data van de item op te halen en te tonen.
+    \item De data slepen naar het tabel element volstaat na wat kolomaanpassingen om een gewenste weergave van de data te krijgen. Achter de schermen wordt een aggregate aangemaakt die de rijen ophaalt uit de databank.
+    \item Als een knop aangemaakt wordt in de rij zal als actie aanbevolen worden dat er een nieuw scherm wordt aangemaakt met een detailweergave. In de achtergrond wordt de id van het rij item meegegeven om in het detailscherm een aggregate in te stellen die deze id gebruikt om alle data van het item op te halen en te tonen.
     \item In het detailscherm kan de layout aangepast worden naar wens en kan validatie ingesteld worden.
 \end{enumerate}
 
@@ -112,10 +112,10 @@ Waar dit bij PowerApps gegenereerd kan worden uit data kunnen dezelfde resultate
     \label{fig:os-detail}
 \end{figure}
 
-Dit instellen van validatie is belangrijk. Omdat de data recent werd geïmporteerd naar de SQL instantie zijn er geen specifieke regels op ingesteld. Als een externe data bron gebruikt werd (bijvoorbeeld SharePoint) had dit wel het geval kunnen zijn.\\
+Dit instellen van validatie is belangrijk. Omdat de data recent werd geïmporteerd naar de SQL instantie zijn er geen specifieke regels op ingesteld. Als een externe databron gebruikt werd (bijvoorbeeld SharePoint) had dit wel het geval kunnen zijn.\\
 Outsystems heeft automatische client side validatie. \autocite{OutSystemsDocs} In de formulier widget heeft elk inputveld geassocieerd met een kolom een nodig inputtype (zoals mail, datum, tekst) toegewezen gekregen, elke input is standaard ook verplicht (via het 'mandatory' property). Het formulier zelf heeft een Valid boolean property dat op false wordt gezet als validatie in één van de inputs zou falen. Controle hierop gebeurt in de client actie gekoppeld aan de knop om toe te voegen of te wijzigen. Het is deze actie die gewijzigd moet worden volgens het specifieke scenario. (Zie Figuur~\ref{fig:os-validatie-tesamen})
 
-Gaat het om het toevoegen van een nieuwe entry of wijzigen van een bestaande? Indien het een nieuwe is wordt gekeken of het ingevulde Netwnaam uniek is via de server actie 'NetwNaamUnique'. Deze zal een aggregate uitvoeren waarin een filter toegepast is  die kijkt of de meegegeven Netwnaam matcht aan een waarde uit de NETWNAAM kolom. Indien de netwerknaam uniek is word verder gegaan met de formuliervalidatie. Indien niet wordt een error message gekoppeld aan de textinput van de Netwnaam en stopt de actie.
+Gaat het om het toevoegen van een nieuwe entry of wijzigen van een bestaande? Indien het een nieuwe is wordt gekeken of het ingevulde Netwnaam uniek is via de server actie 'NetwNaamUnique'. Deze zal een aggregate uitvoeren waarin een filter toegepast is  die kijkt of de meegegeven Netwnaam matcht aan een waarde uit de NETWNAAM kolom. Indien de netwerknaam uniek is wordt verdergegaan met de formuliervalidatie. Indien niet wordt een error message gekoppeld aan de textinput van de Netwnaam en stopt de actie.
 
 \begin{figure}[h!]
     \includegraphics[width=\linewidth]{os-validatie-tesamen.png}
@@ -156,19 +156,19 @@ $\rightarrow$ Filter:
     In de interface moeten nog twee variabelen aangemaakt worden: een Record List van de 'FilterVelden' (zal elke filterwaarde bevatten) en een Record van 'FilterVelden' (stelt een lege rij voor). Ten laatste moet wat hierboven aangemaakt is correct toegewezen worden aan de properties van de dropdowns.(Zie Figuur~\ref{fig:data-en-dropdown})
     Het Advanced Filter Builder\footnote{\url{https://www.outsystems.com/forge/component-overview/365/advanced-filter-builder}} Forge component werd gebruikt om hier wijs uit te geraken.\\
     \item \textbf{Query:}\\
-    De 'Filter' knop voert de 'FilterOnClick' client actie uit die op zijn beurt de 'Filter' server actie uitvoert. De Record List is wordt als argument meegegeven.\\
+    De 'Filter' knop voert de 'FilterOnClick' client actie uit die op zijn beurt de 'Filter' server actie uitvoert. De Record List wordt als argument meegegeven.\\
     De 'Filter' actie (Zie Figuur \ref{fig:filter-action}):
     \begin{enumerate}
-        \item Controleren of de Record List leeg is indien ja stopt de uitvoering.
+        \item Controleren of de Record List leeg is. Indien ja, stopt de uitvoering.
         \item De eerste entry naar een string converteren. 
 \begin{lstlisting}
 GetColNamen(VglRecList[0].velden.ColNaamAtt).ColNamen.Naam + " " + GetVergelijkTekens(VglRecList[0].velden.VergelijkTekenAtt).VergelijkTekens.Teken + " '" + VglRecList[0].velden.FilterWaarde + "'"
 \end{lstlisting}
-        \item Controleren of er meerdere records zijn. Indien ja wordt er geloopt en wordt de string verder aangevuld via onderstaande expressie:
+        \item Controleren of er meerdere records zijn. Indien ja, wordt er gelooped en wordt de string verder aangevuld via onderstaande expressie:
 \begin{lstlisting}
 TestStringParam + " and " + GetColNamen(VglRecList.Current.velden.ColNaamAtt).ColNamen.Naam + " " + GetVergelijkTekens(VglRecList.Current.velden.VergelijkTekenAtt).VergelijkTekens.Teken + " '" + VglRecList.Current.velden.FilterWaarde + "'"
 \end{lstlisting}
-        \item De sql query uitvoeren. Een opmerking hierbij is dat de 'expand inline' optie actief moet staan om de gebouwde string effectief te kunnen gebruiken als argument. De query zelf is een simpele WHERE met door AND aaneengeschakelde evaluaties. (Figuur~\ref{fig:sql-query})
+        \item De SQL query uitvoeren. Een opmerking hierbij is dat de 'expand inline' optie actief moet staan om de gebouwde string effectief te kunnen gebruiken als argument. De query zelf is een simpele WHERE met door AND aaneengeschakelde evaluaties. (Figuur~\ref{fig:sql-query})
     \end{enumerate}
     De gereturnde filterresultaten worden in een aparte Table geplaatst. Dit maakt het exporteren als report later makkelijker.\\
     De gevonden beperkingen zijn dat het evalueren met sommige kolommen niet juist werkt en dat de performantie lager is dan bij een aggregate.
@@ -213,7 +213,7 @@ TestStringParam + " and " + GetColNamen(VglRecList.Current.velden.ColNaamAtt).Co
 Downloadacties zijn goed ondersteund. Door een download control als eindpunt van een actie te zetten wordt de geconfigureerde inhoud ervan aangeboden in een download prompt. De specifiek geconfigureerde acties om dit te bereiken worden opgeroepen wanneer er een gewenste dataset gefilterd staat en op de 'Get Excel' knop geduwd werd.
 \begin{enumerate}
     \item \textbf{GetExcel (Client actie):} Het filterresultaat naar de server actie doorgeven en de gereturnde Excel file te downloaden zetten.
-    \item \textbf{PrepareExcel (Server actie):} De filterresultaten converteren naar een Excel via de 'Record List to Excel' stap.
+    \item \textbf{PrepareExcel (Server actie):} De filterresultaten converteren naar een Excel bestand via de 'Record List to Excel' stap.
 \end{enumerate}
 
 %[afb van prompt om tedownloaden] ?
@@ -232,13 +232,13 @@ Downloadacties zijn goed ondersteund. Door een download control als eindpunt van
 Omdat de POC in de cloud draait is deze functionaliteit niet direct op te roepen, mogelijke workarounds:
 \begin{itemize}
     \item \textbf{Workaround 1:} Client side javascript, specifiek een ActiveX plugin gebruiken om shell commando's uit te voeren\footnote{How to Run cmd.exe with parameters from javascript - \url{https://stackoverflow.com/questions/10186813/how-to-run-cmd-exe-with-parameters-from-javascript}}.\\
-    $\rightarrow$ 'ActiveX not defined' error. Dit enkel mogelijk met oudere versies van Internet Explorer. Het is ook logisch dat dit niet meer ondersteund is vanuit security aspect.
+    $\rightarrow$ 'ActiveX not defined' error. Dit is enkel mogelijk met oudere versies van Internet Explorer. Het is ook logisch dat dit niet meer ondersteund is vanuit security aspect.
     \item \textbf{Workaround 2:} Een 'link' control en de href property laten wijzen naar een lokale RDP file.\\
-    $\rightarrow$ Niet flexibel genoeg: de rdp config file zou elke keer aangepast moeten worden met het relevante ip adres.
+    $\rightarrow$ Niet flexibel genoeg: de rdp config file zou elke keer aangepast moeten worden met het relevante IP-adres.
     \item \textbf{Workaround 3:} De webbrowser waar de POC in werkt configureren om custom urls te kunnen gebruiken (zoals rdp://). Vanuit de app naar dat soort url navigeren via de ingebouwde 'RedirectToUrl' functie.\\
     $\rightarrow$ Te veel extra configuratie buiten Outsystems en twijfelachtige ondersteuning.
     \item \textbf{Workaround 4:} Een RPD file maken voor de gewenste pc en downloaden/uitvoeren. Dit past delen toe zoals gezien in het RDP File Creator\footnote{\url{https://www.outsystems.com/forge/component_overview.aspx?projectid=574&projectname=rdp-file-creator&}} Forge component. Er is ook een dependency nodig om text naar binaries te converteren.\\
-    Er worden drie gegevensstukken gecombineerd: IP-adres van de doel pc, naam van de bevoegde rdp gebruiker en het sjabloon van een rdp configuratiebestand. In de client methode wordt het sjabloon ingevuld met de eerste twee waarden en hierna geconverteerd naar een binary. Ten laatste wordt dit bestand als download aangeboden. In de meeste webbrowsers is het als voorkeur in te stellen om bepaalde bestandstypen direct te openen na download. Dat maakt het tijdsverlies bij elke uitvoering miniem.
+    Er worden drie gegevensstukken gecombineerd: IP-adres van de doel-pc, naam van de bevoegde rdp gebruiker en het sjabloon van een rdp configuratiebestand. In de client methode wordt het sjabloon ingevuld met de eerste twee waarden en hierna geconverteerd naar een binary. Ten laatste wordt dit bestand als download aangeboden. In de meeste webbrowsers is het als voorkeur in te stellen om bepaalde bestandstypen direct te openen na download. Dat maakt het tijdsverlies bij elke uitvoering miniem.
     %[[afb-methode horizontaal][afb preview sjabloon met ingewisselde ip]]
 \end{itemize}
 
@@ -259,7 +259,7 @@ Omdat de POC in de cloud draait is deze functionaliteit niet direct op te roepen
 \textit{Ping}
 
 De basis van het probleem bij het uitwerken van RDP geldt ook hier. Toestellen zijn enkel benaderbaar in het lokale netwerk, de ping moet dus uitgevoerd kunnen worden aan de client kant. Outsystems maakt uitvoeren van client side javascript mogelijk maar er werd geen oplossing gevonden om Ping op deze manier te laten slagen.\\
-Plan B is om een extensie te maken. In de persoonlijke omgeving moet dit in .NET en hier is onder andere mogelijk om de Pinger\footnote{ASP.NET C\# Helper Class to execute a ICMPv4 PING to any remote host using hostname or IP Address - \url{https://www.ryadel.com/en/asp-net-c-sharp-icmpv4-ping-remote-host-hostname-ip-address/}} klasse te implementeren. Een grote opmerking hierbij is dat de app on-premises gehost moet worden om dit echt te laten werken.
+Plan B is om een extensie te maken. In de persoonlijke omgeving moet dit in .NET en hier is het onder andere mogelijk om de Pinger\footnote{ASP.NET C\# Helper Class to execute a ICMPv4 PING to any remote host using hostname or IP Address - \url{https://www.ryadel.com/en/asp-net-c-sharp-icmpv4-ping-remote-host-hostname-ip-address/}} klasse te implementeren. Een grote opmerking hierbij is dat de app on-premises gehost moet worden om dit echt te laten werken.
 
 Stappen om de extensie aan te maken:
 \begin{enumerate}
@@ -312,14 +312,14 @@ Het gekozen soort app is reactive om zowel op desktop als mobiele layout bruikba
 Een indicator is de marktpositie. Zowel Gartner als Forrester bestempelen Outsystems als leider (Zie Tabel~\ref{table:leiders}). Dit spreekt positief over de bestaanszekerheid.\\
 Ook hun traject over de jaren geeft vertrouwen.
 Outsystems is opgericht in 2005 en sinds dan is het product en de licentiëring ervan consistent gebleven.\\
-Hierboven komt dat er steeds vernieuwingen worden geïntroduceerd\footnote{Product Releases and Updates - \url{https://www.outsystems.com/whats-new/}}.
+Hierbovenop komt dat er steeds vernieuwingen worden geïntroduceerd\footnote{Product Releases and Updates - \url{https://www.outsystems.com/whats-new/}}.
 % TODO: volwaardige bron vinden?
 
 \subsubsection{Performant zijn}
 
-Een app in de cloud meestal niet zo snel als een lokale applicatie. Zeker ophalen van data over het internet heeft een invloed op performantie.\\
+Een app in de cloud is meestal niet zo snel als een lokale applicatie. Zeker ophalen van data over het internet heeft een invloed op performantie.\\
 Hoe weegt deze POC dan op tegen de PowerApps POC?\\
-In Subsectie~\ref{subsec:os-prijs} wordt een beeld gemaakt van de beperkingen. Vooral de punten over gedeelde resources en 'in slaap gaan' van de omgeving zijn relevant ten opzichte van performantie. PowerApps kent deze beperkingen niet. Dit is natuurlijk te verwachten als een gratis plan (Outsystems) vergeleken wordt met een betalend plan (PowerApps).\\
+In Subsectie~\ref{subsec:os-prijs} wordt een beeld gevormd van de beperkingen. Vooral de punten over gedeelde resources en 'in slaap gaan' van de omgeving zijn relevant ten opzichte van performantie. PowerApps kent deze beperkingen niet. Dit is natuurlijk te verwachten als een gratis plan (Outsystems) vergeleken wordt met een betalend plan (PowerApps).\\
 Er kan dus besloten worden dat PowerApps consistentere performantie zal bieden.
 
 \subsubsection{Security}
@@ -335,7 +335,7 @@ De POC is toegankelijk met geldige Outsystems credentials. Alternatieve user man
 Net als bij de PowerApps POC bestaat de case uit het wekelijks genereren en uitsturen van een rapport met toestellen die langer dan een maand 'te schrappen' staan.\\
 Voor herhalende taken zijn Timers in te stellen. Het probleem is dat het in Traditional Web apps mogelijk is om mails te versturen in acties maar dat deze functionaliteit voor Reactive Web apps (nog) niet ondersteund is. Als workaround is gekozen om een aparte Traditional Web app te maken die het uitvoeren van deze stappen overneemt.
 
-Voorbereidend moet de omgeving in Service Center geconfigureerd worden om email te kunnen versturen. Dit gebeurt in Administration > Email. Meest notabel zijn de te gebruiken SMTP Server en standaard afzender adres. Het is ook mogelijk om voor testscenario's al de mails te redirecten naar een test lijst.
+Voorbereidend moet de omgeving in Service Center geconfigureerd worden om e-mail te kunnen versturen. Dit gebeurt in Administration > Email. Meest notabel zijn de te gebruiken SMTP Server en standaard afzenderadres. Het is ook mogelijk om voor testscenario's al de mails te redirecten naar een testlijst.
 
 Eens een nieuwe Traditional Web app is aangemaakt in de Service Studio volstaat het om:
 \begin{enumerate}
@@ -363,7 +363,7 @@ AddMonths(testdata.SCHRAPSINDS,1) <= CurrDateTime() and testdata.KLEUR = "BLAUW"
         \includegraphics[width=\linewidth]{res-mail-os.JPG}
         \caption{Voorbeeld van het resultaat.}
     \end{subfigure}
-    %\caption{Overzicht van de filtering voorbereidingen.}
+    \caption{Overzicht van de configuratie en het resultaat van de Mail Timer.}
     \label{fig:mail-timer}
 \end{figure}
 
@@ -386,12 +386,12 @@ Dit wordt besproken in Sectie~\ref{sec:sharepoint}.
 
 Er is geen connector zoals in PowerApps dat rechtstreekse toegang geeft tot de SharePoint data. De verbinding zal met andere woorden via de beschikbare REST api's moeten verlopen. SharePoint heeft zijn eigen '\_api' toegang, alternatief is er ook de nieuwere Microsoft Graph. Omdat in de PowerApps POC Graph reeds gebruikt werd (Subsectie~\ref{subsec:ms-graph}) wordt er hier opnieuw voor gekozen. Iets dat daar aan bod kwam was het verschil tussen delegated en application permissions. Ook hier wordt uitgegaan van delegated permissions gezien dit de veiligere optie is (Windows login nodig).
 
-Alvorens er data opgevraagd kan worden moet het autorisatie proces (hier OAuth V2) doorlopen worden (Figuur~\ref{fig:auth-proces}).
+Alvorens er data opgevraagd kan worden moet het autorisatieproces (hier OAuth V2) doorlopen worden (Figuur~\ref{fig:auth-proces}).
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{auth-proces.png}
-    \caption{Weergave van het autorisatie proces. \autocite{MSLCT2019}}
+    \caption{Weergave van het autorisatieproces. \autocite{MSLCT2019}}
     \label{fig:auth-proces}
 \end{figure}
 
@@ -400,18 +400,18 @@ De implementatie ervan in Outsystems gaat als volgt:
     \item Azure
     \begin{enumerate}
         \item App registratie.
-        \item Client secret aanmaken
+        \item Client secret aanmaken.
         \item Scope definiëren. Voor SharePoint is dit: \lstinline|Sites.Manage.All Sites.Read.All SitesReadWrite.All|
         \item Redirect URL naar de Outsystems app instellen. Structuur is \lstinline|https://<outsystems omgeving>/<app naam>/<afhandeling pagina>| 
     \end{enumerate}
-    \item Autorisatie request doen(\lstinline|\authorize| eindpunt). Komt overeen met inloggen in Windows acctount en goedkeuren van de scope.\\
-    $\leftarrow$ Autorisatie code wordt teruggegeven.
-    \item Token aanvragen met de autorisatie code (\lstinline|\token| eindpunt)\\
+    \item Autorisatie request doen(\lstinline|\authorize| eindpunt). Komt overeen met inloggen in Windows account en goedkeuren van de scope.\\
+    $\leftarrow$ Autorisatiecode wordt teruggegeven.
+    \item Token aanvragen met de autorisatiecode (\lstinline|\token| eindpunt)\\
     $\leftarrow$ Token wordt teruggegeven.
 \end{enumerate}
 Dit token moet aanwezig zijn in elke request naar de SharePoint data via Microsoft Graph.
 
-Het is echter mogelijk een deel van deze stappen door te geven naar een Forge component (zoals Microsoft Login Connector Reactive \autocite{MSLCT2019}). De implementatie daarvan is een pak eenvoudiger: In de standaard login actie van de POC wordt de methode uit de extensie geplaatst die het autorisatie proces start 'GetOAuth2AuthenticationURL'. Practisch gezien wordt na Outsystems login nu ook de Microsoft login uitgevoerd. Na afloop is het token beschikbaar om te gebruiken in REST operaties. Alleen de voorbereiding in Azure moet nog steeds gedaan worden.
+Het is echter mogelijk een deel van deze stappen door te geven naar een Forge component (zoals Microsoft Login Connector Reactive \autocite{MSLCT2019}). De implementatie daarvan is een pak eenvoudiger: in de standaard login actie van de POC wordt de methode uit de extensie geplaatst die het autorisatieproces start 'GetOAuth2AuthenticationURL'. Praktisch gezien wordt na de Outsystems login nu ook de Microsoft login uitgevoerd. Na afloop is het token beschikbaar om te gebruiken in REST operaties. Alleen de voorbereiding in Azure moet nog steeds gedaan worden.
 
 \subsubsection{Leercurve moet degelijk zijn}
 
@@ -425,8 +425,8 @@ Als er specifieker gekeken wordt naar de oorzaken van moeilijkheid tussen beide 
 \end{itemize}
 
 Over hulpmateriaal:\\
-De documentatie is goed en de community is actief. De instructie video's zijn ok. Deze zijn van Outsystems zelf maar soms verouderd.\\
-Community apps uit de Forge zijn ook handig. Componenten kunnen ingekeken worden specifiek om technieken aan te leren. Veel forge apps zijn als demo bedoelt of hebben een companion demo app.
+De documentatie is goed en de community is actief. De instructievideo's zijn ok. Deze zijn van Outsystems zelf maar soms verouderd.\\
+Community apps uit de Forge zijn ook handig. Componenten kunnen ingekeken worden specifiek om technieken aan te leren. Veel forge apps zijn als demo bedoeld of hebben een companion demo app.
 
 \subsection{Nice to have}
 
