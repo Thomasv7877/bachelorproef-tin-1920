@@ -144,7 +144,7 @@ Filter(Tabel1_1; MODEL = `HP COOLBOOK` && OS = `Windows 10`)
 \end{lstlisting}
 
 Dit oogt statisch. In LanReview is het mogelijk de kolom, operator en de filterwaarde in te stellen. Bovendien kunnen meerdere condities aaneengeschakeld worden.
-Een gelijkaardige manier om filter data te verschaffen in PowerApps is door een gallerij te gebruiken waarbij elke rij een dropdown heeft voor te filteren kolom, een dropdown voor her nodige vergelijkingsteken en een tekstveld aan te passen zijn. Elke keer men een conditie toevoegt wordt deze data opgeslagen als rij in een Tabel.
+Een gelijkaardige manier om filter data te verschaffen in PowerApps is door een gallerij te gebruiken waarbij elke rij een dropdown heeft voor de te filteren kolom, een dropdown voor het nodige vergelijkingsteken en een aan te passen tekstveld. Elke keer men een conditie toevoegt wordt deze data opgeslagen als rij in een Tabel.
 
 % TODO: meer over de fitler werking in LanReview, filter doel
 % TODO: afb!
@@ -173,12 +173,12 @@ Wat nu met mogelijkheden om de filter effectief uit te voeren? Er zijn een aanta
 Ter verduidelijking: een samengestelde query in zowel ODATA als flow expressie:
 \begin{itemize}
     \item \textbf{ODATA:} \lstinline|(NETWNAAM eq 'GLRDT00001') and (IP eq '192.168.1.1')|
-    \item \textbf{flow expressie:} \lstinline|@and(equals(item()?['NETWNAAM'], 'GLRDT00001'),equals(item()?['IP'], '192.168.1.1'))|
+    \item \textbf{Flow expressie:} \lstinline|@and(equals(item()?['NETWNAAM'], 'GLRDT00001'),equals(item()?['IP'], '192.168.1.1'))|
 \end{itemize}
 
 Dit beoogde soort filtering is overigens out of the box aanwezig in model based apps. \autocite{MicrosoftDocs2020c}
 
-Als het dynamische aspect van filtering opgegeven wordt is het nog steeds mogelijk om 'statisch' te werken. Daarmee bedoeld een aantal voorgebouwde queries, voor gangbare scenario's zoals ze bestaat in LanReview zijn zonder problemen op te nemen in PowerApps.
+Als het dynamische aspect van filtering opgegeven wordt is het nog steeds mogelijk om 'statisch' te werken. Daarmee bedoeld een aantal voorgebouwde queries, voor gangbare scenario's zoals ze bestaan in LanReview zijn zonder problemen op te nemen in PowerApps.
 
 \textit{Filtering (met SharePoint databron):}
 
@@ -254,7 +254,7 @@ De gebruiksflow is:
 OnStart => Set(Gebruiker;First(Split(User().FullName;" ")).Result)
 OnSelect => Patch(iptable;First(Filter(iptable;user = Gebruiker));{ ip: SelectedDevice.IP})
 \end{lstlisting}
-    De formule gekoppeld aan 'OnStart' haalt de volledige naam van de ingelogde PowerApps gebruiker op en splitst deze waarna enkel het eerste resultaat wordt opgeslagen als 'Gebruiker' variabele.\\
+    De formule gekoppeld aan 'OnStart' haalt de volledige naam van de ingelogde PowerApps gebruiker op en splitst deze waarna enkel het eerste resultaat (voornaam) wordt opgeslagen als 'Gebruiker' variabele.\\
     De formule gekoppeld aan het 'OnSelect' property haalt het IP-adres uit het detailformulier op en schrijft het weg naar de Excel tabel 'iptable' onder de kolom met de matchende gebruikersnaam.
     \item Lokaal kan nu een script uitgevoerd worden dat dit Excel bestand inleest en het relevante commando uitvoert (keuze hiervan hangt af van de overeenkomende snelkoppeling).
 \begin{lstlisting}[style=powershellStyle]
@@ -322,7 +322,7 @@ Een belangrijke aanpassing die gemaakt moet worden is om de app 2000 kolommen op
 \subsubsection{Security}
 
 % TODO:laatste controle
-Eens een app gepubliceerd is kan gekozen worden wie de app mag gebruiken. Dit kan op ook groepsniveau gebeuren door te publiceren naar een bepaalde Environment. Goedgekeurde gebruikers hebben toegang met hun Office365 login, authenticatie gebeurt met andere woorden via Azure AD. Er moet opgepast worden dat deze gebruikers over de nodige permissies beschikken voor de aanwezige connectors om ontbrekende functionaliteit te vermijden.
+Eens een app gepubliceerd is kan gekozen worden wie de app mag gebruiken. Dit kan ook op groepsniveau gebeuren door te publiceren naar een bepaalde Environment. Goedgekeurde gebruikers hebben toegang met hun Office365 login, authenticatie gebeurt met andere woorden via Azure AD. Er moet opgepast worden dat deze gebruikers over de nodige permissies beschikken voor de aanwezige connectors om ontbrekende functionaliteit te vermijden.
 
 Er zijn enkele technieken om granulaire permissies in te stellen, die van \textcite{Dunnam2019} wordt hier uitgelegd:
 
@@ -540,7 +540,7 @@ In .NET zijn er aantal klassen beschikbaar waarmee Microsoft Graph bewerkingen u
     \label{fig:vs-connected-services}
 \end{figure}
 
-In de solution staat in de 'Connected services' lijt een optie om te verbinden met Office365 services via de Microsoft Graph (Figuur~\ref{fig:vs-connected-services}). In deze wizard wordt een nieuwe Azure App registratie aangemaakt (indien nog niet bestaand) en kunnen de nodige permissies aan de hand van 'scopes' bepaald worden. De scopes om OneDrive bestanden te kunnen gebruiken zijn:
+In de solution staat in de 'Connected services' lijst een optie om te verbinden met Office365 services via de Microsoft Graph (Figuur~\ref{fig:vs-connected-services}). In deze wizard wordt een nieuwe Azure App registratie aangemaakt (indien nog niet bestaand) en kunnen de nodige permissies aan de hand van 'scopes' bepaald worden. De scopes om OneDrive bestanden te kunnen gebruiken zijn:
 \begin{itemize}
     \item User.Read 
     \item Files.Read 
@@ -613,7 +613,8 @@ var newAuth = $"{authentication.Instance}{authentication.Directory}";
 
 AuthenticationContext authenticationContext = new AuthenticationContext(newAuth);
 Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential clientCred 
-= new Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential(authentication.Application, authentication.ClientSecret);
+= new Microsoft.IdentityModel.Clients.ActiveDirectory
+    .ClientCredential(authentication.Application, authentication.ClientSecret);
 Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationResult authenticationResult 
 = await authenticationContext.AcquireTokenAsync(authentication.Authority, clientCred);
 var token = authenticationResult.AccessToken;
@@ -644,7 +645,8 @@ public async Task<string> Get(string filter)
 try
 {
 GraphServiceClient client = await MicrosoftGraphClient.GetGraphServiceClient2();
-var resultaat = await client.Users["db4fef52-9274-49e2-846c-1f325c4b9d7c"].Drive.Root.Children.Request().GetAsync();
+var resultaat = await client.Users["db4fef52-9274-49e2-846c-1f325c4b9d7c"].Drive.Root
+    .Children.Request().GetAsync();
 
 return resultaat.ToString();
 }
