@@ -529,7 +529,7 @@ GET https://graph.microsoft.com/v1.0/me/drive/root:/testdata.xlsx:/workbook/work
 
 \subsection{Azure API App (ASP.NET)}
 
-Via Microsoft Graph is er toegang tot de data maar nu is er vanuit de Power Apps zelf toegang nodig tot Microsoft Graph. De optie die de meeste vrijheid bied is het maken van een .NET API in Visual Studio, dit wordt naar Azure gedeployed (als Azure API App) en later geïmporteerd in PowerApps als Custom Connector aan de hand van een Swagger definitie. Er is ook de keuze of de app gebouwd wordt in ASP.NET framework of .NET Core. Om praktische redenen werd gekozen om de ASP.NET framework variant te maken, het is namelijk mogelijk om de nodige Azure app registratie vanuit Visual Studio zelf uit te voeren.
+Via Microsoft Graph is er toegang tot de data maar nu is er vanuit de Power Apps zelf toegang nodig tot Microsoft Graph. De optie die de meeste vrijheid biedt is het maken van een .NET API in Visual Studio, dit wordt naar Azure gedeployed (als Azure API App) en later geïmporteerd in PowerApps als Custom Connector aan de hand van een Swagger definitie. Er is ook de keuze of de app gebouwd wordt in ASP.NET framework of .NET Core. Om praktische redenen werd gekozen om de ASP.NET framework variant te maken, het is namelijk mogelijk om de nodige Azure app registratie vanuit Visual Studio zelf uit te voeren.
 In .NET zijn er aantal klassen beschikbaar waarmee Microsoft Graph bewerkingen uitgevoerd kunnen worden waarvan de belangrijkste 'GraphServiceClient' is. Het gebruik ervan wordt verder uitgelegd.
 
 \textit{Voorbereiding: Azure App registratie}
@@ -540,7 +540,7 @@ In .NET zijn er aantal klassen beschikbaar waarmee Microsoft Graph bewerkingen u
     \label{fig:vs-connected-services}
 \end{figure}
 
-In de solution staat in de 'Connected services' lijst een optie om te verbinden met Office365 services via de Microsoft Graph (Figuur~\ref{fig:vs-connected-services}). In deze wizard wordt een nieuwe Azure App registratie aangemaakt (indien nog niet bestaand) en kunnen de nodige permissies aan de hand van 'scopes' bepaald worden. De scopes om OneDrive bestanden te kunnen gebruiken zijn:
+In de solution staat in de 'Connected services' lijst een optie om te verbinden met Office 365 services via de Microsoft Graph (Figuur~\ref{fig:vs-connected-services}). In deze wizard wordt een nieuwe Azure App registratie aangemaakt (indien nog niet bestaand) en kunnen de nodige permissies aan de hand van 'scopes' bepaald worden. De scopes om OneDrive bestanden te kunnen gebruiken zijn:
 \begin{itemize}
     \item User.Read 
     \item Files.Read 
@@ -549,14 +549,14 @@ In de solution staat in de 'Connected services' lijst een optie om te verbinden 
     \item Files.ReadWrite.All
 \end{itemize}
 
-Na afloop zijn zijn er enkele belangrijke stukken gegevens ingevoegd in de Web.config, een korte verklaring:
+Na afloop zijn er enkele belangrijke stukken gegevens ingevoegd in de Web.config, een korte verklaring:
 \begin{itemize}
-    \item \textbf{TenantId:} Identifier van de Active Directory gebruiker/tenant, ook de id van de map waar waar de resources zich bevinden.
+    \item \textbf{TenantId:} Identifier van de Active Directory gebruiker/tenant, ook de id van de map waar de resources zich bevinden.
     \item \textbf{ClientId:} Identifieert de app registratie in Active Directory.
     \item \textbf{ClientSecret:} Secret geassocieerd met de ClientId.
 \end{itemize}
 
-Nu kan er over gegaan worden op de implementatie. Er zijn twee technieken toegepast om de 'GraphServiceClient' klasse te configureren.\\
+Nu kan er overgegaan worden op de implementatie. Er zijn twee technieken toegepast om de 'GraphServiceClient' klasse te configureren.\\
 De eerste is gebaseerd op de techniek gevonden op CodeProject\footnote{Demystifying Microsoft Graph - \url{https://www.codeproject.com/Tips/5249834/Demystifying-Microsoft-Graph}}:
 \begin{lstlisting}[style=CSharpStyle]
 //
@@ -592,7 +592,7 @@ return graphServiceClient;
 }
 \end{lstlisting}
 
-De tweede gebuikt een techniek beschreven op CSharpCorner\footnote{Integrate Microsoft Graph With .NET CORE Web APIs - \url{https://www.c-sharpcorner.com/blogs/integrate-microsoft-graph-with-net-core-web-apis}}:
+De tweede gebruikt een techniek beschreven op CSharpCorner\footnote{Integrate Microsoft Graph With .NET CORE Web APIs - \url{https://www.c-sharpcorner.com/blogs/integrate-microsoft-graph-with-net-core-web-apis}}:
 \begin{lstlisting}[style=CSharpStyle]
 //
 public static async Task<GraphServiceClient> GetGraphServiceClient2()
@@ -628,16 +628,16 @@ return graphClient;
 }
 \end{lstlisting}
 
-Het verschil tussen beide zit in de dependencies die gebruikt worden om een instantie van de 'GraphServiceClient' te bouwen. De stappen die ze uitvoeren echter zijn hetzelfde en kunnen als volgt beschreven worden:
+Het verschil tussen beide zit in de dependencies die gebruikt worden om een instantie van de 'GraphServiceClient' te bouwen. De stappen die ze uitvoeren zijn echter hetzelfde en kunnen als volgt beschreven worden:
 \begin{enumerate}
     \item Nodige variabelen declareren voor onder andere de ClientId, TenantId, ClientSecret.
     \item De app/authenticatie(context) bouwen aan de hand van deze gegevens.
-    \item Een token genereren
+    \item Een token genereren.
     \item Een instantie van GraphServiceClient aanmaken en returnen.
     %\item Deze instantie gebruiken om operaties uit te voeren op Microsoft Graph.
 \end{enumerate}
 
-Deze instantie wordt teruggegeven naar een Controller klasse (hier FilterController) waar de HTTP operaties in gedeclareerd worden. In onderstaand voorbeeld worden alle aanwezige items in OneDrive teruggegeven:
+Deze instantie wordt teruggegeven naar een Controller klasse (hier FilterController) waar de HTTP-operaties in gedeclareerd worden. In onderstaand voorbeeld worden alle aanwezige items in OneDrive teruggegeven:
 \begin{lstlisting}[style=CSharpStyle]
 // GET api/values/5
 public async Task<string> Get(string filter)
@@ -681,13 +681,13 @@ Vergeleken met hoe het in de vorige sectie ging moeten de stappen in Azure manue
 Als nu de optie 'Create from blank' geselecteerd wordt start een wizard:\\ 
 \textbf{General $\rightarrow$ Security $\rightarrow$ Definition $\rightarrow$ Test}
 
-In het 'Security' tab is het belangrijk OAuth v2.0 authenticatie te kiezen met als id provider 'Azure Active Directory'. Dan komt het neer op het invullen van de gegevens die net in Azure aangemaakt zijn. Het echte werk begint in de 'Definitie' tab. De operaties uit Subsectie~\ref{subsec:ms-graph} werden eerst in Microsoft Graph Explorer\footnote{\url{https://developer.microsoft.com/en-us/graph/graph-explorer}} getest, hierna worden de request en response gegevens gebruikt om een actie te maken. Deze actie kan licht aangepast worden wat variabelen gebruik betreft zodat bijvoorbeeld de filterargumenten uit PowerApps correct kunnen doorgeven worden naar deze connector.\\
+In de 'Security' tab is het belangrijk OAuth v2.0 authenticatie te kiezen met als id provider 'Azure Active Directory'. Dan komt het neer op het invullen van de gegevens die net in Azure aangemaakt zijn. Het echte werk begint in de 'Definitie' tab. De operaties uit Subsectie~\ref{subsec:ms-graph} werden eerst in Microsoft Graph Explorer\footnote{\url{https://developer.microsoft.com/en-us/graph/graph-explorer}} getest, hierna worden de request en response gegevens gebruikt om een actie te maken. Deze actie kan licht aangepast worden wat variabelen gebruik betreft zodat bijvoorbeeld de filterargumenten uit PowerApps correct kunnen doorgegeven worden naar deze connector.\\
 Het is handig dat in de laatste stap de acties getest kunnen worden. De resultaten hiervan zijn ingevoegd. (Figuur~\ref{fig:res-blank-conn})
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.4\linewidth]{res-blank-conn.JPG}
-    \caption{Resultaat van de Graph queries.}
+    \caption{Resultaat van de Graph query's.}
     \label{fig:res-blank-conn}
 \end{figure}
 
@@ -701,11 +701,11 @@ Set(filterResultaatItems;MSGraphConnector.GetResult({'$select':"values"}).value)
 \begin{enumerate}
     \item Een Excel workbook sessie starten en de gereturnde id koppelen aan een variabele.
     \item Vorige filters verwijderen.
-    \item Voor elke rij in de 'filterVelden' tabel wordt filter actie oproepen. De aanvaarde argumenten in volgorde zijn: kolomnaam, sessie id en een record waarin de stringwaarde van de operator en filterwaarde aan elkaar geplakt worden (via '\&').
+    \item Voor elke rij in de 'filterVelden' tabel wordt de filter actie oproepen. De aanvaarde argumenten in volgorde zijn: kolomnaam, sessie id en een record waarin de stringwaarde van de operator en filterwaarde aan elkaar geplakt worden (via '\&').
     \item Er wordt een variable gedeclareerd dat het relevant stuk return json toegewezen krijgt via de 'GetResult' actie.
 \end{enumerate}
 
-Theoretisch ziet dit er goed uit, de tests ervoor slagen en de eerste actie geeft het sessie id succesvol terug. Jammer genoeg falen de andere. Er wordt telkens een 404 (resource not found) error teruggegeven.
+Theoretisch ziet dit er goed uit, de tests ervoor slagen en de eerste actie geeft de sessie id succesvol terug. Jammer genoeg falen de andere. Er wordt telkens een 404 (resource not found) error teruggegeven.
 
 De gevonden workaround is om de oproepen naar de Custom connector uit te laten voeren vanuit een flow. Figuur~\ref{fig:excel-filter-flow-success} toont de succesvolle uitvoering hiervan.
 
@@ -717,6 +717,6 @@ De gevonden workaround is om de oproepen naar de Custom connector uit te laten v
 \end{figure}
 
 Enkele opmerkingen die het gebruik van de flow verduidelijken:\\
-In de powerapps wordt de flow uitgevoerd via 'Filter !' knop.
+In de powerapps wordt de flow uitgevoerd via de 'Filter !' knop.
 De filterargumenten moeten als invoerparameters meegegeven worden. Deze moeten formatting krijgen.
 De resultaten van 'GetResult' worden teruggestuurd in 'Reactie' en zijn als json toegankelijk vanuit de PowerApp mits het schema eerst gedefinieerd werd.
