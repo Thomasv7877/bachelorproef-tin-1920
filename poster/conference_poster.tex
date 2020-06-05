@@ -51,11 +51,12 @@
 % The widths of these boxes can be easily edited to accommodate your content as you see fit
 
 \begin{minipage}[t]{0.75\linewidth}
-\VeryHuge \color{HoGentAccent1} \textbf{Titel van uw bachelorproef} \color{Black}\\ % Title
-\Huge\textit{Ondertitel (eventueel)}\\[2.4cm] % Subtitle
-\huge \textbf{Naam Voornaam, co-promotor, promotor}\\[0.5cm] % Author(s)
+\VeryHuge \color{HoGentAccent1} \textbf{Ontwikkeling van de Proof of Concept voor een nieuw IT asset management programma voor AZ Glorieux gebouwd met Power Apps.} \color{Black}\\ % Title
+%\Huge\textit{Ondertitel (eventueel)}\\[2.4cm] % Subtitle
+
+\huge \textbf{Van den Hauwe Thomas, Vanneste Siemen, Vertonghen Benjamin}\\[0.5cm] % Author(s)
 \huge Hogeschool Gent, Valentin Vaerwyckweg 1, 9000 Gent\\[0.4cm] % University/organization
-\Large \texttt{voornaam.naam@hogent.be} \\
+\Large \texttt{thomas.vandenhauwe.v7877@hogent.be} \\
 \end{minipage}
 %
 \begin{minipage}[t]{0.25\linewidth}
@@ -76,9 +77,16 @@
 \color{HoGentAccent1} % Navy color for the abstract
 
 \begin{abstract}
-It's only a model.
-You don't vote for kings. Who's that then? We found them. Ni! Ni! Ni! Ni!
-The nose? On second thoughts, let's not go there. It is a silly place. Bloody Peasant! And the hat. She's a witch! Where'd you get the coconuts?
+Het ziekenhuis AZ Glorieux zou graag PowerApps willen gebruiken om een oude business applicatie (LanReview, ITAM) te vervangen. Specifiek wordt bekeken hoe geschikt PowerApps is voor deze rol.\\
+Dit onderzoek is relevant omdat het algemene zakelijke landschap gekenmerkt is door een ontoereikendheid aan de vraag om software en het is interessant om te zien of low-code zijn beloofde snellere softwareontwikkeling kan waarmaken. 
+
+Eerst wordt de omgeving van AZ Glorieux verkend en wordt LanReview in detail besproken. Het begrip low-code wordt onderzocht, in het bijzonder wordt er een actueel beeld van geschetst. Het PowerApps platform wordt onder de loep genomen.
+
+Er wordt een requirementsanalyse gemaakt. De low-code markt wordt onderzocht en met de requirements in het achterhoofd wordt er een low-code (voor powerusers) platform gekozen voor de primaire proof-of-concept en hierna een low-code (voor ontwikkelaars) platform voor de secundaire proof-of-concept. Dit zijn PowerApps en Outsystems geworden.
+
+In de volgende delen worden de proof-of-concepts voor beiden uitgewerkt. Dit wordt gedaan door elke requirement te implementeren en te documenteren.
+
+Tenslotte komt het besluit dat PowerApps niet de beste optie is voor deze case en wordt genuanceerd voor wat het wel en niet geschikt zou zijn. Dit wordt gedaan voor zowel PowerApps (no-code) als Outsystems (low-code).
 \end{abstract}
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
@@ -88,15 +96,15 @@ The nose? On second thoughts, let's not go there. It is a silly place. Bloody Pe
 \section*{Introductie}
 \color{black}
 \color{black}
-Be quiet! Found them? In Mercia?! The coconut's tropical! But you are dressed as one… Well, what do you want? Knights of Ni, we are but simple travelers who seek the enchanter who lives beyond these woods.
+LanReview, een binnenshuis ontwikkeld assetmanagement programma dat onontbeerlijk is voor de IT Helpdesk van het ziekenhuis AZ Glorieux, is aan vernieuwing toe. De laatste ontwikkeling is van enige tijd geleden en het is niet logisch meer om dit terug op te nemen voornamelijk wegens de verouderde codebase (Visual BASIC 3.0). De vervangende applicatie moet bij voorkeur gemaakt worden met Microsoft Power Apps en ondersteunend ook Power Automate. De vraag wordt met andere woorden gesteld wat voor potentieel dit platform heeft en hoe het past in hun omgeving.\\
+Dit is op zich niet speciaal. Bedrijven kampen al jaren met een niet in te vullen vraag naar software en dit zal in de toekomst alleen maar blijven toenemen. Low-code platformen (waaronder het Microsoft Power platform) stellen zichzelf als het beste gereedschap om dit probleem aan te pakken.\\
+Dat is wat onderzocht zal worden. Specifiek wordt gekeken hoe gepast het PowerApps gereedschap is om het LanReview probleem op te lossen. Dit wordt gedaan aan de hand van een proof-of-concept.
 
-Well, what do you want? It's only a model. Camelot! We found them. We shall say 'Ni' again to you, if you do not appease us.
+%\begin{center}\vspace{1cm}
+%    \includegraphics[width=0.7\linewidth]{forrester-markt-evolutie}
+%    \captionof{figure}{\color{HoGentAccent5} Forrester voorspelde marktevolutie.}
+%\end{center}\vspace{1cm}
 
-The nose? Shut up! Burn her! I am your king. You don't vote for kings.
-
-You can't expect to wield supreme power just 'cause some watery tart threw a sword at you! Well, we did do the nose. I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
-
-Why do you think that she is a witch? We want a shrubbery!! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
 %----------------------------------------------------------------------------------------
 %	GEOLOGY
 %----------------------------------------------------------------------------------------
@@ -105,14 +113,14 @@ Why do you think that she is a witch? We want a shrubbery!! I don't want to talk
 \color{HoGentAccent1} 
 \section*{Experimenten}
 \color{black}
-A newt? Camelot! Why? No, no, no! Yes, yes. A bit. But she's got a wart.
-
-Shut up! I dunno. Must be a king. Who's that then? Look, my liege! On second thoughts, let's not go there. It is a silly place.
-
-Shut up! Will you shut up?! No, no, no! Yes, yes. A bit. But she's got a wart. He hasn't got shit all over him. It's only a model. It's only a model.
-
-Bring her forward! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave 
-
+\begin{itemize}
+    \item Requirementsanalyse:\\
+    Het hoofddoel was om een eerste peiling te doen naar de geschiktheid van PowerApps en het ontdekken van het beste platform om de secundaire proof-of-concept mee te bouwen. Er wordt traditioneel te werk gegaan: prioriteiten stellen onder de requirements, longlist en shortlist.
+    \item Proof-of-concept: Power Apps\\
+    Dit werd gedaan door de requirements uit te werken en hun voldoening te bekijken.
+    \item Proof-of-concept: Outsystems\\
+    Zelfde werkwijze als bij PowerApps.
+\end{itemize}
 
 
 \color{HoGentAccent1} 
@@ -121,8 +129,13 @@ Bring her forward! I don't want to talk to you no more, you empty-headed animal 
 
 
 \begin{center}\vspace{1cm}
-\includegraphics[width=1.0\linewidth]{grail}
-\captionof{figure}{\color{HoGentAccent5} He hasn't got shit all over him. The nose? Where'd you get the coconuts? What do you mean? We shall say 'Ni' again to you, if you do not appease us}
+\includegraphics[width=0.7\linewidth]{plat-tri}
+\captionof{figure}{\color{HoGentAccent5} Een overzicht van de gerbuikte platformen, PowerApps en Outsystems.}
+\end{center}\vspace{1cm}
+
+\begin{center}\vspace{1cm}
+    \includegraphics[width=1.0\linewidth]{poc-tri}
+    \captionof{figure}{\color{HoGentAccent5} Voorbeeldweergaven van de proof-of-concepts.}
 \end{center}\vspace{1cm}
 
 %------------------------------------------------
@@ -132,7 +145,19 @@ Bring her forward! I don't want to talk to you no more, you empty-headed animal 
 \color{HoGentAccent1} 
 \section*{Conclusies}
 \color{black}
-on't underestimate the Force. Oh God, my uncle. How am I ever gonna explain this? I suggest you try it again, Luke. This time, let go your conscious self and act on instinct. Don't be too proud of this technological terror you've constructed. The ability to destroy a planet is insignificant next to the power of the Force.
+Sommige requirements zijn eenvoudig uit te werken maar anderen hebben workarounds nodig die na uitwerking nog steeds tekort schoten tenopzichte wat de originele LanReview mogelijk was. Indien men tijdens de uitwerking van een app workarounds en custom connectors moet beginnen gebruiken is het daarom aangeraden om een andere weg uit te gaan. Door de nodige tijdsinvestering kan evengoed iets opgesteld worden in een traditionele ontwikkelomgeving en het sterkste voordeel van low-code is daarmee tenietgedaan.\\
+Dit wil niet zeggen dat PowerApps geen meerwaarde biedt voor deze case. Voor het maken van een strikt mobiele versie met een beperktere functionaliteitsset is het zeer geschikt. Bijvoorbeeld voor een telefoonboek app zou het ook perfect zijn.
+
+Voor het maken van een complexere business app is Outsystems de beste keuze. De leercurve is niet dermate hoger dan die van PowerApps en indien de app beperkte resources en gebruikersbestand nodig heeft moet bovendien geen betalend plan aangegaan worden. Dit is het geval voor de LanReview POC maar er zijn nog steeds beperkingen mogelijk door de aard van de applicatie (cloud). Als lokale resources nodig zijn is dit net als bij PowerApps een hekelpunt. Het besluit hierbij is dat als AZ Glorieux een complexe app nodig heeft Outsystems een goede optie is maar als vervanger van LanReview is het niet toereikend.
+
+De meest passende oplossing voor het vernieuwen van de desktopversie van LanReview is om de broncode over te zetten naar een WPF of UWP .NET Core desktop applicatie of soortgelijk. 
+
+Low-code (PowerApps) heeft wel degelijk een toekomst in AZ Glorieux maar er moet rekening gehouden worden met requirements:
+\begin{itemize}
+    \item Eenvoudige requirements $\rightarrow$ Low-code voor citizen developers (no-code) - \textbf{PowerApps}.
+    \item Complexe requirements $\rightarrow$ Low-code voor ontwikkelaars - \textbf{Outsystems}.
+    \item Specifieke requirements, grote integratie met host systeem nodig $\rightarrow$ Traditionele desktop app.
+\end{itemize}
 %----------------------------------------------------------------------------------------
 %	FORTHCOMING RESEARCH
 %----------------------------------------------------------------------------------------
@@ -140,9 +165,11 @@ on't underestimate the Force. Oh God, my uncle. How am I ever gonna explain this
 \section*{Toekomstig onderzoek}
 \color{black}
 
-I care. So, what do you think of her, Han? No! Alderaan is peaceful. We have no weapons. You can't possibly… I have traced the Rebel spies to her. Now she is my only link to finding their secret base.
-
-Kid, I've flown from one side of this galaxy to the other. I've seen a lot of strange stuff, but I've never seen anything to make me believe there's one all-powerful Force controlling everything. There's no mystical energy field that controls my destiny. It's all a lot of simple tricks and nonsense. You are a part of the Rebel Alliance and a traitor! Take her away! 
+\begin{itemize}
+    \item Case met AI Builder
+    \item REST operaties de focus van het onderzoek maken.
+    \item Een asset management app die IoT ook opneemt.
+\end{itemize}
 
 
 %----------------------------------------------------------------------------------------
